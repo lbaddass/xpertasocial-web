@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+git commit -m "feat: XpertaSocial v1.0 - Complete landing infrastructure
 
-## Getting Started
+🏗️ INFRASTRUCTURE
+- Implemented Next.js 14+ App Router with TypeScript strict mode
+- Configured Tailwind CSS with custom Laboratory/Blueprint design system
+- Integrated Inter Tight (headings) + JetBrains Mono (data) typography stack
+- Set up Lucide React icons with technical aesthetic (strokeWidth: 1.5)
 
-First, run the development server:
+🎨 DESIGN SYSTEM
+- Grafito (#2B2D42) base with 8px engineering grid
+- Signal Red (#E63946) accent system for CTAs and system states
+- Blueprint-style borders (rgba white/10) with hover states
+- Responsive mobile-first approach (375px → 1280px max-width)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+📦 CORE COMPONENTS
+- Hero.tsx: System status badge + video demo placeholder + dual CTAs
+- ValueGrid.tsx: 3-column technical value proposition with hover effects
+- Methodology.tsx: 3-phase operational timeline with scroll animations
+- FrameworkCards.tsx: Proprietary IP showcase (Andromeda, EF-Élite, Pipelines)
+- LabClients.tsx: Minimalist client/partner display with SVG placeholders
+- FinalCTA.tsx: High-urgency conversion section with countdown timer
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🆕 NEW ADDITIONS
+- ComparisonTable.tsx: Traditional agencies vs XpertaSocial feature matrix
+- DiagnosticForm.tsx: Lead capture with 4-step qualification form
+- SpeedDemo.tsx: Side-by-side performance comparison widget
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+⚡ PERFORMANCE
+- Zero external dependencies (except Lucide React)
+- Optimized for Vercel Edge Network deployment
+- Targeting <0.3s FCP (First Contentful Paint)
+- Lighthouse score target: 95+ across all metrics
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🎯 BUSINESS CONTEXT
+- Target: High-end plastic surgery clinics (Mexico: CDMX, MTY, GDL)
+- Positioning: Growth engineering hub (not creative agency)
+- Core offer: Content Factory™ automation system
+- Operator: José Luis García Orobio
 
-## Learn More
+📋 TECHNICAL DEBT / TODO
+- [ ] Replace SVG placeholders in LabClients with real client logos
+- [ ] Implement actual video demo embed in Hero section
+- [ ] Connect DiagnosticForm to backend/webhook (n8n)
+- [ ] Add Google Analytics 4 + Meta Pixel tracking
+- [ ] Implement scroll-triggered animations in Methodology
+- [ ] A/B test CTA copy variations
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Built with urgency. Deployed with precision.
+No templates. No shortcuts. Pure engineering.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Status: OPERATIONAL 🟢
+Region: MEX-USA
+Build: 2025.11.22
+"
