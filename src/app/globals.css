@@ -3,15 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #000000;
+  --foreground: #E8F5E9;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-inter-tight), Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+}
+
+::selection {
+  background: #4CAF50;
+  color: #0a0e1a;
+}
+
+.blueprint-border {
+  border: 1px solid rgba(232, 245, 233, 0.1);
 }
 
 @keyframes rise {
@@ -45,4 +58,45 @@ body {
 
 .animate-scan-line {
   animation: scanLine 1.2s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulseBorder {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.35); }
+  50% { box-shadow: 0 0 18px 4px rgba(76, 175, 80, 0.35); }
+}
+
+@keyframes drawLine {
+  from {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.shadow-glow-money {
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.35);
+}
+
+.shadow-glow-money-strong {
+  box-shadow: 0 0 28px rgba(76, 175, 80, 0.5), 0 0 52px rgba(0, 230, 118, 0.35);
+}
+
+.shadow-glow-red {
+  box-shadow: 0 0 24px rgba(230, 57, 70, 0.45), 0 0 48px rgba(6, 182, 212, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

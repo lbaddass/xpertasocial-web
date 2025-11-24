@@ -1,85 +1,46 @@
-import type { ReactElement } from 'react';
-import { Activity, Cpu, Layers, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { BarChart3, Cpu, PenTool } from "lucide-react";
 
-interface ValueItem {
-  title: string;
-  description: string;
-  metric: string;
-  icon: ReactElement;
-}
-
-const values: ValueItem[] = [
+const values = [
   {
-    title: '0.3s Page Loads',
-    description: 'Next.js 14 + Edge caching tuned for conversion spikes.',
-    metric: '0.3s',
-    icon: <Zap size={18} />,
+    title: "Ingeniería Full-Stack",
+    icon: <Cpu size={24} strokeWidth={1.5} />,
+    desc: "Desarrollo de activos digitales propietarios. No usamos plantillas. Construimos infraestructura web (Next.js) optimizada para conversión de alta velocidad.",
   },
   {
-    title: '47x Content Output',
-    description: 'IA clona formatos virales y los publica en 3 plataformas.',
-    metric: '47x',
-    icon: <Sparkles size={18} />,
+    title: "Creative-First AI (Andromeda)",
+    icon: <PenTool size={24} strokeWidth={1.5} />,
+    desc: "Nuestro algoritmo Andromeda analiza patrones virales y genera variaciones creativas masivas sin intervención manual constante.",
   },
   {
-    title: 'Hardening & Tracking',
-    description: 'Eventos GA/Meta, n8n webhooks y firewall de bots preconfigurado.',
-    metric: '24/7',
-    icon: <ShieldCheck size={18} />,
-  },
-  {
-    title: 'Blueprint Stack',
-    description: 'Landing, CRM, pipelines de video y publisher en un solo hub.',
-    metric: '1 HUB',
-    icon: <Layers size={18} />,
-  },
-  {
-    title: 'Content Factory',
-    description: '50 short-form videos renderizados en batch con prompts dirigidos.',
-    metric: '50/24h',
-    icon: <Cpu size={18} />,
-  },
-  {
-    title: 'Observability',
-    description: 'Latency monitor + alertas cuando tu embudo cae bajo el SLO.',
-    metric: '99.9%',
-    icon: <Activity size={18} />,
+    title: "Sistemas Métricos (EF-Élite)",
+    icon: <BarChart3 size={24} strokeWidth={1.5} />,
+    desc: "Adopción de modelos financieros de eficiencia. No medimos vanity metrics; medimos retorno sobre ad-spend y LTV real.",
   },
 ];
 
-export default function ValueGrid() {
+const ValueGrid = () => {
   return (
-    <section className="bg-[#1f2234] py-24 border-y border-white/10">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
-        <div className="flex flex-col gap-4 mb-10">
-          <p className="text-[#E63946] font-mono text-xs tracking-[0.3em]">SISTEMAS VS SERVICIOS</p>
-          <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">Infraestructura lista para producir.</h2>
-          <p className="text-white/60 font-mono text-sm max-w-3xl">No vendemos horas. Entregamos un Content Factory: detección de tendencias, clonación, render y publicación automática.</p>
-        </div>
+    <section className="py-24 border-y border-white/10 bg-grafitoMedium/80">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="font-mono text-xs text-techCyan mb-8 tracking-widest">[ PROPUESTA DE VALOR ÚNICA ]</div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-px bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
           {values.map((item) => (
-            <div
-              key={item.title}
-              className="group relative overflow-hidden rounded-xl border border-white/10 bg-[#2B2D42]/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#E63946]/60"
-            >
-              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(248,249,250,0.04)_25%,transparent_25%,transparent_50%,rgba(248,249,250,0.04)_50%,rgba(248,249,250,0.04)_75%,transparent_75%,transparent)] bg-[length:12px_12px] opacity-20" />
-              <div className="flex items-center justify-between mb-6 relative z-10">
-                <div className="flex items-center gap-2 text-white/80">
-                  <span className="text-[#E63946] font-mono text-lg font-black">{item.metric}</span>
-                  <span className="text-white/60 font-mono text-xs uppercase">Modo Operativo</span>
-                </div>
-                <div className="p-2 rounded-lg border border-white/10 text-white/70 group-hover:text-[#E63946] transition-colors" aria-hidden>
-                  {item.icon}
-                </div>
+            <div key={item.title} className="bg-grafito/90 p-8 md:p-12 hover:bg-black/60 transition-colors group relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
+                {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-2 relative z-10">{item.title}</h3>
-              <p className="text-white/60 font-mono text-sm leading-relaxed relative z-10">{item.description}</p>
-              <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#E63946]/70 to-transparent translate-x-[-120%] group-hover:translate-x-0 transition-transform duration-500" />
+              <div className="text-signalRed mb-6">{item.icon}</div>
+              <h3 className="text-xl font-bold mb-4 font-sans text-techWhite">{item.title}</h3>
+              <p className="font-mono text-xs text-techWhite/70 leading-relaxed">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default ValueGrid;

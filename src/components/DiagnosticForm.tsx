@@ -24,20 +24,20 @@ export default function DiagnosticForm() {
   };
 
   return (
-    <section className="py-24 bg-[#1f2234] text-white" id="diagnostic-form">
+    <section className="py-24 bg-black text-techWhite" id="diagnostic-form">
       <div className="max-w-4xl mx-auto px-6 md:px-10 lg:px-16">
         <div className="flex items-center gap-3 mb-6">
-          <div className="h-10 w-10 flex items-center justify-center rounded-lg border border-white/20 bg-white/5 text-white/70">
+          <div className="h-10 w-10 flex items-center justify-center rounded-lg border border-techCyan/40 bg-white/5 text-techCyan">
             <TerminalSquare size={20} />
           </div>
           <div>
-            <p className="text-[#E63946] font-mono text-xs tracking-[0.3em]">DIAGNÓSTICO</p>
+            <p className="text-signalRed font-mono text-xs tracking-[0.3em]">DIAGNÓSTICO</p>
             <h2 className="text-3xl font-black tracking-tight">¿Tu sistema está listo para escalar?</h2>
           </div>
         </div>
-        <p className="text-white/60 font-mono text-sm mb-8">Completa la auditoría técnica. Sin compromiso. Análisis en 24 horas.</p>
+        <p className="text-techWhite/70 font-mono text-sm mb-8">Completa la auditoría técnica. Sin compromiso. Análisis en 24 horas.</p>
 
-        <form onSubmit={handleSubmit} className="space-y-6 border border-white/10 rounded-2xl p-6 bg-[#2B2D42]/90 backdrop-blur">
+        <form onSubmit={handleSubmit} className="space-y-6 border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-md">
           <div className="grid md:grid-cols-2 gap-6">
             <label className="flex flex-col gap-2 text-sm font-mono">
               URL de sitio web actual
@@ -47,7 +47,7 @@ export default function DiagnosticForm() {
                 value={form.website}
                 onChange={(e) => setForm({ ...form, website: e.target.value })}
                 placeholder="https://tuclinicactual.com"
-                className="px-4 py-3 rounded-lg bg-[#1f2234] border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:border-[#E63946]"
+                className="px-4 py-3 rounded-lg bg-black border border-white/10 text-techWhite placeholder:text-techWhite/40 focus:outline-none focus:border-signalRed"
               />
             </label>
             <label className="flex flex-col gap-2 text-sm font-mono">
@@ -55,7 +55,7 @@ export default function DiagnosticForm() {
               <select
                 value={form.revenue}
                 onChange={(e) => setForm({ ...form, revenue: e.target.value })}
-                className="px-4 py-3 rounded-lg bg-[#1f2234] border border-white/10 text-white focus:outline-none focus:border-[#E63946]"
+                className="px-4 py-3 rounded-lg bg-black border border-white/10 text-techWhite focus:outline-none focus:border-signalRed"
               >
                 {revenueOptions.map((option) => (
                   <option key={option} value={option} className="text-black">
@@ -71,14 +71,14 @@ export default function DiagnosticForm() {
               <legend className="text-sm">¿Inviertes en ads?</legend>
               <div className="flex flex-wrap gap-3">
                 {adsOptions.map((option) => (
-                  <label key={option} className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-[#1f2234] cursor-pointer hover:border-[#E63946]/60">
+                  <label key={option} className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-black cursor-pointer hover:border-signalRed/60">
                     <input
                       type="radio"
                       name="ads"
                       value={option}
                       checked={form.ads === option}
                       onChange={() => setForm({ ...form, ads: option })}
-                      className="accent-[#E63946]"
+                      className="accent-signalRed"
                     />
                     <span>{option}</span>
                   </label>
@@ -94,16 +94,16 @@ export default function DiagnosticForm() {
                 value={form.contact}
                 onChange={(e) => setForm({ ...form, contact: e.target.value })}
                 placeholder="+52 55 0000 0000 / ceo@tuclinica.mx"
-                className="px-4 py-3 rounded-lg bg-[#1f2234] border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:border-[#E63946]"
+                className="px-4 py-3 rounded-lg bg-black border border-white/10 text-techWhite placeholder:text-techWhite/40 focus:outline-none focus:border-signalRed"
               />
             </label>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="text-xs text-white/50 font-mono">Sin compromiso. Análisis en 24 horas.</div>
+            <div className="text-xs text-techWhite/60 font-mono">Sin compromiso. Análisis en 24 horas.</div>
             <button
               type="submit"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#E63946] text-white font-bold uppercase tracking-wide hover:translate-y-[-1px] transition-transform"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-signalRed text-techWhite font-bold uppercase tracking-wide shadow-glow-red hover:translate-y-[-1px] transition-transform"
               aria-label="Recibir auditoría gratuita"
             >
               RECIBIR AUDITORÍA GRATUITA <Send size={16} />
