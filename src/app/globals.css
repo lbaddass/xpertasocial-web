@@ -32,6 +32,7 @@ body {
     opacity: 0;
     transform: translateY(24px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -39,8 +40,13 @@ body {
 }
 
 @keyframes scanLine {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
 }
 
 .animate-rise {
@@ -48,8 +54,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fade-in {
@@ -61,14 +72,29 @@ body {
 }
 
 @keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulseBorder {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.35); }
-  50% { box-shadow: 0 0 18px 4px rgba(76, 175, 80, 0.35); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.35);
+  }
+
+  50% {
+    box-shadow: 0 0 18px 4px rgba(76, 175, 80, 0.35);
+  }
 }
 
 @keyframes drawLine {
@@ -76,6 +102,7 @@ body {
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
   }
+
   to {
     stroke-dashoffset: 0;
   }
