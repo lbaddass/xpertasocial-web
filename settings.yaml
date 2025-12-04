@@ -1,0 +1,121 @@
+# -----------------------------------------------------------------------------
+# CONFIGURACIÓN DEL SITIO - "Manual de Crecimiento Digital"
+# Autor: José Luis García Orobio
+# Perfil: Growth Engineer / Lead Digital Strategist
+# -----------------------------------------------------------------------------
+
+site_name: Arquitectura de Crecimiento | José Luis G.O.
+site_url: https://tudominio.com
+site_author: José Luis García Orobio
+site_description: >-
+  Portafolio y documentación técnica de José Luis García Orobio.
+  Especialista en SEO Técnico, Automatización y Estrategias de Crecimiento Digital.
+
+# Repositorio (Demuestra transparencia y habilidades de Git)
+repo_name: joseluis/growth-playbook
+repo_url: https://github.com/tu-usuario/growth-playbook
+
+# -----------------------------------------------------------------------------
+# TEMA Y APARIENCIA (Material for MkDocs)
+# -----------------------------------------------------------------------------
+theme:
+  name: material
+  language: es
+  # Optimización de carga (Core Web Vitals)
+  features:
+    - navigation.instant      # Carga tipo SPA (Single Page App)
+    - navigation.tracking     # Actualiza la URL al hacer scroll
+    - navigation.tabs         # Menú superior tipo pestañas
+    - navigation.top          # Botón "Volver arriba"
+    - search.suggest          # Búsqueda predictiva
+    - content.code.copy       # Botón para copiar bloques de código
+
+  # Paleta de colores (Profesional y Técnico)
+  palette:
+    # Modo Claro (Día)
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo oscuro
+
+    # Modo Oscuro (Noche - Preferido por devs)
+    - scheme: slate
+      primary: blue
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo claro
+
+  # Tipografía optimizada (Inter para lectura en pantalla)
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+# -----------------------------------------------------------------------------
+# ESTRUCTURA DE NAVEGACIÓN (EL "BOOK")
+# -----------------------------------------------------------------------------
+nav:
+  - Inicio: index.md
+
+  - Capítulo 1: Identidad & Visión:
+    - Perfil Profesional: perfil/sobre-mi.md
+    - Por qué "Growth Engineering": perfil/filosofia.md
+
+  - Capítulo 2: El Método EF-Elite:
+    - Introducción al Framework: metodo/intro.md
+    - Fase 1: Reconocimiento (Auditoría): metodo/fase-1-audit.md
+    - Fase 2: Estrategia & Arquitectura: metodo/fase-2-arquitectura.md
+    - Fase 3: Ejecución & Automatización: metodo/fase-3-ejecucion.md
+
+  - Capítulo 3: Casos de Estudio (Proyectos):
+    - Retail & E-commerce: casos/retail-growth.md
+    - B2B & Lead Gen: casos/b2b-security.md
+    - SEO Programático: casos/seo-programatico.md
+    - Migraciones Críticas: casos/migracion-headless.md
+
+  - Capítulo 4: Arsenal Técnico (Stack):
+    - Desarrollo (React/Next.js): stack/desarrollo.md
+    - Data & Analytics: stack/data.md
+    - Scripts de Automatización: stack/scripts-python.md
+
+  - Apéndice:
+    - Servicios de Consultoría: servicios.md
+    - Contacto & Disponibilidad: contacto.md
+
+# -----------------------------------------------------------------------------
+# PLUGINS Y EXTENSIONES (SEO & UX)
+# -----------------------------------------------------------------------------
+plugins:
+  - search
+  - minify:                   # Minificar HTML/JS para velocidad (SEO Técnico)
+      minify_html: true
+  - social:                   # Tarjetas para redes sociales (Open Graph)
+      cards_layout_options:
+        background_color: "#1e293b"
+
+markdown_extensions:
+  - admonition                # Para notas tipo "Tip", "Warning", "Info"
+  - pymdownx.highlight:       # Resaltado de sintaxis para código
+      anchor_linenums: true
+  - pymdownx.superfences      # Bloques de código avanzados
+  - pymdownx.tabbed:          # Pestañas de contenido
+      alternate_style: true
+  - toc:
+      permalink: true         # Enlaces permanentes a cada sección (SEO)
+
+# -----------------------------------------------------------------------------
+# DATOS EXTRA
+# -----------------------------------------------------------------------------
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/tu-perfil
+      name: LinkedIn
+    - icon: fontawesome/brands/github
+      link: https://github.com/tu-usuario
+      name: GitHub
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:tu-email@ejemplo.com
+      name: Email
