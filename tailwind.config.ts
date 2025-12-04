@@ -18,8 +18,8 @@ const config: Config = {
         warningAmber: "#F59E0B",
       },
       fontFamily: {
-        sans: ["var(--font-inter)"],
-        mono: ["var(--font-jetbrains)"],
+        sans: ["var(--font-grotesk)"],
+        mono: ["var(--font-plex-mono)"],
       },
       backgroundImage: {
         "grid-pattern":
