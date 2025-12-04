@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const sequence = [
-  { text: "Cada mañana, su competencia abre 12 nuevos WhatsApps.", pause: 800 },
-  { text: "Mientras usted revisa el mismo CRM vacío.", pause: 800 },
-  { text: "Eso termina hoy.", pause: 1200 },
-];
+const sequence = [{ text: "BUILD SYSTEMS. AUTOMATE OUTCOMES.", pause: 1200 }];
 
 const TypewriterHeadline = () => {
   const [step, setStep] = useState(0);
@@ -39,11 +35,8 @@ const TypewriterHeadline = () => {
   }, [step]);
 
   return (
-    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
-      <span className="block text-signalRed">{displayed}</span>
-      {step === sequence.length - 1 && (
-        <span className="block text-techCyan mt-2 animate-fade-in">Su sistema tampoco debería.</span>
-      )}
+    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight">
+      <span className="block text-neonBlue">{displayed}</span>
     </h1>
   );
 };
