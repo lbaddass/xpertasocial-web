@@ -9,6 +9,7 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import MockDashboard from "@/components/ui/MockDashboard";
 
 export default function Home() {
   return (
@@ -35,23 +36,19 @@ export default function Home() {
             </p>
           </div>
 
-          <p className="text-lg text-white/60 max-w-3xl font-light leading-relaxed">
-            Muchos negocios increíbles fracasan en digital no porque su producto
-            sea malo, sino porque intentan vender sin infraestructura. Quieren
-            hacer <em>Ads</em> sin tener dónde aterrizar el tráfico. Quieren
-            vender en línea sin un sistema que procese pagos.
-            <br />
-            <br />
-            En <span className="text-white font-bold">XPERTASOCIAL</span>, no
-            somos una agencia tradicional. Somos un Hub de{" "}
-            <span className="text-neonBlue font-mono">
-              Ingeniería de Crecimiento
-            </span>
-            . Usamos Inteligencia Artificial y automatización para diseñar la
-            &quot;Arquitectura Digital&quot; que su negocio necesita para
-            escalar, garantizando que no desperdicie dinero en clics que no
-            convierten.
-          </p>
+          <div className="text-lg text-white/60 max-w-3xl font-light leading-relaxed space-y-6 text-left md:text-center">
+            <p>
+              Muchos negocios fracasan no por su producto, sino por intentar vender sin <strong>infraestructura</strong>.
+            </p>
+            <ul className="list-disc list-inside text-white/50 space-y-2 md:inline-block text-left mx-auto">
+              <li>Ads sin landing pages optimizadas.</li>
+              <li>Ventas sin sistemas de pago.</li>
+              <li>Tráfico sin retención.</li>
+            </ul>
+            <p>
+              En <span className="text-white font-bold">XPERTASOCIAL</span> no somos una agencia. Somos un Hub de <span className="text-neonBlue font-mono">Ingeniería de Crecimiento</span>. Diseñamos la arquitectura digital para que cada clic se convierta en dinero.
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-6 w-full justify-center pt-4">
             <Link
@@ -287,12 +284,15 @@ export default function Home() {
           </div>
 
           <div className="bg-white/5 border border-white/10 p-8 rounded-lg">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="space-y-4">
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              <div className="space-y-6 flex-1">
                 <h3 className="text-2xl font-bold text-white">
                   ¿Cómo lo hacemos diferente? El Sistema Andromeda
                 </h3>
-                <ol className="space-y-2 text-sm text-white/70 list-decimal list-inside font-mono">
+                <p className="text-white/60">
+                  Nuestro algoritmo propietario de pruebas masivas.
+                </p>
+                <ol className="space-y-4 text-sm text-white/70 list-decimal list-inside font-mono">
                   <li>
                     <strong>Validación (Viral Testing):</strong> Lanzamos
                     paquetes de 50 variaciones creativas.
@@ -306,16 +306,23 @@ export default function Home() {
                     en el 10% de los ganadores.
                   </li>
                 </ol>
-                <p className="text-neonBlue font-bold text-sm mt-2">
-                  RESULTADO: ROI Promedio estimado de 3.8x a 12.5x
-                </p>
+                <div className="pt-4">
+                  <p className="text-neonBlue font-bold text-sm mb-4">
+                    RESULTADO: ROI Promedio estimado de 3.8x a 12.5x
+                  </p>
+                  <Link
+                    href="/diagnostico"
+                    className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 font-bold rounded-sm hover:bg-neonBlue transition-all"
+                  >
+                    SIMULAR CAMPAÑA <ArrowRight size={18} />
+                  </Link>
+                </div>
               </div>
-              <Link
-                href="/diagnostico"
-                className="shrink-0 bg-white text-black px-8 py-4 font-bold rounded-sm hover:bg-neonBlue transition-all flex items-center gap-2"
-              >
-                SIMULAR CAMPAÑA CON ANDROMEDA <ArrowRight size={18} />
-              </Link>
+              
+              {/* Visual Dashboard */}
+              <div className="flex-1 w-full">
+                <MockDashboard />
+              </div>
             </div>
           </div>
         </div>

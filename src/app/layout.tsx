@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
+import BackToTop from "@/components/ui/BackToTop";
 import "./globals.css";
 
 const grotesk = Space_Grotesk({
@@ -43,6 +44,7 @@ export default function RootLayout({
           <div className="fixed inset-0 z-[-1] opacity-20 bg-grid-pattern pointer-events-none" />
           {children}
         </main>
+        <BackToTop />
       </body>
     </html>
   );

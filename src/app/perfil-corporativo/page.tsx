@@ -21,21 +21,39 @@ export default function CorporateProfilePage() {
 
       {/* Bio Section */}
       <div className="max-w-4xl mx-auto px-6 mb-24">
-        <div className="bg-carbon border border-white/10 p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-5">
-            <Terminal size={120} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          {/* Photo Placeholder */}
+          <div className="md:col-span-1">
+            <div className="aspect-[3/4] bg-black border border-white/10 rounded-sm relative overflow-hidden group">
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-carbon">
+                <Terminal size={48} className="text-white/20 mb-4" />
+                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest text-center px-4">
+                  [ INSERT FOUNDER PHOTO ]<br />
+                  <span className="text-neonBlue/50">Humanizing Tech</span>
+                </span>
+              </div>
+              {/* Overlay for effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
+            </div>
           </div>
-          
-          <div className="relative z-10 space-y-6 text-white/80 leading-relaxed text-lg">
-            <p>
-              I design, build, and deploy systems that automate revenue, scale operations, and turn AI into real product infrastructure. 
-              Unlike traditional marketers, I approach growth as an engineering problem. I bridge the gap between Engineering and Marketing to build fast, auditable web infrastructures optimized for Technical SEO and scalable paid traffic.
-            </p>
-            <p>
-              My long-term mission: <strong>Social-tech funded by growth.</strong> I use these commercial systems to fund programs that teach science & engineering to vulnerable communities in Mexico.
-            </p>
-            <div className="pl-4 border-l-2 border-neonBlue text-white/60 italic">
-              &quot;Engineering is the tool. Education is the outcome.&quot;
+
+          {/* Bio Content */}
+          <div className="md:col-span-2 bg-carbon border border-white/10 p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-5">
+              <Terminal size={120} />
+            </div>
+            
+            <div className="relative z-10 space-y-6 text-white/80 leading-relaxed text-lg">
+              <p>
+                I design, build, and deploy systems that automate revenue, scale operations, and turn AI into real product infrastructure. 
+                Unlike traditional marketers, I approach growth as an engineering problem. I bridge the gap between Engineering and Marketing to build fast, auditable web infrastructures optimized for Technical SEO and scalable paid traffic.
+              </p>
+              <p>
+                My long-term mission: <strong>Social-tech funded by growth.</strong> I use these commercial systems to fund programs that teach science & engineering to vulnerable communities in Mexico.
+              </p>
+              <div className="pl-4 border-l-2 border-neonBlue text-white/60 italic">
+                &quot;Engineering is the tool. Education is the outcome.&quot;
+              </div>
             </div>
           </div>
         </div>
