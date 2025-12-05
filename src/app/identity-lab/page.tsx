@@ -1,4 +1,4 @@
-import { ArrowRight, Palette, PenTool, RefreshCw } from "lucide-react";
+9import { ArrowRight, Palette, PenTool, RefreshCw } from "lucide-react";
 import Link from "next/link";
 
 export default function IdentityLabPage() {
