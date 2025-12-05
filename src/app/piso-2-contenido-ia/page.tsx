@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Zap, Image, Video, Layers } from "lucide-react";
+import { ArrowRight, Check, Zap, Image as ImageIcon, Layers } from "lucide-react";
 import Link from "next/link";
 
 export default function CreativeLabPage() {
@@ -8,7 +8,7 @@ export default function CreativeLabPage() {
       price: "$1,450 MXN",
       value: "Catálogo Profesional",
       features: ["15 Fotos IA (Fondo blanco/color)", "Calidad 4K", "Entrega en 48 horas"],
-      icon: <Image className="text-neonPink" size={32} />,
+      icon: <ImageIcon className="text-neonPink" size={32} />,
       id: "product",
     },
     {

@@ -15,8 +15,8 @@ export default function CorporateProfilePage() {
             SOMOS <span className="text-neonBlue">INGENIEROS</span>.
           </h1>
           <p className="text-xl text-white/60 max-w-2xl font-light leading-relaxed">
-            "El marketing digital tradicional está roto. Se basa en la intuición y la 'creatividad'. 
-            Nosotros lo tratamos como un problema de ingeniería: medible, predecible y escalable."
+            &quot;El marketing digital tradicional está roto. Se basa en la intuición y la &apos;creatividad&apos;. 
+            Nosotros lo tratamos como un problema de ingeniería: medible, predecible y escalable.&quot;
           </p>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function CorporateProfilePage() {
                   Con experiencia en desarrollo de software y sistemas complejos, José Luis fundó XPERTASOCIAL para cerrar la brecha entre la ingeniería de datos y el marketing comercial.
                 </p>
                 <p>
-                  Su enfoque rechaza las "métricas de vanidad" (likes, seguidores) y se centra exclusivamente en la arquitectura de ingresos y la eficiencia algorítmica.
+                  Su enfoque rechaza las &quot;métricas de vanidad&quot; (likes, seguidores) y se centra exclusivamente en la arquitectura de ingresos y la eficiencia algorítmica.
                 </p>
               </div>
 
@@ -71,7 +71,7 @@ export default function CorporateProfilePage() {
           <div className="space-y-4">
             <h4 className="text-lg font-bold text-neonBlue font-mono">01. EF-ÉLITE FRAMEWORK</h4>
             <p className="text-white/60 text-sm leading-relaxed">
-              Marco de trabajo enfocado en la eficiencia financiera. Utilizamos scripts de Python para "Deep Recon" de la competencia y análisis de vulnerabilidades en el mercado antes de gastar un solo centavo en publicidad.
+              Marco de trabajo enfocado en la eficiencia financiera. Utilizamos scripts de Python para &quot;Deep Recon&quot; de la competencia y análisis de vulnerabilidades en el mercado antes de gastar un solo centavo en publicidad.
             </p>
           </div>
           <div className="space-y-4">
