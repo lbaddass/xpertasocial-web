@@ -59,8 +59,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-carbon/90 backdrop-blur-xl h-20">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 h-full flex items-center justify-between">
+    <nav>
+      <div className="h-20 flex items-center justify-between">
         {/* Brand Identity */}
         <Link href="/" className="group flex flex-col justify-center">
           <div className="font-mono text-sm md:text-base tracking-[0.2em] font-bold text-white group-hover:text-neonBlue transition-colors">
