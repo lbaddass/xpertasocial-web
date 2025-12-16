@@ -1,9 +1,11 @@
 import { ArrowRight, Calendar, Mail, ShieldCheck } from "lucide-react";
 import Link from "next/link";
+import PageNav from "@/components/layout/PageNav";
 
 export default function DiagnosticPage() {
   return (
     <div className="min-h-screen pt-20 pb-20">
+      <PageNav />
       {/* Header */}
       <div className="max-w-4xl mx-auto px-6 mb-16 text-center">
         <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">

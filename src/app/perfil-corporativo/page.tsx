@@ -1,10 +1,12 @@
 import { Code, Terminal, Globe, ArrowRight, Cpu, Database, Cloud, Layers, Brain, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import PageNav from "@/components/layout/PageNav";
 
 export default function CorporateProfilePage() {
   return (
     <div className="min-h-screen pt-20 pb-20">
+      <PageNav />
       {/* Header */}
       <div className="max-w-4xl mx-auto px-6 mb-20">
         <div className="space-y-6">

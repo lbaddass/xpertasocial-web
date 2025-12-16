@@ -1,3 +1,5 @@
+import PageNav from "@/components/layout/PageNav";
+
 const STDFST_CFG = {
   C: {
     BG: "#F7F7F8",
@@ -62,15 +64,17 @@ const STDFST_CFG = {
 
 const DesignSystemPage = () => {
   return (
-    <div
-      style={{
-        backgroundColor: STDFST_CFG.C.BG,
-        color: STDFST_CFG.C.TXT,
-        fontFamily: STDFST_CFG.F.B,
-        padding: "40px",
-        minHeight: "100vh",
-      }}
-    >
+    <>
+      <PageNav />
+      <div
+        style={{
+          backgroundColor: STDFST_CFG.C.BG,
+          color: STDFST_CFG.C.TXT,
+          fontFamily: STDFST_CFG.F.B,
+          padding: "40px",
+          minHeight: "100vh",
+        }}
+      >
       <header
         style={{
           borderBottom: `1px solid ${STDFST_CFG.C.BRD}`,
@@ -326,7 +330,8 @@ const DesignSystemPage = () => {
           </div>
         </section>
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 
