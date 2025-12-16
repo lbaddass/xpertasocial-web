@@ -1,5 +1,6 @@
 import { Code, Terminal, Globe, ArrowRight, Cpu, Database, Cloud, Layers, Brain, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CorporateProfilePage() {
   return (
@@ -25,13 +26,7 @@ export default function CorporateProfilePage() {
           {/* Photo Placeholder */}
           <div className="md:col-span-1">
             <div className="aspect-[3/4] bg-black border border-white/10 rounded-sm relative overflow-hidden group">
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-carbon">
-                <Terminal size={48} className="text-white/20 mb-4" />
-                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest text-center px-4">
-                  [ INSERT FOUNDER PHOTO ]<br />
-                  <span className="text-neonBlue/50">Humanizing Tech</span>
-                </span>
-              </div>
+              <Image src="/jose-luis-garcia-orobio Large.jpeg" alt="José Luis García Orobio" fill className="object-cover" />
               {/* Overlay for effect */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
             </div>
