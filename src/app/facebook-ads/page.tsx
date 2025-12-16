@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { NextPage } from "next";
 import { Activity, ArrowRight, Sparkles, TrendingUp } from "lucide-react";
+import PageNav from "@/components/layout/PageNav";
 
 interface CaseStudy {
   title: string;
@@ -120,6 +121,7 @@ const caseStudies: CaseStudy[] = [
 const FacebookAdsPage: NextPage = () => {
   return (
     <div className="min-h-screen bg-carbon text-white pt-24 pb-24">
+      <PageNav />
       <div className="max-w-6xl mx-auto px-6">
         <section className="text-center space-y-6">
           <div className="inline-flex items-center gap-3 rounded-full border border-white/20 px-4 py-1 text-xs font-mono uppercase tracking-[0.4em] text-white/70">

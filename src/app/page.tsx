@@ -9,11 +9,13 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import PageNav from "@/components/layout/PageNav";
 import MockDashboard from "@/components/ui/MockDashboard";
 
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden">
+      <PageNav />
       {/* Background Elements */}
       <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-neonBlue/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-neonPink/10 blur-[120px] rounded-full pointer-events-none" />
