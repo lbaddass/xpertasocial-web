@@ -29,13 +29,16 @@ export default function IdentityLabPage() {
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
           <div className="inline-block px-3 py-1 border border-white/20 rounded-full">
-            <span className="text-xs font-mono text-white tracking-widest uppercase">IDENTITY LAB</span>
+            <span className="text-xs font-mono text-white tracking-widest uppercase">
+              IDENTITY LAB
+            </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
             ENTRADA RÁPIDA <span className="text-white/50">VISUAL</span>
           </h1>
           <p className="text-lg text-white/60 max-w-xl mx-auto font-light">
-            Pequeños ajustes de alto impacto para marcas que necesitan verse profesionales hoy mismo.
+            Pequeños ajustes de alto impacto para marcas que necesitan verse
+            profesionales hoy mismo.
           </p>
         </div>
 
@@ -51,13 +54,17 @@ export default function IdentityLabPage() {
                   {service.icon}
                 </div>
                 <div className="text-left">
-                  <h3 className="text-xl font-bold text-white">{service.title}</h3>
+                  <h3 className="text-xl font-bold text-white">
+                    {service.title}
+                  </h3>
                   <p className="text-sm text-white/50">{service.desc}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-8 mt-4 md:mt-0 w-full md:w-auto justify-between md:justify-end">
-                <span className="font-mono text-lg font-bold text-white">{service.price}</span>
+                <span className="font-mono text-lg font-bold text-white">
+                  {service.price}
+                </span>
                 <Link
                   href="/diagnostico"
                   className="w-10 h-10 flex items-center justify-center border border-white/20 rounded-full hover:bg-white hover:text-black transition-all"
