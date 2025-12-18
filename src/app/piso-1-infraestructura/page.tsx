@@ -1,5 +1,6 @@
 import { ArrowRight, Check, Server, Layout, ShoppingCart, Database } from "lucide-react";
 import Link from "next/link";
+import PageNav from "@/components/layout/PageNav";
 
 export default function InfrastructurePage() {
   const services = [
@@ -39,6 +40,7 @@ export default function InfrastructurePage() {
 
   return (
     <div className="min-h-screen pt-20 pb-20">
+      <PageNav />
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 mb-20">
         <div className="flex flex-col md:flex-row justify-between items-end gap-8 border-b border-white/10 pb-12">

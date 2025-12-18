@@ -1,5 +1,6 @@
 import { ArrowRight, Palette, PenTool, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import PageNav from "@/components/layout/PageNav";
 
 export default function IdentityLabPage() {
   const services = [
@@ -25,6 +26,7 @@ export default function IdentityLabPage() {
 
   return (
     <div className="min-h-screen pt-20 pb-20">
+      <PageNav />
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16 space-y-4">

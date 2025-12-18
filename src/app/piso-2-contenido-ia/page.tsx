@@ -1,5 +1,6 @@
 import { ArrowRight, Check, Zap, Image as ImageIcon, Layers } from "lucide-react";
 import Link from "next/link";
+import PageNav from "@/components/layout/PageNav";
 
 export default function CreativeLabPage() {
   const services = [
@@ -31,6 +32,7 @@ export default function CreativeLabPage() {
 
   return (
     <div className="min-h-screen pt-20 pb-20">
+      <PageNav />
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 mb-20">
         <div className="flex flex-col md:flex-row justify-between items-end gap-8 border-b border-white/10 pb-12">
