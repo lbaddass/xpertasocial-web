@@ -12,6 +12,29 @@ import Link from "next/link";
 import PageNav from "@/components/layout/PageNav";
 import MockDashboard from "@/components/ui/MockDashboard";
 
+const catalogLevels = [
+  {
+    title: "Nivel 1",
+    subtitle: "Micro-servicios de entrada",
+    description: "Venta impulsiva con entregables rápidos y claros.",
+  },
+  {
+    title: "Nivel 2",
+    subtitle: "Servicios funcionales",
+    description: "Resultados tangibles para justificar inversión.",
+  },
+  {
+    title: "Nivel 3",
+    subtitle: "Automatización invisible",
+    description: "Orden y margen con procesos que escalan solos.",
+  },
+  {
+    title: "Nivel 4",
+    subtitle: "Desarrollos personalizados",
+    description: "Tickets altos cuando ya hay confianza.",
+  },
+];
+
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -326,6 +349,49 @@ export default function Home() {
                 <MockDashboard />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+
+      {/* Catalog Section */}
+      <div className="py-20 px-6 bg-carbon/60 border-y border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono uppercase tracking-[0.3em] text-neonBlue">
+                Catálogo escalonado
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
+                Microservicios IA + Automatización
+              </h2>
+              <p className="text-white/60 max-w-2xl">
+                Un modelo Lego: se vende barato, se amplía caro. Ordenamos la oferta por tickets de entrada accesibles, upsells naturales y entregables concretos.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <Link
+                href="/catalogo-ia"
+                className="inline-flex items-center gap-3 bg-neonBlue text-black px-6 py-3 font-bold rounded-sm hover:bg-white transition-all"
+              >
+                VER CATÁLOGO COMPLETO <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {catalogLevels.map((level) => (
+              <div
+                key={level.title}
+                className="border border-white/10 bg-carbon p-6 hover:border-neonBlue/60 transition-all"
+              >
+                <div className="text-xs font-mono text-neonBlue uppercase tracking-[0.3em]">
+                  {level.title}
+                </div>
+                <h3 className="mt-3 text-lg font-bold text-white">{level.subtitle}</h3>
+                <p className="mt-2 text-sm text-white/60">{level.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

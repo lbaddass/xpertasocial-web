@@ -8,6 +8,7 @@ const sitemap = [
       { label: "Piso 1: Infraestructura", href: "/piso-1-infraestructura" },
       { label: "Piso 2: Creative Lab", href: "/piso-2-contenido-ia" },
       { label: "Piso 3: Growth Systems", href: "/piso-3-sistemas" },
+      { label: "Catálogo IA", href: "/catalogo-ia" },
     ],
   },
   {

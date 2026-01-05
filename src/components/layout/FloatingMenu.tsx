@@ -10,6 +10,10 @@ const navSections = [
     link: "/",
   },
   {
+    label: "Catálogo IA",
+    link: "/catalogo-ia",
+  },
+  {
     label: "Piso 1: Infraestructura",
     link: "/piso-1-infraestructura",
   },
