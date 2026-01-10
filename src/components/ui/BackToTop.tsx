@@ -37,7 +37,10 @@ export default function BackToTop() {
       className="fixed bottom-8 left-8 z-50 p-3 bg-neonBlue text-black rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110 group"
       aria-label="Back to top"
     >
-      <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform" />
+      <ArrowUp
+        size={24}
+        className="group-hover:-translate-y-1 transition-transform"
+      />
     </button>
   );
 }

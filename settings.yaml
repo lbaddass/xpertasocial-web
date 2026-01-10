@@ -23,12 +23,12 @@ theme:
   language: es
   # Optimización de carga (Core Web Vitals)
   features:
-    - navigation.instant      # Carga tipo SPA (Single Page App)
-    - navigation.tracking     # Actualiza la URL al hacer scroll
-    - navigation.tabs         # Menú superior tipo pestañas
-    - navigation.top          # Botón "Volver arriba"
-    - search.suggest          # Búsqueda predictiva
-    - content.code.copy       # Botón para copiar bloques de código
+    - navigation.instant # Carga tipo SPA (Single Page App)
+    - navigation.tracking # Actualiza la URL al hacer scroll
+    - navigation.tabs # Menú superior tipo pestañas
+    - navigation.top # Botón "Volver arriba"
+    - search.suggest # Búsqueda predictiva
+    - content.code.copy # Botón para copiar bloques de código
 
   # Paleta de colores (Profesional y Técnico)
   palette:
@@ -57,53 +57,48 @@ theme:
 # ESTRUCTURA DE NAVEGACIÓN (EL "BOOK")
 # -----------------------------------------------------------------------------
 nav:
-  - Inicio: index.md
-
-  - Capítulo 1: Identidad & Visión:
-    - Perfil Profesional: perfil/sobre-mi.md
-    - Por qué "Growth Engineering": perfil/filosofia.md
-
-  - Capítulo 2: El Método EF-Elite:
-    - Introducción al Framework: metodo/intro.md
-    - Fase 1: Reconocimiento (Auditoría): metodo/fase-1-audit.md
-    - Fase 2: Estrategia & Arquitectura: metodo/fase-2-arquitectura.md
-    - Fase 3: Ejecución & Automatización: metodo/fase-3-ejecucion.md
-
-  - Capítulo 3: Casos de Estudio (Proyectos):
-    - Retail & E-commerce: casos/retail-growth.md
-    - B2B & Lead Gen: casos/b2b-security.md
-    - SEO Programático: casos/seo-programatico.md
-    - Migraciones Críticas: casos/migracion-headless.md
-
-  - Capítulo 4: Arsenal Técnico (Stack):
-    - Desarrollo (React/Next.js): stack/desarrollo.md
-    - Data & Analytics: stack/data.md
-    - Scripts de Automatización: stack/scripts-python.md
-
-  - Apéndice:
-    - Servicios de Consultoría: servicios.md
-    - Contacto & Disponibilidad: contacto.md
+  - "Inicio": "index.md"
+  - "Capítulo 1: Identidad & Visión":
+      - "Perfil Profesional": "perfil/sobre-mi.md"
+      - 'Por qué "Growth Engineering"': "perfil/filosofia.md"
+  - "Capítulo 2: El Método EF-Elite":
+      - "Introducción al Framework": "metodo/intro.md"
+      - "Fase 1: Reconocimiento (Auditoría)": "metodo/fase-1-audit.md"
+      - "Fase 2: Estrategia & Arquitectura": "metodo/fase-2-arquitectura.md"
+      - "Fase 3: Ejecución & Automatización": "metodo/fase-3-ejecucion.md"
+  - "Capítulo 3: Casos de Estudio (Proyectos)":
+      - "Retail & E-commerce": "casos/retail-growth.md"
+      - "B2B & Lead Gen": "casos/b2b-security.md"
+      - "SEO Programático": "casos/seo-programatico.md"
+      - "Migraciones Críticas": "casos/migracion-headless.md"
+  - "Capítulo 4: Arsenal Técnico (Stack)":
+      - "Desarrollo (React/Next.js)": "stack/desarrollo.md"
+      - "Data & Analytics": "stack/data.md"
+      - "Scripts de Automatización": "stack/scripts-python.md"
+  - "Apéndice":
+      - "Servicios de Consultoría": "servicios.md"
+      - "Contacto & Disponibilidad": "contacto.md"
 
 # -----------------------------------------------------------------------------
 # PLUGINS Y EXTENSIONES (SEO & UX)
 # -----------------------------------------------------------------------------
 plugins:
   - search
-  - minify:                   # Minificar HTML/JS para velocidad (SEO Técnico)
+  - minify: # Minificar HTML/JS para velocidad (SEO Técnico)
       minify_html: true
-  - social:                   # Tarjetas para redes sociales (Open Graph)
+  - social: # Tarjetas para redes sociales (Open Graph)
       cards_layout_options:
         background_color: "#1e293b"
 
 markdown_extensions:
-  - admonition                # Para notas tipo "Tip", "Warning", "Info"
-  - pymdownx.highlight:       # Resaltado de sintaxis para código
+  - admonition # Para notas tipo "Tip", "Warning", "Info"
+  - pymdownx.highlight: # Resaltado de sintaxis para código
       anchor_linenums: true
-  - pymdownx.superfences      # Bloques de código avanzados
-  - pymdownx.tabbed:          # Pestañas de contenido
+  - pymdownx.superfences # Bloques de código avanzados
+  - pymdownx.tabbed: # Pestañas de contenido
       alternate_style: true
   - toc:
-      permalink: true         # Enlaces permanentes a cada sección (SEO)
+      permalink: true # Enlaces permanentes a cada sección (SEO)
 
 # -----------------------------------------------------------------------------
 # DATOS EXTRA

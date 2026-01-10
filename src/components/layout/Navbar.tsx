@@ -29,7 +29,10 @@ export default function Navbar() {
           className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-all hover:border-neonBlue/60 hover:text-neonBlue"
         >
           Contactar
-          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          <ArrowRight
+            size={16}
+            className="transition-transform group-hover:translate-x-1"
+          />
         </Link>
       </div>
     </nav>

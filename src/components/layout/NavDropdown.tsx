@@ -15,7 +15,11 @@ interface NavDropdownProps {
   items: DropdownItem[];
 }
 
-export default function NavDropdown({ label, concept, items }: NavDropdownProps) {
+export default function NavDropdown({
+  label,
+  concept,
+  items,
+}: NavDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -26,13 +30,18 @@ export default function NavDropdown({ label, concept, items }: NavDropdownProps)
     >
       <button className="flex items-center gap-1 text-[11px] font-mono tracking-widest text-white/60 hover:text-neonBlue transition-colors uppercase">
         {label}
-        <ChevronDown size={12} className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+        <ChevronDown
+          size={12}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+        />
       </button>
 
       {/* Dropdown Menu */}
       <div
         className={`absolute top-full left-0 w-64 bg-carbon/95 backdrop-blur-xl border border-white/10 shadow-2xl transform transition-all duration-200 origin-top-left ${
-          isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
+          isOpen
+            ? "opacity-100 scale-100 visible"
+            : "opacity-0 scale-95 invisible"
         }`}
       >
         <div className="p-4 border-b border-white/5">

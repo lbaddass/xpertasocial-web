@@ -8,7 +8,10 @@ import TypewriterHeadline from "./TypewriterHeadline";
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative overflow-hidden bg-grafito text-techWhite">
+    <section
+      id="hero"
+      className="relative overflow-hidden bg-grafito text-techWhite"
+    >
       <MouseTracker />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 lg:py-24 relative">
@@ -18,10 +21,12 @@ const Hero = () => {
             <div className="space-y-4">
               <TypewriterHeadline />
               <p className="font-mono text-sm md:text-base text-techWhite/70 max-w-2xl leading-relaxed border-l-2 border-signalRed pl-4">
-                Sistemas quirúrgicos para clínicas de alto ticket: Next.js + n8n + IA que publican, miden y convierten mientras duermes.
+                Sistemas quirúrgicos para clínicas de alto ticket: Next.js + n8n
+                + IA que publican, miden y convierten mientras duermes.
               </p>
               <div className="inline-flex items-center gap-2 text-sm text-techWhite/60 font-mono">
-                <span className="text-moneyGreen font-black text-xl">47</span> videos publicados este mes · Competencia no descansa
+                <span className="text-moneyGreen font-black text-xl">47</span>{" "}
+                videos publicados este mes · Competencia no descansa
               </div>
             </div>
 
@@ -31,7 +36,10 @@ const Hero = () => {
                 className="group inline-flex items-center justify-center gap-3 bg-signalRed text-techWhite px-8 py-4 font-bold rounded-md shadow-glow-red hover:-translate-y-0.5 transition-all"
               >
                 Hablar con José Luis por WhatsApp
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                <ArrowRight
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
               </Link>
               <Link
                 href="#casos"
@@ -46,7 +54,10 @@ const Hero = () => {
 
           <div className="relative">
             <DashboardMockup />
-            <div className="absolute -z-10 inset-0 blur-3xl bg-moneyGreen/20" aria-hidden />
+            <div
+              className="absolute -z-10 inset-0 blur-3xl bg-moneyGreen/20"
+              aria-hidden
+            />
           </div>
         </div>
       </div>

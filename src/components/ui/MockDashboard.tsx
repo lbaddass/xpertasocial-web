@@ -10,7 +10,9 @@ export default function MockDashboard() {
           <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
           <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
         </div>
-        <div className="text-[10px] font-mono text-white/40">ANDROMEDA_V2.0 // DASHBOARD</div>
+        <div className="text-[10px] font-mono text-white/40">
+          ANDROMEDA_V2.0 // DASHBOARD
+        </div>
       </div>
 
       {/* Content */}
@@ -18,7 +20,9 @@ export default function MockDashboard() {
         {/* Metric Card 1 */}
         <div className="bg-black/40 p-4 rounded border border-white/5">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-white/40 font-mono">TOTAL REVENUE</span>
+            <span className="text-xs text-white/40 font-mono">
+              TOTAL REVENUE
+            </span>
             <DollarSign size={14} className="text-neonBlue" />
           </div>
           <div className="text-2xl font-bold text-white">$124,500</div>
@@ -42,7 +46,9 @@ export default function MockDashboard() {
         {/* Metric Card 3 */}
         <div className="bg-black/40 p-4 rounded border border-white/5">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-white/40 font-mono">ACTIVE LEADS</span>
+            <span className="text-xs text-white/40 font-mono">
+              ACTIVE LEADS
+            </span>
             <Users size={14} className="text-neonLime" />
           </div>
           <div className="text-2xl font-bold text-white">842</div>
@@ -53,13 +59,17 @@ export default function MockDashboard() {
 
         {/* Chart Area (Visual Only) */}
         <div className="col-span-1 md:col-span-3 bg-black/40 p-4 rounded border border-white/5 h-32 flex items-end justify-between gap-2 px-2 pb-2">
-           {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 100].map((h, i) => (
-             <div key={i} className="w-full bg-white/5 hover:bg-neonBlue/50 transition-colors rounded-t-sm relative group" style={{ height: `${h}%` }}>
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    {h}%
-                </div>
-             </div>
-           ))}
+          {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 100].map((h, i) => (
+            <div
+              key={i}
+              className="w-full bg-white/5 hover:bg-neonBlue/50 transition-colors rounded-t-sm relative group"
+              style={{ height: `${h}%` }}
+            >
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                {h}%
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

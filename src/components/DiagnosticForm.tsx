@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { FormEvent, useState } from 'react';
-import { Send, TerminalSquare } from 'lucide-react';
+import { FormEvent, useState } from "react";
+import { Send, TerminalSquare } from "lucide-react";
 
 interface FormState {
   website: string;
@@ -10,17 +10,22 @@ interface FormState {
   contact: string;
 }
 
-const revenueOptions = ['<$10k', '$10k-$50k', '$50k+'];
-const adsOptions = ['Sí', 'No', 'Lo intenté'];
+const revenueOptions = ["<$10k", "$10k-$50k", "$50k+"];
+const adsOptions = ["Sí", "No", "Lo intenté"];
 
 export default function DiagnosticForm() {
-  const [form, setForm] = useState<FormState>({ website: '', revenue: revenueOptions[0], ads: adsOptions[0], contact: '' });
+  const [form, setForm] = useState<FormState>({
+    website: "",
+    revenue: revenueOptions[0],
+    ads: adsOptions[0],
+    contact: "",
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     setSubmitted(true);
-    console.info('diagnostic:submit', form); // Stub for API integration
+    console.info("diagnostic:submit", form); // Stub for API integration
   };
 
   return (
@@ -31,13 +36,22 @@ export default function DiagnosticForm() {
             <TerminalSquare size={20} />
           </div>
           <div>
-            <p className="text-signalRed font-mono text-xs tracking-[0.3em]">DIAGNÓSTICO</p>
-            <h2 className="text-3xl font-black tracking-tight">¿Tu sistema está listo para escalar?</h2>
+            <p className="text-signalRed font-mono text-xs tracking-[0.3em]">
+              DIAGNÓSTICO
+            </p>
+            <h2 className="text-3xl font-black tracking-tight">
+              ¿Tu sistema está listo para escalar?
+            </h2>
           </div>
         </div>
-        <p className="text-techWhite/70 font-mono text-sm mb-8">Completa la auditoría técnica. Sin compromiso. Análisis en 24 horas.</p>
+        <p className="text-techWhite/70 font-mono text-sm mb-8">
+          Completa la auditoría técnica. Sin compromiso. Análisis en 24 horas.
+        </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6 border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-md">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-6 border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-md"
+        >
           <div className="grid md:grid-cols-2 gap-6">
             <label className="flex flex-col gap-2 text-sm font-mono">
               URL de sitio web actual
@@ -71,7 +85,10 @@ export default function DiagnosticForm() {
               <legend className="text-sm">¿Inviertes en ads?</legend>
               <div className="flex flex-wrap gap-3">
                 {adsOptions.map((option) => (
-                  <label key={option} className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-black cursor-pointer hover:border-signalRed/60">
+                  <label
+                    key={option}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-black cursor-pointer hover:border-signalRed/60"
+                  >
                     <input
                       type="radio"
                       name="ads"
@@ -100,7 +117,9 @@ export default function DiagnosticForm() {
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="text-xs text-techWhite/60 font-mono">Sin compromiso. Análisis en 24 horas.</div>
+            <div className="text-xs text-techWhite/60 font-mono">
+              Sin compromiso. Análisis en 24 horas.
+            </div>
             <button
               type="submit"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-signalRed text-techWhite font-bold uppercase tracking-wide shadow-glow-red hover:translate-y-[-1px] transition-transform"
@@ -111,7 +130,9 @@ export default function DiagnosticForm() {
           </div>
 
           {submitted && (
-            <div className="text-xs text-green-400 font-mono">Recibido. Un ingeniero te contactará en 24h.</div>
+            <div className="text-xs text-green-400 font-mono">
+              Recibido. Un ingeniero te contactará en 24h.
+            </div>
           )}
         </form>
       </div>

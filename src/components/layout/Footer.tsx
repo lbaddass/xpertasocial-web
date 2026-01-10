@@ -1,5 +1,18 @@
+import {
+  Award,
+  Code,
+  ExternalLink,
+  Facebook,
+  Github,
+  Gitlab,
+  Globe,
+  Instagram,
+  Layers,
+  Linkedin,
+  Phone,
+  Twitter,
+} from "lucide-react";
 import Link from "next/link";
-import { Github, Linkedin, Phone, Twitter, ExternalLink } from "lucide-react";
 
 const sitemap = [
   {
@@ -37,6 +50,12 @@ const socials = [
     icon: Phone,
   },
   {
+    label: "LinkedIn",
+    detail: "jlgarciaorobio",
+    href: "https://www.linkedin.com/in/jlgarciaorobio/",
+    icon: Linkedin,
+  },
+  {
     label: "GitHub",
     detail: "lbaddass",
     href: "https://github.com/lbaddass",
@@ -49,10 +68,46 @@ const socials = [
     icon: Twitter,
   },
   {
-    label: "LinkedIn",
+    label: "Facebook",
+    detail: "lbaddassl",
+    href: "https://www.facebook.com/lbaddassl",
+    icon: Facebook,
+  },
+  {
+    label: "Instagram",
     detail: "luisgarcia_or",
-    href: "https://www.linkedin.com/in/luisgarcia_or/",
-    icon: Linkedin,
+    href: "https://www.instagram.com/luisgarcia_or/",
+    icon: Instagram,
+  },
+  {
+    label: "GitLab",
+    detail: "lbaddass",
+    href: "https://gitlab.com/lbaddass",
+    icon: Gitlab,
+  },
+  {
+    label: "Stack Overflow",
+    detail: "luis",
+    href: "https://stackoverflow.com/users/28878221/luis",
+    icon: Layers, // StackOverflow icon is not in lucide-react, using Layers as a substitute
+  },
+  {
+    label: "Google Dev",
+    detail: "lbaddassl",
+    href: "https://developers.google.com/profile/u/lbaddassl",
+    icon: Code, // Using code icon
+  },
+  {
+    label: "AWS Skills",
+    detail: "jlgarciaorobio",
+    href: "https://skillsprofile.skillbuilder.aws/user/jlgarciaorobio/certification-badges",
+    icon: Award,
+  },
+  {
+    label: "Web",
+    detail: "xperta.social",
+    href: "https://www.xperta.social/",
+    icon: Globe,
   },
 ];
 
@@ -68,7 +123,8 @@ const Footer = () => {
             Growth Engineering Hub
           </div>
           <p className="text-lg font-semibold text-white">
-            Arquitecturas de adquisición, diseño creativo con IA y sistemas de venta 24/7.
+            Arquitecturas de adquisición, diseño creativo con IA y sistemas de
+            venta 24/7.
           </p>
           <Link
             href="/diagnostico"
@@ -81,7 +137,9 @@ const Footer = () => {
 
         {sitemap.map((section) => (
           <div key={section.title} className="space-y-3">
-            <h3 className="text-xs font-mono uppercase tracking-[0.25em] text-white/60">{section.title}</h3>
+            <h3 className="text-xs font-mono uppercase tracking-[0.25em] text-white/60">
+              {section.title}
+            </h3>
             <div className="flex flex-col gap-2 text-white/70">
               {section.links.map((link) => (
                 <Link
@@ -110,27 +168,42 @@ const Footer = () => {
                 <item.icon size={16} className="text-neonBlue" />
                 {item.label}
               </div>
-              <span className="text-sm text-white/70 group-hover:text-white">{item.detail}</span>
+              <span className="text-sm text-white/70 group-hover:text-white">
+                {item.detail}
+              </span>
             </Link>
           ))}
         </div>
 
         <div className="flex flex-col justify-between gap-4 rounded-xl border border-neonBlue/20 bg-gradient-to-r from-neonBlue/10 via-white/5 to-transparent p-4 text-white shadow-glow-money">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-neonBlue">☎</span>
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-neonBlue">
+              ☎
+            </span>
             <div>
               <p className="text-sm font-semibold">Atención inmediata</p>
-              <p className="text-xs text-white/60">Llamadas, mensajes y agenda en un solo lugar</p>
+              <p className="text-xs text-white/60">
+                Llamadas, mensajes y agenda en un solo lugar
+              </p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 text-sm">
-            <Link href="tel:+525516833133" className="rounded-full bg-white px-4 py-2 font-semibold text-black hover:bg-neonBlue transition-colors">
+            <Link
+              href="tel:+525516833133"
+              className="rounded-full bg-white px-4 py-2 font-semibold text-black hover:bg-neonBlue transition-colors"
+            >
               55 1683 3133
             </Link>
-            <Link href="/facebook-ads" className="rounded-full border border-white/20 px-4 py-2 text-white hover:border-neonBlue/60">
+            <Link
+              href="/facebook-ads"
+              className="rounded-full border border-white/20 px-4 py-2 text-white hover:border-neonBlue/60"
+            >
               Bitácora de resultados
             </Link>
-            <Link href="/diagnostico" className="rounded-full border border-neonBlue/40 bg-neonBlue/10 px-4 py-2 text-neonBlue hover:bg-neonBlue/20">
+            <Link
+              href="/diagnostico"
+              className="rounded-full border border-neonBlue/40 bg-neonBlue/10 px-4 py-2 text-neonBlue hover:bg-neonBlue/20"
+            >
               Diseñar estrategia
             </Link>
           </div>
@@ -138,13 +211,22 @@ const Footer = () => {
       </div>
 
       <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t border-white/5 pt-4 text-xs text-white/50 sm:flex-row sm:items-center">
-        <p>&copy; {new Date().getFullYear()} XpertaSocial. Growth Engineering Systems.</p>
+        <p>
+          &copy; {new Date().getFullYear()} XpertaSocial. Growth Engineering
+          Systems.
+        </p>
         <div className="flex flex-wrap items-center gap-3">
-          <Link href="/perfil" className="hover:text-white">Perfil</Link>
+          <Link href="/perfil" className="hover:text-white">
+            Perfil
+          </Link>
           <span className="hidden sm:block text-white/20">•</span>
-          <Link href="/perfil-corporativo" className="hover:text-white">Engineering Profile</Link>
+          <Link href="/perfil-corporativo" className="hover:text-white">
+            Engineering Profile
+          </Link>
           <span className="hidden sm:block text-white/20">•</span>
-          <Link href="/diagnostico" className="hover:text-white">Diagnóstico</Link>
+          <Link href="/diagnostico" className="hover:text-white">
+            Diagnóstico
+          </Link>
         </div>
       </div>
     </div>

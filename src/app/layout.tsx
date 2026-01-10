@@ -29,14 +29,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${grotesk.variable} ${plexMono.variable} antialiased bg-carbon text-techWhite selection:bg-neonBlue selection:text-black min-h-dvh flex flex-col`}>
-        
+      <body
+        className={`${grotesk.variable} ${plexMono.variable} antialiased bg-carbon text-techWhite selection:bg-neonBlue selection:text-black min-h-dvh flex flex-col`}
+      >
         {/* MAIN with container */}
         <main className="flex-grow">
           <div className="fixed inset-0 z-[-1] opacity-20 bg-grid-pattern pointer-events-none" />
           {children}
         </main>
-        
+
         {/* FULL WIDTH FOOTER */}
         <footer className="w-full border-t border-white/10">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">

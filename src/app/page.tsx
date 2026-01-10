@@ -63,7 +63,8 @@ export default function Home() {
 
           <div className="text-lg text-white/60 max-w-3xl font-light leading-relaxed space-y-6 text-left md:text-center">
             <p>
-              Muchos negocios fracasan no por su producto, sino por intentar vender sin <strong>infraestructura</strong>.
+              Muchos negocios fracasan no por su producto, sino por intentar
+              vender sin <strong>infraestructura</strong>.
             </p>
             <ul className="list-disc list-inside text-white/50 space-y-2 md:inline-block text-left mx-auto">
               <li>Ads sin landing pages optimizadas.</li>
@@ -71,7 +72,13 @@ export default function Home() {
               <li>Tráfico sin retención.</li>
             </ul>
             <p>
-              En <span className="text-white font-bold">XPERTASOCIAL</span> no somos una agencia. Somos un Hub de <span className="text-neonBlue font-mono">Ingeniería de Crecimiento</span>. Diseñamos la arquitectura digital para que cada clic se convierta en dinero.
+              En <span className="text-white font-bold">XPERTASOCIAL</span> no
+              somos una agencia. Somos un Hub de{" "}
+              <span className="text-neonBlue font-mono">
+                Ingeniería de Crecimiento
+              </span>
+              . Diseñamos la arquitectura digital para que cada clic se
+              convierta en dinero.
             </p>
           </div>
 
@@ -343,7 +350,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              
+
               {/* Visual Dashboard */}
               <div className="flex-1 w-full">
                 <MockDashboard />
@@ -352,7 +359,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
 
       {/* Catalog Section */}
       <div className="py-20 px-6 bg-carbon/60 border-y border-white/5">
@@ -366,7 +372,9 @@ export default function Home() {
                 Microservicios IA + Automatización
               </h2>
               <p className="text-white/60 max-w-2xl">
-                Un modelo Lego: se vende barato, se amplía caro. Ordenamos la oferta por tickets de entrada accesibles, upsells naturales y entregables concretos.
+                Un modelo Lego: se vende barato, se amplía caro. Ordenamos la
+                oferta por tickets de entrada accesibles, upsells naturales y
+                entregables concretos.
               </p>
             </div>
             <div className="shrink-0">
@@ -388,8 +396,12 @@ export default function Home() {
                 <div className="text-xs font-mono text-neonBlue uppercase tracking-[0.3em]">
                   {level.title}
                 </div>
-                <h3 className="mt-3 text-lg font-bold text-white">{level.subtitle}</h3>
-                <p className="mt-2 text-sm text-white/60">{level.description}</p>
+                <h3 className="mt-3 text-lg font-bold text-white">
+                  {level.subtitle}
+                </h3>
+                <p className="mt-2 text-sm text-white/60">
+                  {level.description}
+                </p>
               </div>
             ))}
           </div>

@@ -15,7 +15,7 @@ const useInView = (options?: IntersectionObserverInit) => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.2, rootMargin: "-50px", ...options }
+      { threshold: 0.2, rootMargin: "-50px", ...options },
     );
 
     observer.observe(node);

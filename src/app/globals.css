@@ -4,7 +4,7 @@
 
 :root {
   --background: #000000;
-  --foreground: #E8F5E9;
+  --foreground: #e8f5e9;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 }
 
 ::selection {
-  background: #4CAF50;
+  background: #4caf50;
   color: #0a0e1a;
 }
 
@@ -86,7 +86,6 @@ body {
 }
 
 @keyframes pulseBorder {
-
   0%,
   100% {
     box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.35);
@@ -113,11 +112,15 @@ body {
 }
 
 .shadow-glow-money-strong {
-  box-shadow: 0 0 28px rgba(76, 175, 80, 0.5), 0 0 52px rgba(0, 230, 118, 0.35);
+  box-shadow:
+    0 0 28px rgba(76, 175, 80, 0.5),
+    0 0 52px rgba(0, 230, 118, 0.35);
 }
 
 .shadow-glow-red {
-  box-shadow: 0 0 24px rgba(230, 57, 70, 0.45), 0 0 48px rgba(6, 182, 212, 0.25);
+  box-shadow:
+    0 0 24px rgba(230, 57, 70, 0.45),
+    0 0 48px rgba(6, 182, 212, 0.25);
 }
 
 @media (prefers-reduced-motion: reduce) {

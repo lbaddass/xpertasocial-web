@@ -205,8 +205,8 @@ const packages = [
 const strategicKeys = [
   "La IA es tu motor, no tu pitch.",
   "El cliente compra rapidez, orden y menos trabajo.",
-  "El upgrade es natural: \"¿Quieres que también responda solo?\"",
-  "Escala con: \"¿Quieres que los leads se ordenen?\"",
+  'El upgrade es natural: "¿Quieres que también responda solo?"',
+  'Escala con: "¿Quieres que los leads se ordenen?"',
 ];
 
 export default function CatalogoIaPage() {
@@ -223,7 +223,9 @@ export default function CatalogoIaPage() {
             Microservicios escalonados para liquidez rápida
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-3xl">
-            Un catálogo diseñado para tickets de entrada bajos y escalamiento progresivo por personalización. Se vende por resultados, no por tecnología.
+            Un catálogo diseñado para tickets de entrada bajos y escalamiento
+            progresivo por personalización. Se vende por resultados, no por
+            tecnología.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
@@ -244,16 +246,25 @@ export default function CatalogoIaPage() {
 
       <section className="max-w-6xl mx-auto px-6 mb-20">
         <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white">Principios del catálogo</h2>
-          <p className="text-white/60 mt-2">Reglas duras para proteger margen y acelerar cierre.</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">
+            Principios del catálogo
+          </h2>
+          <p className="text-white/60 mt-2">
+            Reglas duras para proteger margen y acelerar cierre.
+          </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {catalogPrinciples.map((principle) => (
-            <div key={principle.label} className="border border-white/10 bg-carbon/60 p-5">
+            <div
+              key={principle.label}
+              className="border border-white/10 bg-carbon/60 p-5"
+            >
               <div className="text-xs font-mono uppercase tracking-[0.25em] text-white/40">
                 {principle.label}
               </div>
-              <div className="mt-3 text-lg font-semibold text-white">{principle.value}</div>
+              <div className="mt-3 text-lg font-semibold text-white">
+                {principle.value}
+              </div>
             </div>
           ))}
         </div>
@@ -263,23 +274,41 @@ export default function CatalogoIaPage() {
         {catalogLevels.map((level) => (
           <div key={level.title} className="space-y-8">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">{level.title}</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                {level.title}
+              </h2>
               <p className="text-white/60 mt-2">{level.description}</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {level.groups.map((group) => (
-                <div key={group.title} className="border border-white/10 bg-carbon/40 p-6">
+                <div
+                  key={group.title}
+                  className="border border-white/10 bg-carbon/40 p-6"
+                >
                   <div className="text-xs font-mono uppercase tracking-[0.25em] text-neonBlue">
                     {group.title}
                   </div>
                   <div className="mt-5 space-y-4">
                     {group.items.map((item) => (
-                      <div key={item.name} className="border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
-                        <h3 className="text-lg font-semibold text-white">{item.name}</h3>
-                        <p className="text-sm text-white/50 font-mono">{item.price}</p>
-                        <p className="text-sm text-white/70 mt-2">{item.delivers}</p>
-                        {item.detail && <p className="text-xs text-white/50 mt-2">{item.detail}</p>}
+                      <div
+                        key={item.name}
+                        className="border-b border-white/10 pb-4 last:border-b-0 last:pb-0"
+                      >
+                        <h3 className="text-lg font-semibold text-white">
+                          {item.name}
+                        </h3>
+                        <p className="text-sm text-white/50 font-mono">
+                          {item.price}
+                        </p>
+                        <p className="text-sm text-white/70 mt-2">
+                          {item.delivers}
+                        </p>
+                        {item.detail && (
+                          <p className="text-xs text-white/50 mt-2">
+                            {item.detail}
+                          </p>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -292,14 +321,27 @@ export default function CatalogoIaPage() {
 
       <section className="max-w-6xl mx-auto px-6 mt-20">
         <div className="border border-white/10 bg-carbon/70 p-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white">Paquetes comerciales</h2>
-          <p className="text-white/60 mt-2">Combos listos para vender y escalar.</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">
+            Paquetes comerciales
+          </h2>
+          <p className="text-white/60 mt-2">
+            Combos listos para vender y escalar.
+          </p>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {packages.map((pack) => (
-              <div key={pack.name} className="border border-white/10 bg-carbon p-6">
-                <div className="text-sm font-mono text-neonBlue uppercase tracking-[0.3em]">Paquete</div>
-                <h3 className="mt-3 text-xl font-bold text-white">{pack.name}</h3>
-                <p className="text-white/60 font-mono text-sm mt-1">{pack.price}</p>
+              <div
+                key={pack.name}
+                className="border border-white/10 bg-carbon p-6"
+              >
+                <div className="text-sm font-mono text-neonBlue uppercase tracking-[0.3em]">
+                  Paquete
+                </div>
+                <h3 className="mt-3 text-xl font-bold text-white">
+                  {pack.name}
+                </h3>
+                <p className="text-white/60 font-mono text-sm mt-1">
+                  {pack.price}
+                </p>
                 <ul className="mt-4 space-y-2 text-sm text-white/70">
                   {pack.includes.map((item) => (
                     <li key={item} className="flex items-center gap-2">
@@ -316,7 +358,9 @@ export default function CatalogoIaPage() {
 
       <section className="max-w-6xl mx-auto px-6 mt-20">
         <div className="border border-neonBlue/40 bg-gradient-to-r from-neonBlue/10 via-white/5 to-transparent p-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white">Clave estratégica</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">
+            Clave estratégica
+          </h2>
           <ul className="mt-6 space-y-3 text-white/70">
             {strategicKeys.map((key) => (
               <li key={key} className="flex items-start gap-3">

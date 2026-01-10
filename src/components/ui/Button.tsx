@@ -20,11 +20,22 @@ const variantClasses: Record<Variant, string> = {
   ghost: "text-techWhite px-4 py-2 hover:text-moneyGreen",
 };
 
-export const Button = ({ variant = "primary", children, iconRight, ...props }: ButtonProps) => {
+export const Button = ({
+  variant = "primary",
+  children,
+  iconRight,
+  ...props
+}: ButtonProps) => {
   return (
     <button className={`${baseClasses} ${variantClasses[variant]}`} {...props}>
       {children}
-      {iconRight && <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden />}
+      {iconRight && (
+        <ArrowRight
+          size={16}
+          className="transition-transform group-hover:translate-x-1"
+          aria-hidden
+        />
+      )}
     </button>
   );
 };

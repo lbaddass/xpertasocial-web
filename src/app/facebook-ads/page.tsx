@@ -17,17 +17,20 @@ interface CaseStudy {
 const highlightCards = [
   {
     title: "Lectura Diaria",
-    description: "Interpretamos los cambios del algoritmo a diario antes de ajustar presupuestos.",
+    description:
+      "Interpretamos los cambios del algoritmo a diario antes de ajustar presupuestos.",
     Icon: Activity,
   },
   {
     title: "Creatividad Asistida",
-    description: "Testing continuo con IA para mantener vigente a la audiencia y al CTR.",
+    description:
+      "Testing continuo con IA para mantener vigente a la audiencia y al CTR.",
     Icon: Sparkles,
   },
   {
     title: "Control de Escala",
-    description: "Protocolos para invertir más sin perder eficiencia ni elevar el CPA.",
+    description:
+      "Protocolos para invertir más sin perder eficiencia ni elevar el CPA.",
     Icon: TrendingUp,
   },
 ];
@@ -47,10 +50,17 @@ const caseStudies: CaseStudy[] = [
       },
     ],
     results: [
-      { highlight: "345 citas potenciales", description: "capturadas en flujo continuo." },
-      { highlight: "Costo estabilizado en $171 MXN", description: "validando que la fricción técnica era el problema real." },
+      {
+        highlight: "345 citas potenciales",
+        description: "capturadas en flujo continuo.",
+      },
+      {
+        highlight: "Costo estabilizado en $171 MXN",
+        description: "validando que la fricción técnica era el problema real.",
+      },
     ],
-    image: "/Sector-salud-anuncios-facebook-ads-xpertasocial-marketing Large.png",
+    image:
+      "/Sector-salud-anuncios-facebook-ads-xpertasocial-marketing Large.png",
     imageAlt: "Sector Salud",
   },
   {
@@ -67,10 +77,17 @@ const caseStudies: CaseStudy[] = [
       },
     ],
     results: [
-      { highlight: "+1,300 transacciones", description: "procesadas automáticamente." },
-      { highlight: "CPA de $34 MXN", description: "estable gracias a la rotación inteligente de inventario." },
+      {
+        highlight: "+1,300 transacciones",
+        description: "procesadas automáticamente.",
+      },
+      {
+        highlight: "CPA de $34 MXN",
+        description: "estable gracias a la rotación inteligente de inventario.",
+      },
     ],
-    image: "/retail-scaling-anuncios-facebook-ads-xpertasocial-marketing Large.png",
+    image:
+      "/retail-scaling-anuncios-facebook-ads-xpertasocial-marketing Large.png",
     imageAlt: "Retail Scaling",
     imageFirst: true,
   },
@@ -88,8 +105,14 @@ const caseStudies: CaseStudy[] = [
       },
     ],
     results: [
-      { highlight: "$120,000+ MXN mensuales", description: "gestionados sin disparar el costo." },
-      { highlight: "1,080 prospectos calificados", description: "demostrando que la estructura soporta la escala." },
+      {
+        highlight: "$120,000+ MXN mensuales",
+        description: "gestionados sin disparar el costo.",
+      },
+      {
+        highlight: "1,080 prospectos calificados",
+        description: "demostrando que la estructura soporta la escala.",
+      },
     ],
     image: "/real-state-anuncios-facebook-ads-xpertasocial-marketing Large.png",
     imageAlt: "Real State",
@@ -108,11 +131,22 @@ const caseStudies: CaseStudy[] = [
       },
     ],
     results: [
-      { highlight: "Diseño tradicional: $116 MXN", description: "(rechazo del mercado)." },
-      { highlight: "Variante IA: $32 MXN", description: "(aceptación del mercado)." },
-      { highlight: "Conclusión", description: "No se trata de buen gusto, sino de velocidad de adaptación." },
+      {
+        highlight: "Diseño tradicional: $116 MXN",
+        description: "(rechazo del mercado).",
+      },
+      {
+        highlight: "Variante IA: $32 MXN",
+        description: "(aceptación del mercado).",
+      },
+      {
+        highlight: "Conclusión",
+        description:
+          "No se trata de buen gusto, sino de velocidad de adaptación.",
+      },
     ],
-    image: "/diversidad-creativa-anuncios-facebook-ads-xpertasocial-marketing Large.png",
+    image:
+      "/diversidad-creativa-anuncios-facebook-ads-xpertasocial-marketing Large.png",
     imageAlt: "Creative Diversity",
     imageFirst: true,
   },
@@ -132,10 +166,15 @@ const FacebookAdsPage: NextPage = () => {
             BITÁCORA DE <span className="text-amber-400">EVOLUCIÓN</span>
           </h1>
           <p className="text-lg text-white/70 max-w-3xl mx-auto">
-            Adaptación sobre opinión. Datos sobre promesas. Este tablero muestra cómo los sistemas responden al mercado real y ajustan creatividad, budget y funnels en tiempo récord.
+            Adaptación sobre opinión. Datos sobre promesas. Este tablero muestra
+            cómo los sistemas responden al mercado real y ajustan creatividad,
+            budget y funnels en tiempo récord.
           </p>
           <p className="text-sm text-white/50 max-w-3xl mx-auto">
-            “El mercado digital no es estático; está en <span className="text-white">constante evolución</span>. Analizamos hacia dónde se mueve el algoritmo y adaptamos la infraestructura para mantener la rentabilidad.”
+            “El mercado digital no es estático; está en{" "}
+            <span className="text-white">constante evolución</span>. Analizamos
+            hacia dónde se mueve el algoritmo y adaptamos la infraestructura
+            para mantener la rentabilidad.”
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <Link
@@ -155,7 +194,10 @@ const FacebookAdsPage: NextPage = () => {
 
         <section className="mt-12 grid gap-5 md:grid-cols-3">
           {highlightCards.map(({ title, description, Icon }) => (
-            <div key={title} className="rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
+            <div
+              key={title}
+              className="rounded-2xl border border-white/10 bg-white/5 p-6 text-left"
+            >
               <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/30">
                 <Icon size={18} className="text-amber-400" />
               </div>
@@ -183,21 +225,36 @@ const FacebookAdsPage: NextPage = () => {
                 </div>
               )}
               <div className="space-y-4 text-left">
-                <div className="text-xs font-mono uppercase tracking-[0.3em] text-white/60">Respuesta del Sistema</div>
-                <h2 className="text-3xl font-bold text-amber-400">{study.title}</h2>
+                <div className="text-xs font-mono uppercase tracking-[0.3em] text-white/60">
+                  Respuesta del Sistema
+                </div>
+                <h2 className="text-3xl font-bold text-amber-400">
+                  {study.title}
+                </h2>
                 <p className="text-sm text-white/60">{study.subtitle}</p>
                 <div className="space-y-4 text-white/70">
                   {study.sections.map((section) => (
                     <p key={section.label}>
-                      <span className="font-semibold text-white">{section.label}:</span> {section.body}
+                      <span className="font-semibold text-white">
+                        {section.label}:
+                      </span>{" "}
+                      {section.body}
                     </p>
                   ))}
                   <div>
-                    <p className="font-semibold text-white">Resultado del sistema:</p>
+                    <p className="font-semibold text-white">
+                      Resultado del sistema:
+                    </p>
                     <ul className="mt-2 list-disc space-y-2 pl-5">
                       {study.results.map((result) => (
-                        <li key={`${study.title}-${result.highlight}`} className="text-sm">
-                          <span className="text-white font-semibold">{result.highlight}</span> {result.description}
+                        <li
+                          key={`${study.title}-${result.highlight}`}
+                          className="text-sm"
+                        >
+                          <span className="text-white font-semibold">
+                            {result.highlight}
+                          </span>{" "}
+                          {result.description}
                         </li>
                       ))}
                     </ul>
@@ -224,7 +281,9 @@ const FacebookAdsPage: NextPage = () => {
             “El algoritmo cambia. Tu infraestructura debería hacer lo mismo.”
           </p>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-            Operar con tecnología de ayer es la forma más rápida de perder presupuesto hoy. Alinea tu negocio a las métricas que realmente importan con una planeación basada en datos.
+            Operar con tecnología de ayer es la forma más rápida de perder
+            presupuesto hoy. Alinea tu negocio a las métricas que realmente
+            importan con una planeación basada en datos.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

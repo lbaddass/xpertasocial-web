@@ -83,8 +83,12 @@ export default function FloatingMenu() {
           <div className="flex h-full flex-col justify-between px-8 pb-10 pt-16 md:px-16 md:pt-24">
             <div className="space-y-6">
               <div>
-                <p className="text-xs font-mono tracking-[0.3em] text-neonBlue">MENÚ</p>
-                <h2 className="mt-2 text-3xl md:text-5xl font-bold">XPERTASOCIAL</h2>
+                <p className="text-xs font-mono tracking-[0.3em] text-neonBlue">
+                  MENÚ
+                </p>
+                <h2 className="mt-2 text-3xl md:text-5xl font-bold">
+                  XPERTASOCIAL
+                </h2>
               </div>
 
               <div className="space-y-2">
@@ -110,13 +114,15 @@ export default function FloatingMenu() {
                 href="mailto:hola@xpertasocial.com"
                 className="flex items-center gap-2 hover:text-neonBlue"
               >
-                <Mail size={16} className="text-neonBlue" /> hola@xpertasocial.com
+                <Mail size={16} className="text-neonBlue" />{" "}
+                hola@xpertasocial.com
               </a>
               <a
                 href="tel:+525516833133"
                 className="flex items-center gap-2 hover:text-neonBlue"
               >
-                <PhoneCall size={16} className="text-neonBlue" /> +52 55 1683 3133
+                <PhoneCall size={16} className="text-neonBlue" /> +52 55 1683
+                3133
               </a>
             </div>
           </div>

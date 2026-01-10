@@ -14,7 +14,11 @@ const toneClasses: Record<Tone, string> = {
   neutral: "border-white/20 text-techWhite/80 bg-white/5",
 };
 
-export const Badge = ({ tone = "neutral", children, pulse = false }: BadgeProps) => {
+export const Badge = ({
+  tone = "neutral",
+  children,
+  pulse = false,
+}: BadgeProps) => {
   return (
     <span
       className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-mono tracking-wide ${toneClasses[tone]} ${
