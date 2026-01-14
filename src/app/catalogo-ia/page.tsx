@@ -1,9 +1,18 @@
-import { ArrowRight, CheckCircle2, Zap, TrendingUp, Shield, Clock, Sparkles, ChevronDown } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Zap,
+  TrendingUp,
+  Shield,
+  Clock,
+  Sparkles,
+  ChevronDown,
+} from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
 const strategicKeys = [
-  "La IA es tu motor, no tu pitch: No vendemos \"humo\", vendemos sistemas que funcionan 24/7.",
+  'La IA es tu motor, no tu pitch: No vendemos "humo", vendemos sistemas que funcionan 24/7.',
   "Capital Raise: Estos precios representan un 75% a 85% de descuento sobre la tarifa comercial. El objetivo es fondear el escalamiento de nuestros nodos MCP.",
   "Valor Exponencial: Usamos protocolos de contexto (MCP) y APIs de última generación para que tu negocio tenga memoria y criterio propio.",
 ];
@@ -23,19 +32,22 @@ const implementationLevels = [
     items: [
       {
         service: "Landing Express IA",
-        value: "Diseño optimizado con A/B Testing predictivo vía GPT-4o Vision.",
+        value:
+          "Diseño optimizado con A/B Testing predictivo vía GPT-4o Vision.",
         price: "$45",
         highlight: "ROI en 72hrs",
       },
       {
         service: "Respondedor de Reseñas / Comentarios",
-        value: "Sentiment Analysis con n8n para filtrar crisis y agradecer ventas.",
+        value:
+          "Sentiment Analysis con n8n para filtrar crisis y agradecer ventas.",
         price: "$65",
         highlight: "Reputación 24/7",
       },
       {
         service: "Copy de Venta Infinito (1 pág)",
-        value: "Redacción psicológica usando Modelos de Lenguaje entrenados en conversión.",
+        value:
+          "Redacción psicológica usando Modelos de Lenguaje entrenados en conversión.",
         price: "$55",
         highlight: "+40% conversión",
       },
@@ -50,7 +62,8 @@ const implementationLevels = [
   {
     title: "Nivel 2: Servicios Funcionales",
     subtitle: "Ahorro de Tiempo",
-    description: "Aquí es donde el cliente empieza a recuperar sus horas de vida.",
+    description:
+      "Aquí es donde el cliente empieza a recuperar sus horas de vida.",
     ascii: `
 ┌─────────────────┐
 │  🎯 TIEMPO      │
@@ -61,19 +74,22 @@ const implementationLevels = [
     items: [
       {
         service: "Mini Web IA (3 secciones)",
-        value: "Estructura SEO dinámica que se adapta según la búsqueda del usuario.",
+        value:
+          "Estructura SEO dinámica que se adapta según la búsqueda del usuario.",
         price: "$250",
         highlight: "Tráfico orgánico x3",
       },
       {
         service: "Clon de Voz para Recordatorios",
-        value: "Confirmación de citas/pagos con tu propia voz (o profesional) vía ElevenLabs.",
+        value:
+          "Confirmación de citas/pagos con tu propia voz (o profesional) vía ElevenLabs.",
         price: "$350",
         highlight: "-85% inasistencias",
       },
       {
         service: "Generador de Contenido Omnicanal",
-        value: "De 1 idea a 10 formatos (Reels, LinkedIn, Blog) con Anthropic API.",
+        value:
+          "De 1 idea a 10 formatos (Reels, LinkedIn, Blog) con Anthropic API.",
         price: "$290",
         highlight: "10x contenido, 1x tiempo",
       },
@@ -99,25 +115,29 @@ const implementationLevels = [
     items: [
       {
         service: "Cerebro de Datos MCP",
-        value: "Conectamos tu Excel/SQL a un chat privado para preguntarle a tus datos.",
+        value:
+          "Conectamos tu Excel/SQL a un chat privado para preguntarle a tus datos.",
         price: "$750",
         highlight: "Decisiones en segundos",
       },
       {
         service: "Seguimiento Automático 365",
-        value: "Secuencias de nutrición infinitas que aprenden del comportamiento del lead.",
+        value:
+          "Secuencias de nutrición infinitas que aprenden del comportamiento del lead.",
         price: "$600",
         highlight: "Leads que nunca olvidas",
       },
       {
         service: "Asistente Interno [Wiki IA]",
-        value: "Toda la normativa de tu empresa en un bot que responde dudas del equipo.",
+        value:
+          "Toda la normativa de tu empresa en un bot que responde dudas del equipo.",
         price: "$850",
         highlight: "Onboarding instantáneo",
       },
       {
         service: "Dashboard Predictivo de Resultados",
-        value: "Visualización de KPIs que te dice cuánto vas a vender el próximo mes.",
+        value:
+          "Visualización de KPIs que te dice cuánto vas a vender el próximo mes.",
         price: "$900",
         highlight: "Forecasting IA",
       },
@@ -137,19 +157,22 @@ const implementationLevels = [
     items: [
       {
         service: "Bot IA de Ventas Avanzado",
-        value: "Negocia, objeta y cierra ventas solo, integrado a tu CRM vía Python/Node.js.",
+        value:
+          "Negocia, objeta y cierra ventas solo, integrado a tu CRM vía Python/Node.js.",
         price: "Desde $1,200",
         highlight: "Vendedor que nunca duerme",
       },
       {
         service: "Ecosistema White Label para Agencias",
-        value: "Creamos tu propia suite de herramientas para que las revendas a tus clientes.",
+        value:
+          "Creamos tu propia suite de herramientas para que las revendas a tus clientes.",
         price: "Desde $2,500",
         highlight: "Tu propia IA as a Service",
       },
       {
         service: "Infraestructura IA Operativa",
-        value: "Despliegue de servidores locales con MCP para privacidad total de datos.",
+        value:
+          "Despliegue de servidores locales con MCP para privacidad total de datos.",
         price: "Desde $3,000",
         highlight: "Soberanía de datos 100%",
       },
@@ -178,11 +201,16 @@ const launchPackages = [
 ║   🛒 VENTA   ║
 ║   :: 24/7    ║
 ╚══════════════╝`,
-    description: "Landing de Producto + Recuperador de Carritos + Vendedor 24/7.",
+    description:
+      "Landing de Producto + Recuperador de Carritos + Vendedor 24/7.",
     price: "$850 USD",
     realValue: "$2,400 USD",
     savings: "65% OFF",
-    benefits: ["Recupera 40% carritos", "Vende mientras duermes", "Escala sin contratar"],
+    benefits: [
+      "Recupera 40% carritos",
+      "Vende mientras duermes",
+      "Escala sin contratar",
+    ],
   },
   {
     name: "Pack Inmobiliario High-Ticket",
@@ -191,11 +219,16 @@ const launchPackages = [
 ║   🏢 LUXURY  ║
 ║   // HIGH-$  ║
 ╚══════════════╝`,
-    description: "Calificador de Leads + Dossier Automático + Agente Multilingüe.",
+    description:
+      "Calificador de Leads + Dossier Automático + Agente Multilingüe.",
     price: "$950 USD",
     realValue: "$3,000 USD",
     savings: "68% OFF",
-    benefits: ["Solo leads calificados", "Cierra en 3 idiomas", "Presentaciones auto-generadas"],
+    benefits: [
+      "Solo leads calificados",
+      "Cierra en 3 idiomas",
+      "Presentaciones auto-generadas",
+    ],
   },
 ];
 
@@ -223,15 +256,15 @@ const asciiHeader = `
 ╚═══════════════════════════════════════════════════════════════════╝`;
 
 export default function CatalogoIaPage() {
-  const [expandedLevel, setExpandedLevel] = useState(null);
-  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [expandedLevel, setExpandedLevel] = useState<number | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-black text-green-400 font-mono">
       {/* ASCII Header */}
       <section className="pt-24 pb-8 px-4 overflow-x-auto">
         <pre className="text-[8px] sm:text-xs text-cyan-400 whitespace-pre leading-tight">
-{asciiHeader}
+          {asciiHeader}
         </pre>
       </section>
 
@@ -247,7 +280,8 @@ export default function CatalogoIaPage() {
           {/* Main Heading */}
           <div className="mb-8">
             <div className="text-green-400 text-sm mb-2">
-              <span className="animate-pulse">█</span> root@xpertasocial:~# ./deploy_infrastructure.sh
+              <span className="animate-pulse">█</span> root@xpertasocial:~#
+              ./deploy_infrastructure.sh
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
               <span className="text-cyan-400">INFRAESTRUCTURA_IA</span>
@@ -255,16 +289,21 @@ export default function CatalogoIaPage() {
               <span className="text-pink-400">[SEED_PRICE]</span>
             </h1>
             <div className="text-sm sm:text-base text-gray-400 font-mono">
-              <span className="text-green-400">$</span> echo "Microservicios enterprise | Descuento: 75-85% | Status: ONLINE"
+              <span className="text-green-400">$</span> echo "Microservicios
+              enterprise | Descuento: 75-85% | Status: ONLINE"
               <br />
-              <span className="text-green-400">$</span> Fase: LEVANTAMIENTO_CAPITAL --limit PRIMEROS_5_CONTRATOS
+              <span className="text-green-400">$</span> Fase:
+              LEVANTAMIENTO_CAPITAL --limit PRIMEROS_5_CONTRATOS
             </div>
           </div>
 
           {/* Social Proof Grid - Terminal Style */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
             {socialProof.map((item, idx) => (
-              <div key={idx} className="border border-green-500/30 bg-black/80 p-4">
+              <div
+                key={idx}
+                className="border border-green-500/30 bg-black/80 p-4"
+              >
                 <div className="text-xs text-green-500 mb-1">
                   &gt; {item.label.toUpperCase()}
                 </div>
@@ -282,10 +321,14 @@ export default function CatalogoIaPage() {
               className="group border-2 border-cyan-500 bg-cyan-500/10 text-cyan-400 px-6 py-4 text-base font-bold hover:bg-cyan-500 hover:text-black transition-all"
             >
               <span className="flex items-center justify-center gap-2">
-                &gt;_ AGENDAR_DIAGNOSTICO.exe <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                &gt;_ AGENDAR_DIAGNOSTICO.exe{" "}
+                <ArrowRight
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </span>
             </Link>
-            
+
             <Link
               href="/diagnostico#audit"
               className="border-2 border-pink-500/50 text-pink-400 px-6 py-4 text-base hover:border-pink-500 hover:bg-pink-500/10 transition-all"
@@ -305,12 +348,17 @@ export default function CatalogoIaPage() {
               [STRATEGIC_KEYS.json]
             </h2>
           </div>
-          
+
           <div className="space-y-3">
             {strategicKeys.map((key, idx) => (
-              <div key={idx} className="border-l-4 border-cyan-500 bg-black/60 p-4">
+              <div
+                key={idx}
+                className="border-l-4 border-cyan-500 bg-black/60 p-4"
+              >
                 <div className="flex items-start gap-3">
-                  <span className="text-cyan-400 text-xs mt-1">[{String(idx + 1).padStart(2, '0')}]</span>
+                  <span className="text-cyan-400 text-xs mt-1">
+                    [{String(idx + 1).padStart(2, "0")}]
+                  </span>
                   <p className="text-sm sm:text-base text-gray-300">{key}</p>
                 </div>
               </div>
@@ -334,37 +382,59 @@ export default function CatalogoIaPage() {
               <div key={idx} className="border border-green-500/30 bg-black/80">
                 {/* Level Header */}
                 <button
-                  onClick={() => setExpandedLevel(expandedLevel === idx ? null : idx)}
+                  onClick={() =>
+                    setExpandedLevel(expandedLevel === idx ? null : idx)
+                  }
                   className="w-full text-left p-4 sm:p-6 hover:bg-green-500/5 transition-colors"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex-1">
                       <pre className="text-[8px] sm:text-[10px] text-cyan-400 mb-2 whitespace-pre leading-tight hidden sm:block">
-{level.ascii}
+                        {level.ascii}
                       </pre>
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-green-400 text-xs">[NIVEL_{idx + 1}]</span>
-                        <h3 className="text-lg sm:text-xl font-bold text-white">{level.title}</h3>
+                        <span className="text-green-400 text-xs">
+                          [NIVEL_{idx + 1}]
+                        </span>
+                        <h3 className="text-lg sm:text-xl font-bold text-white">
+                          {level.title}
+                        </h3>
                       </div>
-                      <p className="text-xs sm:text-sm text-pink-400 mb-1">// {level.subtitle}</p>
-                      <p className="text-xs sm:text-sm text-gray-400">{level.description}</p>
+                      <p className="text-xs sm:text-sm text-pink-400 mb-1">
+                        // {level.subtitle}
+                      </p>
+                      <p className="text-xs sm:text-sm text-gray-400">
+                        {level.description}
+                      </p>
                     </div>
-                    <ChevronDown 
-                      className={`text-cyan-400 transition-transform ${expandedLevel === idx ? 'rotate-180' : ''}`} 
-                      size={20} 
+                    <ChevronDown
+                      className={`text-cyan-400 transition-transform ${
+                        expandedLevel === idx ? "rotate-180" : ""
+                      }`}
+                      size={20}
                     />
                   </div>
                 </button>
 
                 {/* Services */}
-                <div className={`transition-all duration-300 overflow-hidden ${expandedLevel === idx ? 'max-h-[2000px]' : 'max-h-0 sm:max-h-full'}`}>
+                <div
+                  className={`transition-all duration-300 overflow-hidden ${
+                    expandedLevel === idx
+                      ? "max-h-[2000px]"
+                      : "max-h-0 sm:max-h-full"
+                  }`}
+                >
                   <div className="border-t border-green-500/20 p-4 space-y-3">
                     {level.items.map((item, itemIdx) => (
-                      <div key={itemIdx} className="border border-cyan-500/20 bg-black/60 p-4 hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all group">
+                      <div
+                        key={itemIdx}
+                        className="border border-cyan-500/20 bg-black/60 p-4 hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all group"
+                      >
                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
                           <div className="flex-1">
                             <div className="text-xs text-green-400 mb-1">
-                              &gt; service_{String(itemIdx + 1).padStart(2, '0')}.deploy()
+                              &gt; service_
+                              {String(itemIdx + 1).padStart(2, "0")}.deploy()
                             </div>
                             <h4 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                               {item.service}
@@ -408,13 +478,15 @@ export default function CatalogoIaPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {launchPackages.map((pack, idx) => (
-              <div 
+              <div
                 key={idx}
-                onClick={() => setSelectedPackage(selectedPackage === idx ? null : idx)}
+                onClick={() =>
+                  setSelectedPackage(selectedPackage === idx ? null : idx)
+                }
                 className={`cursor-pointer border-2 bg-black/80 p-6 transition-all hover:scale-105 ${
-                  selectedPackage === idx 
-                    ? 'border-pink-500 shadow-lg shadow-pink-500/50' 
-                    : 'border-green-500/30 hover:border-pink-500/50'
+                  selectedPackage === idx
+                    ? "border-pink-500 shadow-lg shadow-pink-500/50"
+                    : "border-green-500/30 hover:border-pink-500/50"
                 }`}
               >
                 {/* Discount Badge */}
@@ -423,18 +495,23 @@ export default function CatalogoIaPage() {
                 </div>
 
                 <pre className="text-[8px] sm:text-[10px] text-cyan-400 mb-4 whitespace-pre leading-tight">
-{pack.ascii}
+                  {pack.ascii}
                 </pre>
-                
+
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-3">
                   {pack.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-400 mb-4">{pack.description}</p>
+                <p className="text-xs sm:text-sm text-gray-400 mb-4">
+                  {pack.description}
+                </p>
 
                 {/* Benefits */}
                 <div className="space-y-2 mb-4 border-l-2 border-cyan-500/30 pl-3">
                   {pack.benefits.map((benefit, bIdx) => (
-                    <div key={bIdx} className="flex items-start gap-2 text-xs text-gray-300">
+                    <div
+                      key={bIdx}
+                      className="flex items-start gap-2 text-xs text-gray-300"
+                    >
                       <span className="text-cyan-400">&gt;</span>
                       {benefit}
                     </div>
@@ -468,8 +545,11 @@ export default function CatalogoIaPage() {
                   [!] DISPONIBILIDAD_LIMITADA --alert
                 </div>
                 <p className="text-xs sm:text-sm text-gray-300">
-                  Oferta limitada a los <span className="text-pink-400 font-bold">primeros 5 contratos/sector</span>. 
-                  Post-liquidez: precios retornan a tarifa estándar.
+                  Oferta limitada a los{" "}
+                  <span className="text-pink-400 font-bold">
+                    primeros 5 contratos/sector
+                  </span>
+                  . Post-liquidez: precios retornan a tarifa estándar.
                 </p>
               </div>
             </div>
@@ -482,17 +562,17 @@ export default function CatalogoIaPage() {
         <div className="max-w-5xl mx-auto border-2 border-cyan-500/50 bg-black/90 p-8">
           <div className="text-center">
             <pre className="text-xs text-green-400 mb-4">
-{`> INFRASTRUCTURE_READY.status
+              {`> INFRASTRUCTURE_READY.status
 > OUTPUT: [ONLINE] | [SCALABLE] | [SECURED]`}
             </pre>
             <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4">
-              <span className="text-cyan-400">INFRAESTRUCTURA</span> lista para{' '}
+              <span className="text-cyan-400">INFRAESTRUCTURA</span> lista para{" "}
               <span className="text-pink-400">ESCALAR</span>
             </h2>
             <p className="text-sm sm:text-base text-gray-400 mb-6">
               // Asegura precio preferencial antes del cierre de capital
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/diagnostico"
