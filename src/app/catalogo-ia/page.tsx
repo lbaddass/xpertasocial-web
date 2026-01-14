@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight, CheckCircle2, Zap, TrendingUp, Shield, Clock, Sparkles, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
