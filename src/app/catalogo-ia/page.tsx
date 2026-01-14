@@ -1,390 +1,607 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+"use client";
+
+import {
+  ArrowRight,
+  ChevronDown,
+  Clock,
+  Shield,
+  Sparkles,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
-import PageNav from "@/components/layout/PageNav";
-
-const catalogPrinciples = [
-  { label: "Moneda", value: "MXN" },
-  { label: "Ticket de entrada", value: "$1,500 – $4,000" },
-  { label: "Upsell máximo", value: "$80,000+" },
-  { label: "Unidad de venta", value: "Resultado concreto" },
-  { label: "IA hacia el cliente", value: "Cero IA explícita" },
-  { label: "Sesgo de entrega", value: "Rápido > Perfecto" },
-];
-
-const catalogLevels = [
-  {
-    title: "Nivel 1 — Micro-servicios de entrada",
-    description: "Venta impulsiva. Poco riesgo. Alto volumen.",
-    groups: [
-      {
-        title: "Web / Conversión",
-        items: [
-          {
-            name: "Landing Express IA",
-            price: "$2,000 – $3,500",
-            delivers: "Página simple que genera contactos.",
-            detail: "Copy asistido + estructura.",
-          },
-          {
-            name: "Copy de Venta IA (1 página)",
-            price: "$1,500 – $2,500",
-            delivers: "Texto listo para web o WhatsApp.",
-          },
-        ],
-      },
-      {
-        title: "Ads / Contenido",
-        items: [
-          {
-            name: "Anuncios Express IA (Meta)",
-            price: "$1,500 – $3,000",
-            delivers: "2 copies + 2 visuales.",
-          },
-          {
-            name: "Reescritura de anuncios con IA",
-            price: "$1,000 – $2,000",
-            delivers: "Mejora de anuncios existentes.",
-          },
-        ],
-      },
-      {
-        title: "WhatsApp / Atención",
-        items: [
-          {
-            name: "Mensaje Automático WhatsApp",
-            price: "$1,500 – $2,500",
-            delivers: "Respuesta automática básica.",
-          },
-          {
-            name: "Guiones de Venta IA (WhatsApp)",
-            price: "$1,500 – $3,000",
-            delivers: "Scripts para cerrar más rápido.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Nivel 2 — Servicios funcionales",
-    description: "Aquí ya empiezas a justificar precio.",
-    groups: [
-      {
-        title: "Funnels / Leads",
-        items: [
-          {
-            name: "Funnel Básico IA",
-            price: "$6,000 – $10,000",
-            delivers: "Landing + formulario + seguimiento simple.",
-          },
-          {
-            name: "Calificación Automática de Leads",
-            price: "$5,000 – $9,000",
-            delivers: "Clasifica leads antes de responder.",
-          },
-        ],
-      },
-      {
-        title: "Web",
-        items: [
-          {
-            name: "Mini Web IA (3 secciones)",
-            price: "$5,000 – $8,000",
-            delivers: "Web ligera enfocada a conversión.",
-          },
-          {
-            name: "Web Optimizada para Conversión",
-            price: "$8,000 – $15,000",
-            delivers: "Estructura UX orientada a ventas.",
-          },
-        ],
-      },
-      {
-        title: "Contenido",
-        items: [
-          {
-            name: "Calendario de Contenido IA (30 días)",
-            price: "$3,000 – $6,000",
-            delivers: "Plan editorial para redes.",
-          },
-          {
-            name: "Generador de Posts Automático",
-            price: "$5,000 – $9,000",
-            delivers: "Posts listos para publicar.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Nivel 3 — Automatización invisible",
-    description: "Aquí tú ganas margen. La agencia vende orden.",
-    groups: [
-      {
-        title: "Operación",
-        items: [
-          {
-            name: "Automatización de Leads (CRM / Sheets)",
-            price: "$8,000 – $15,000",
-            delivers: "Leads ordenados en un solo tablero.",
-          },
-          {
-            name: "Seguimiento Automático WhatsApp / Email",
-            price: "$6,000 – $12,000",
-            delivers: "Nutrición automática post-contacto.",
-          },
-          {
-            name: "Dashboard Simple de Resultados",
-            price: "$6,000 – $12,000",
-            delivers: "KPIs claros en un panel simple.",
-          },
-        ],
-      },
-      {
-        title: "IA aplicada",
-        items: [
-          {
-            name: "Asistente IA Interno (FAQ)",
-            price: "$10,000 – $20,000",
-            delivers: "Responde dudas repetitivas 24/7.",
-          },
-          {
-            name: "Clasificador IA de Mensajes",
-            price: "$8,000 – $18,000",
-            delivers: "Prioriza y etiqueta mensajes entrantes.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Nivel 4 — Desarrollos personalizados",
-    description: "Ticket alto cuando ya confían.",
-    groups: [
-      {
-        title: "IA + Automatización avanzada",
-        items: [
-          {
-            name: "Bot IA de Ventas (WhatsApp)",
-            price: "Desde $15,000",
-            delivers: "Escalable hasta $40,000+.",
-          },
-          {
-            name: "Sistema de Ventas Automatizado",
-            price: "Desde $20,000",
-            delivers: "Escalable hasta $60,000+.",
-          },
-          {
-            name: "Infraestructura IA Operativa",
-            price: "Desde $25,000",
-            delivers: "Escalable hasta $80,000+.",
-          },
-        ],
-      },
-    ],
-  },
-];
-
-const packages = [
-  {
-    name: "Arranque Digital",
-    price: "$4,000 – $6,000",
-    includes: ["Landing Express", "Copy IA"],
-  },
-  {
-    name: "Consigue Mensajes",
-    price: "$6,000 – $9,000",
-    includes: ["Landing", "Mensajes WhatsApp", "Creativos"],
-  },
-  {
-    name: "Ventas Semi-Automáticas",
-    price: "$12,000 – $18,000",
-    includes: ["Funnel", "Seguimiento", "Dashboard básico"],
-  },
-];
+import { useState } from "react";
 
 const strategicKeys = [
-  "La IA es tu motor, no tu pitch.",
-  "El cliente compra rapidez, orden y menos trabajo.",
-  'El upgrade es natural: "¿Quieres que también responda solo?"',
-  'Escala con: "¿Quieres que los leads se ordenen?"',
+  'La IA es tu motor, no tu pitch: No vendemos "humo", vendemos sistemas que funcionan 24/7.',
+  "Capital Raise: Estos precios representan un 75% a 85% de descuento sobre la tarifa comercial. El objetivo es fondear el escalamiento de nuestros nodos MCP.",
+  "Valor Exponencial: Usamos protocolos de contexto (MCP) y APIs de última generación para que tu negocio tenga memoria y criterio propio.",
 ];
 
-export default function CatalogoIaPage() {
-  return (
-    <div className="min-h-screen pt-20 pb-20">
-      <PageNav />
+const implementationLevels = [
+  {
+    title: "Nivel 1: Micro-servicios de Entrada",
+    subtitle: "Impulso Rápido",
+    description: "Venta impulsiva, bajo riesgo, alto impacto inmediato.",
+    ascii: `
+┌─────────────────┐
+│  >_ IMPULSO     │
+│  ⚡ RÁPIDO      │
+└─────────────────┘`,
+    color: "from-cyan-500/20 to-blue-500/20",
+    borderColor: "border-cyan-500/40",
+    items: [
+      {
+        service: "Landing Express IA",
+        value:
+          "Diseño optimizado con A/B Testing predictivo vía GPT-4o Vision.",
+        price: "$45",
+        highlight: "ROI en 72hrs",
+      },
+      {
+        service: "Respondedor de Reseñas / Comentarios",
+        value:
+          "Sentiment Analysis con n8n para filtrar crisis y agradecer ventas.",
+        price: "$65",
+        highlight: "Reputación 24/7",
+      },
+      {
+        service: "Copy de Venta Infinito (1 pág)",
+        value:
+          "Redacción psicológica usando Modelos de Lenguaje entrenados en conversión.",
+        price: "$55",
+        highlight: "+40% conversión",
+      },
+      {
+        service: "Perfilador de Leads [WhatsApp]",
+        value: "Calificación básica mediante filtros de lenguaje natural.",
+        price: "$85",
+        highlight: "Ahorra 15hrs/sem",
+      },
+    ],
+  },
+  {
+    title: "Nivel 2: Servicios Funcionales",
+    subtitle: "Ahorro de Tiempo",
+    description:
+      "Aquí es donde el cliente empieza a recuperar sus horas de vida.",
+    ascii: `
+┌─────────────────┐
+│  🎯 TIEMPO      │
+│  >> LIBERTAD    │
+└─────────────────┘`,
+    color: "from-blue-500/20 to-purple-500/20",
+    borderColor: "border-blue-500/40",
+    items: [
+      {
+        service: "Mini Web IA (3 secciones)",
+        value:
+          "Estructura SEO dinámica que se adapta según la búsqueda del usuario.",
+        price: "$250",
+        highlight: "Tráfico orgánico x3",
+      },
+      {
+        service: "Clon de Voz para Recordatorios",
+        value:
+          "Confirmación de citas/pagos con tu propia voz (o profesional) vía ElevenLabs.",
+        price: "$350",
+        highlight: "-85% inasistencias",
+      },
+      {
+        service: "Generador de Contenido Omnicanal",
+        value:
+          "De 1 idea a 10 formatos (Reels, LinkedIn, Blog) con Anthropic API.",
+        price: "$290",
+        highlight: "10x contenido, 1x tiempo",
+      },
+      {
+        service: "Web Optimizada para Conversión",
+        value: "Embudos que cambian el mensaje según el origen del tráfico.",
+        price: "$450",
+        highlight: "Personalización real-time",
+      },
+    ],
+  },
+  {
+    title: "Nivel 3: Automatización Invisible",
+    subtitle: "Margen y Orden",
+    description: "La agencia vende orden, el cliente compra libertad.",
+    ascii: `
+┌─────────────────┐
+│  🧠 CEREBRO     │
+│  :: INVISIBLE   │
+└─────────────────┘`,
+    color: "from-purple-500/20 to-pink-500/20",
+    borderColor: "border-purple-500/40",
+    items: [
+      {
+        service: "Cerebro de Datos MCP",
+        value:
+          "Conectamos tu Excel/SQL a un chat privado para preguntarle a tus datos.",
+        price: "$750",
+        highlight: "Decisiones en segundos",
+      },
+      {
+        service: "Seguimiento Automático 365",
+        value:
+          "Secuencias de nutrición infinitas que aprenden del comportamiento del lead.",
+        price: "$600",
+        highlight: "Leads que nunca olvidas",
+      },
+      {
+        service: "Asistente Interno [Wiki IA]",
+        value:
+          "Toda la normativa de tu empresa en un bot que responde dudas del equipo.",
+        price: "$850",
+        highlight: "Onboarding instantáneo",
+      },
+      {
+        service: "Dashboard Predictivo de Resultados",
+        value:
+          "Visualización de KPIs que te dice cuánto vas a vender el próximo mes.",
+        price: "$900",
+        highlight: "Forecasting IA",
+      },
+    ],
+  },
+  {
+    title: "Nivel 4: Desarrollos Personalizados",
+    subtitle: "Infraestructura",
+    description: "Ticket alto para clientes que buscan dominancia total.",
+    ascii: `
+┌─────────────────┐
+│  🚀 DOMINANCIA  │
+│  // TOTAL       │
+└─────────────────┘`,
+    color: "from-pink-500/20 to-rose-500/20",
+    borderColor: "border-pink-500/40",
+    items: [
+      {
+        service: "Bot IA de Ventas Avanzado",
+        value:
+          "Negocia, objeta y cierra ventas solo, integrado a tu CRM vía Python/Node.js.",
+        price: "Desde $1,200",
+        highlight: "Vendedor que nunca duerme",
+      },
+      {
+        service: "Ecosistema White Label para Agencias",
+        value:
+          "Creamos tu propia suite de herramientas para que las revendas a tus clientes.",
+        price: "Desde $2,500",
+        highlight: "Tu propia IA as a Service",
+      },
+      {
+        service: "Infraestructura IA Operativa",
+        value:
+          "Despliegue de servidores locales con MCP para privacidad total de datos.",
+        price: "Desde $3,000",
+        highlight: "Soberanía de datos 100%",
+      },
+    ],
+  },
+];
 
-      <div className="max-w-6xl mx-auto px-6 mb-16">
-        <div className="flex flex-col gap-8 border-b border-white/10 pb-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono uppercase tracking-[0.3em] text-neonBlue">
-            Catálogo IA + Automatización
+const launchPackages = [
+  {
+    name: "Pack Clínica Pro",
+    ascii: `
+╔══════════════╗
+║   🏥 SALUD   ║
+║   >> PRO     ║
+╚══════════════╝`,
+    description: "Agendador Express + Recordatorio de Voz + Triaje IA.",
+    price: "$550 USD",
+    realValue: "$1,800 USD",
+    savings: "70% OFF",
+    benefits: ["Reduce inasistencias 85%", "Triaje 24/7", "ROI en 30 días"],
+  },
+  {
+    name: "Pack E-commerce Scaler",
+    ascii: `
+╔══════════════╗
+║   🛒 VENTA   ║
+║   :: 24/7    ║
+╚══════════════╝`,
+    description:
+      "Landing de Producto + Recuperador de Carritos + Vendedor 24/7.",
+    price: "$850 USD",
+    realValue: "$2,400 USD",
+    savings: "65% OFF",
+    benefits: [
+      "Recupera 40% carritos",
+      "Vende mientras duermes",
+      "Escala sin contratar",
+    ],
+  },
+  {
+    name: "Pack Inmobiliario High-Ticket",
+    ascii: `
+╔══════════════╗
+║   🏢 LUXURY  ║
+║   // HIGH-$  ║
+╚══════════════╝`,
+    description:
+      "Calificador de Leads + Dossier Automático + Agente Multilingüe.",
+    price: "$950 USD",
+    realValue: "$3,000 USD",
+    savings: "68% OFF",
+    benefits: [
+      "Solo leads calificados",
+      "Cierra en 3 idiomas",
+      "Presentaciones auto-generadas",
+    ],
+  },
+];
+
+const socialProof = [
+  { metric: "5,000+", label: "Horas automatizadas" },
+  { metric: "180%", label: "ROI promedio" },
+  { metric: "24/7", label: "Operación continua" },
+  { metric: "72hrs", label: "Deploy promedio" },
+];
+
+const asciiHeader = `
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║    ██╗███╗   ██╗███████╗██████╗  █████╗     ██╗ █████╗           ║
+║    ██║████╗  ██║██╔════╝██╔══██╗██╔══██╗    ██║██╔══██╗          ║
+║    ██║██╔██╗ ██║█████╗  ██████╔╝███████║    ██║███████║          ║
+║    ██║██║╚██╗██║██╔══╝  ██╔══██╗██╔══██║    ██║██╔══██║          ║
+║    ██║██║ ╚████║██║     ██║  ██║██║  ██║    ██║██║  ██║          ║
+║    ╚═╝╚═╝  ╚═══╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═╝          ║
+║                                                                   ║
+║              > CAPITAL_RAISE_EDITION_2026.exe                     ║
+║              > SYSTEMS_ONLINE :: 24/7/365                         ║
+║              > DISCOUNT_ACTIVE :: 75-85% OFF                      ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝`;
+
+export default function CatalogoIaPage() {
+  const [expandedLevel, setExpandedLevel] = useState<number | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
+
+  return (
+    <div className="min-h-screen bg-black text-green-400 font-mono">
+      {/* ASCII Header */}
+      <section className="pt-24 pb-8 px-4 overflow-x-auto">
+        <pre className="text-[8px] sm:text-xs text-cyan-400 whitespace-pre leading-tight">
+          {asciiHeader}
+        </pre>
+      </section>
+
+      {/* Hero Section - Hacker Style */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="max-w-7xl mx-auto">
+          {/* Terminal Badge */}
+          <div className="inline-flex items-center gap-2 border border-cyan-500/50 bg-cyan-500/10 px-4 py-2 text-xs uppercase tracking-widest text-cyan-400 mb-6">
+            <Sparkles size={14} className="animate-pulse" />
+            <span>&gt;_ CAPITAL_RAISE.sh --execute</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
-            Microservicios escalonados para liquidez rápida
-          </h1>
-          <p className="text-lg md:text-xl text-white/60 max-w-3xl">
-            Un catálogo diseñado para tickets de entrada bajos y escalamiento
-            progresivo por personalización. Se vende por resultados, no por
-            tecnología.
-          </p>
-          <div className="flex flex-wrap gap-4">
+
+          {/* Main Heading */}
+          <div className="mb-8">
+            <div className="text-green-400 text-sm mb-2">
+              <span className="animate-pulse">█</span> root@xpertasocial:~#
+              ./deploy_infrastructure.sh
+            </div>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+              <span className="text-cyan-400">INFRAESTRUCTURA_IA</span>
+              <br />
+              <span className="text-pink-400">[SEED_PRICE]</span>
+            </h1>
+            <div className="text-sm sm:text-base text-gray-400 font-mono">
+              <span className="text-green-400">$</span> echo
+              &quot;Microservicios enterprise | Descuento: 75-85% | Status:
+              ONLINE&quot;
+              <br />
+              <span className="text-green-400">$</span> Fase:
+              LEVANTAMIENTO_CAPITAL --limit PRIMEROS_5_CONTRATOS
+            </div>
+          </div>
+
+          {/* Social Proof Grid - Terminal Style */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            {socialProof.map((item, idx) => (
+              <div
+                key={idx}
+                className="border border-green-500/30 bg-black/80 p-4"
+              >
+                <div className="text-xs text-green-500 mb-1">
+                  &gt; {item.label.toUpperCase()}
+                </div>
+                <div className="text-2xl sm:text-3xl font-bold text-cyan-400">
+                  {item.metric}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTAs - Terminal Commands */}
+          <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/diagnostico"
-              className="inline-flex items-center gap-2 bg-neonBlue text-black px-6 py-3 font-bold rounded-sm hover:bg-white transition-all"
+              className="group border-2 border-cyan-500 bg-cyan-500/10 text-cyan-400 px-6 py-4 text-base font-bold hover:bg-cyan-500 hover:text-black transition-all"
             >
-              Agendar diagnóstico <ArrowRight size={18} />
+              <span className="flex items-center justify-center gap-2">
+                &gt;_ AGENDAR_DIAGNOSTICO.exe{" "}
+                <ArrowRight
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </span>
             </Link>
+
             <Link
               href="/diagnostico#audit"
-              className="inline-flex items-center gap-2 border border-white/20 text-white px-6 py-3 font-mono text-sm rounded-sm hover:border-neonPink hover:text-neonPink transition-all"
+              className="border-2 border-pink-500/50 text-pink-400 px-6 py-4 text-base hover:border-pink-500 hover:bg-pink-500/10 transition-all"
             >
-              Auditoría online gratis
+              :: AUDITORIA_GRATIS --start
             </Link>
           </div>
-        </div>
-      </div>
-
-      <section className="max-w-6xl mx-auto px-6 mb-20">
-        <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white">
-            Principios del catálogo
-          </h2>
-          <p className="text-white/60 mt-2">
-            Reglas duras para proteger margen y acelerar cierre.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {catalogPrinciples.map((principle) => (
-            <div
-              key={principle.label}
-              className="border border-white/10 bg-carbon/60 p-5"
-            >
-              <div className="text-xs font-mono uppercase tracking-[0.25em] text-white/40">
-                {principle.label}
-              </div>
-              <div className="mt-3 text-lg font-semibold text-white">
-                {principle.value}
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 space-y-16">
-        {catalogLevels.map((level) => (
-          <div key={level.title} className="space-y-8">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
-                {level.title}
-              </h2>
-              <p className="text-white/60 mt-2">{level.description}</p>
-            </div>
+      {/* Strategic Keys - Terminal Output */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12 bg-green-500/5 border-y border-green-500/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <Shield className="text-cyan-400" size={24} />
+            <h2 className="text-xl sm:text-2xl font-bold text-white">
+              [STRATEGIC_KEYS.json]
+            </h2>
+          </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {level.groups.map((group) => (
-                <div
-                  key={group.title}
-                  className="border border-white/10 bg-carbon/40 p-6"
+          <div className="space-y-3">
+            {strategicKeys.map((key, idx) => (
+              <div
+                key={idx}
+                className="border-l-4 border-cyan-500 bg-black/60 p-4"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-cyan-400 text-xs mt-1">
+                    [{String(idx + 1).padStart(2, "0")}]
+                  </span>
+                  <p className="text-sm sm:text-base text-gray-300">{key}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Levels - Code Blocks */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <TrendingUp className="text-pink-400" size={24} />
+            <h2 className="text-xl sm:text-2xl font-bold text-white">
+              &gt; NIVELES_IMPLEMENTACION[]
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            {implementationLevels.map((level, idx) => (
+              <div key={idx} className="border border-green-500/30 bg-black/80">
+                {/* Level Header */}
+                <button
+                  onClick={() =>
+                    setExpandedLevel(expandedLevel === idx ? null : idx)
+                  }
+                  className="w-full text-left p-4 sm:p-6 hover:bg-green-500/5 transition-colors"
                 >
-                  <div className="text-xs font-mono uppercase tracking-[0.25em] text-neonBlue">
-                    {group.title}
-                  </div>
-                  <div className="mt-5 space-y-4">
-                    {group.items.map((item) => (
-                      <div
-                        key={item.name}
-                        className="border-b border-white/10 pb-4 last:border-b-0 last:pb-0"
-                      >
-                        <h3 className="text-lg font-semibold text-white">
-                          {item.name}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <pre className="text-[8px] sm:text-[10px] text-cyan-400 mb-2 whitespace-pre leading-tight hidden sm:block">
+                        {level.ascii}
+                      </pre>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-green-400 text-xs">
+                          [NIVEL_{idx + 1}]
+                        </span>
+                        <h3 className="text-lg sm:text-xl font-bold text-white">
+                          {level.title}
                         </h3>
-                        <p className="text-sm text-white/50 font-mono">
-                          {item.price}
-                        </p>
-                        <p className="text-sm text-white/70 mt-2">
-                          {item.delivers}
-                        </p>
-                        {item.detail && (
-                          <p className="text-xs text-white/50 mt-2">
-                            {item.detail}
-                          </p>
-                        )}
+                      </div>
+                      <p className="text-xs sm:text-sm text-pink-400 mb-1">
+                        {`// ${level.subtitle}`}
+                      </p>
+                      <p className="text-xs sm:text-sm text-gray-400">
+                        {level.description}
+                      </p>
+                    </div>
+                    <ChevronDown
+                      className={`text-cyan-400 transition-transform ${
+                        expandedLevel === idx ? "rotate-180" : ""
+                      }`}
+                      size={20}
+                    />
+                  </div>
+                </button>
+
+                {/* Services */}
+                <div
+                  className={`transition-all duration-300 overflow-hidden ${
+                    expandedLevel === idx
+                      ? "max-h-[2000px]"
+                      : "max-h-0 sm:max-h-full"
+                  }`}
+                >
+                  <div className="border-t border-green-500/20 p-4 space-y-3">
+                    {level.items.map((item, itemIdx) => (
+                      <div
+                        key={itemIdx}
+                        className="border border-cyan-500/20 bg-black/60 p-4 hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all group"
+                      >
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
+                          <div className="flex-1">
+                            <div className="text-xs text-green-400 mb-1">
+                              &gt; service_
+                              {String(itemIdx + 1).padStart(2, "0")}.deploy()
+                            </div>
+                            <h4 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                              {item.service}
+                            </h4>
+                            <div className="inline-flex items-center gap-2 border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 px-2 py-1 text-xs">
+                              <Zap size={10} />
+                              {item.highlight}
+                            </div>
+                          </div>
+                          <div className="border border-pink-500/30 bg-pink-500/10 px-4 py-2">
+                            <div className="text-xs text-pink-400">PRICE:</div>
+                            <div className="text-xl sm:text-2xl font-bold text-pink-400">
+                              {item.price}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-xs sm:text-sm text-gray-400 border-l-2 border-green-500/30 pl-3">
+                          {item.value}
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </section>
-
-      <section className="max-w-6xl mx-auto px-6 mt-20">
-        <div className="border border-white/10 bg-carbon/70 p-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white">
-            Paquetes comerciales
-          </h2>
-          <p className="text-white/60 mt-2">
-            Combos listos para vender y escalar.
-          </p>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {packages.map((pack) => (
-              <div
-                key={pack.name}
-                className="border border-white/10 bg-carbon p-6"
-              >
-                <div className="text-sm font-mono text-neonBlue uppercase tracking-[0.3em]">
-                  Paquete
-                </div>
-                <h3 className="mt-3 text-xl font-bold text-white">
-                  {pack.name}
-                </h3>
-                <p className="text-white/60 font-mono text-sm mt-1">
-                  {pack.price}
-                </p>
-                <ul className="mt-4 space-y-2 text-sm text-white/70">
-                  {pack.includes.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <CheckCircle2 size={16} className="text-neonBlue" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 mt-20">
-        <div className="border border-neonBlue/40 bg-gradient-to-r from-neonBlue/10 via-white/5 to-transparent p-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white">
-            Clave estratégica
-          </h2>
-          <ul className="mt-6 space-y-3 text-white/70">
-            {strategicKeys.map((key) => (
-              <li key={key} className="flex items-start gap-3">
-                <CheckCircle2 size={18} className="text-neonBlue mt-0.5" />
-                <span>{key}</span>
-              </li>
+      {/* Launch Packages - ASCII Cards */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12 bg-pink-500/5 border-y border-pink-500/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-8">
+            <h2 className="text-xl sm:text-3xl font-bold text-white mb-2">
+              <span className="text-pink-400">[PAQUETES_EXPRESS]</span>.init()
+            </h2>
+            <p className="text-sm sm:text-base text-gray-400">
+              {"// Combos plug & play para sectores específicos"}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {launchPackages.map((pack, idx) => (
+              <div
+                key={idx}
+                onClick={() =>
+                  setSelectedPackage(selectedPackage === idx ? null : idx)
+                }
+                className={`cursor-pointer border-2 bg-black/80 p-6 transition-all hover:scale-105 ${
+                  selectedPackage === idx
+                    ? "border-pink-500 shadow-lg shadow-pink-500/50"
+                    : "border-green-500/30 hover:border-pink-500/50"
+                }`}
+              >
+                {/* Discount Badge */}
+                <div className="absolute -top-3 -right-3 border-2 border-pink-500 bg-pink-500/20 text-pink-400 px-3 py-1 text-xs font-bold animate-pulse">
+                  {pack.savings}
+                </div>
+
+                <pre className="text-[8px] sm:text-[10px] text-cyan-400 mb-4 whitespace-pre leading-tight">
+                  {pack.ascii}
+                </pre>
+
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3">
+                  {pack.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-400 mb-4">
+                  {pack.description}
+                </p>
+
+                {/* Benefits */}
+                <div className="space-y-2 mb-4 border-l-2 border-cyan-500/30 pl-3">
+                  {pack.benefits.map((benefit, bIdx) => (
+                    <div
+                      key={bIdx}
+                      className="flex items-start gap-2 text-xs text-gray-300"
+                    >
+                      <span className="text-cyan-400">&gt;</span>
+                      {benefit}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pricing */}
+                <div className="border-t border-green-500/20 pt-4">
+                  <div className="text-xs text-gray-500 line-through mb-1">
+                    {`// value: ${pack.realValue}`}
+                  </div>
+                  <div className="flex items-end justify-between">
+                    <div className="text-2xl sm:text-3xl font-bold text-pink-400">
+                      {pack.price}
+                    </div>
+                    <button className="border-2 border-pink-500 bg-pink-500/10 text-pink-400 px-4 py-2 text-xs font-bold hover:bg-pink-500 hover:text-black transition-colors">
+                      CONTRATAR &gt;&gt;
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ul>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/diagnostico"
-              className="inline-flex items-center gap-2 bg-neonBlue text-black px-5 py-3 font-bold rounded-sm hover:bg-white transition-all"
-            >
-              Diseñar estrategia <ArrowRight size={18} />
-            </Link>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 border border-white/20 text-white px-5 py-3 font-mono text-sm rounded-sm hover:border-neonPink hover:text-neonPink transition-all"
-            >
-              Volver al home
-            </Link>
+          </div>
+
+          {/* Warning Banner */}
+          <div className="mt-8 border-2 border-pink-500/50 bg-pink-500/10 p-4">
+            <div className="flex items-start gap-3">
+              <Clock className="text-pink-400 flex-shrink-0 mt-1" size={20} />
+              <div>
+                <div className="text-xs text-pink-400 font-bold mb-1">
+                  [!] DISPONIBILIDAD_LIMITADA --alert
+                </div>
+                <p className="text-xs sm:text-sm text-gray-300">
+                  Oferta limitada a los{" "}
+                  <span className="text-pink-400 font-bold">
+                    primeros 5 contratos/sector
+                  </span>
+                  . Post-liquidez: precios retornan a tarifa estándar.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Final CTA - Terminal */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-5xl mx-auto border-2 border-cyan-500/50 bg-black/90 p-8">
+          <div className="text-center">
+            <pre className="text-xs text-green-400 mb-4">
+              {`> INFRASTRUCTURE_READY.status
+> OUTPUT: [ONLINE] | [SCALABLE] | [SECURED]`}
+            </pre>
+            <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4">
+              <span className="text-cyan-400">INFRAESTRUCTURA</span> lista para{" "}
+              <span className="text-pink-400">ESCALAR</span>
+            </h2>
+            <p className="text-sm sm:text-base text-gray-400 mb-6">
+              {"// Asegura precio preferencial antes del cierre de capital"}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/diagnostico"
+                className="border-2 border-cyan-500 bg-cyan-500/10 text-cyan-400 px-6 py-3 font-bold hover:bg-cyan-500 hover:text-black transition-all"
+              >
+                &gt;_ DISEÑAR_ESTRATEGIA.sh
+              </Link>
+              <Link
+                href="/"
+                className="border-2 border-green-500/30 text-green-400 px-6 py-3 hover:border-green-500 hover:bg-green-500/10 transition-all"
+              >
+                :: cd /home
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sticky Bottom CTA - Mobile Terminal */}
+      <div className="fixed bottom-0 left-0 right-0 sm:hidden bg-black/95 p-3 border-t-2 border-cyan-500/50 backdrop-blur-lg z-50">
+        <Link
+          href="/diagnostico"
+          className="block w-full border-2 border-cyan-500 bg-cyan-500/20 text-cyan-400 py-3 text-center font-bold hover:bg-cyan-500 hover:text-black transition-all"
+        >
+          &gt;_ ASEGURAR_PRECIO.now()
+        </Link>
+      </div>
     </div>
   );
 }
