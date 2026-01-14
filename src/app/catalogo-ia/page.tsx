@@ -177,7 +177,6 @@ const socialProof = [
 ];
 
 export default function CatalogoIaPage() {
-  const [expandedLevel, setExpandedLevel] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
 
   return (
