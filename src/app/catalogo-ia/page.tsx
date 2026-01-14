@@ -1,5 +1,4 @@
 import { ArrowRight, CheckCircle2, Zap, TrendingUp, Shield, Clock, Sparkles, ChevronDown } from "lucide-react";
-import { useState } from "react";
 
 const strategicKeys = [
   "La IA es tu motor, no tu pitch: No vendemos \"humo\", vendemos sistemas que funcionan 24/7.",
