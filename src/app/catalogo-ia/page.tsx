@@ -2,15 +2,16 @@
 
 import {
   ArrowRight,
-  Zap,
-  TrendingUp,
-  Shield,
-  Clock,
-  Sparkles,
+  CheckCircle2,
   ChevronDown,
+  Clock,
+  Shield,
+  Sparkles,
+  TrendingUp,
+  Zap,
 } from "lucide-react";
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
 const strategicKeys = [
   'La IA es tu motor, no tu pitch: No vendemos "humo", vendemos sistemas que funcionan 24/7.',
@@ -290,8 +291,9 @@ export default function CatalogoIaPage() {
               <span className="text-pink-400">[SEED_PRICE]</span>
             </h1>
             <div className="text-sm sm:text-base text-gray-400 font-mono">
-              <span className="text-green-400">$</span> echo &quot;Microservicios
-              enterprise | Descuento: 75-85% | Status: ONLINE&quot;
+              <span className="text-green-400">$</span> echo
+              &quot;Microservicios enterprise | Descuento: 75-85% | Status:
+              ONLINE&quot;
               <br />
               <span className="text-green-400">$</span> Fase:
               LEVANTAMIENTO_CAPITAL --limit PRIMEROS_5_CONTRATOS
@@ -387,6 +389,7 @@ export default function CatalogoIaPage() {
                     setExpandedLevel(expandedLevel === idx ? null : idx)
                   }
                   className="w-full text-left p-4 sm:p-6 hover:bg-green-500/5 transition-colors"
+                  aria-expanded={expandedLevel === idx}
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex-1">
@@ -428,7 +431,7 @@ export default function CatalogoIaPage() {
                   <div className="border-t border-green-500/20 p-4 space-y-3">
                     {level.items.map((item, itemIdx) => (
                       <div
-                        key={itemIdx}
+                        key={item.service}
                         className="border border-cyan-500/20 bg-black/60 p-4 hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all group"
                       >
                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
@@ -473,18 +476,18 @@ export default function CatalogoIaPage() {
               <span className="text-pink-400">[PAQUETES_EXPRESS]</span>.init()
             </h2>
             <p className="text-sm sm:text-base text-gray-400">
-              { "// Combos plug & play para sectores específicos" }
+              {"// Combos plug & play para sectores específicos"}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {launchPackages.map((pack, idx) => (
-              <div
-                key={idx}
+              <button
+                key={pack.name}
                 onClick={() =>
                   setSelectedPackage(selectedPackage === idx ? null : idx)
                 }
-                className={`cursor-pointer border-2 bg-black/80 p-6 transition-all hover:scale-105 ${
+                className={`text-left cursor-pointer border-2 bg-black/80 p-6 transition-all hover:scale-105 ${
                   selectedPackage === idx
                     ? "border-pink-500 shadow-lg shadow-pink-500/50"
                     : "border-green-500/30 hover:border-pink-500/50"
@@ -533,7 +536,7 @@ export default function CatalogoIaPage() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 
@@ -571,7 +574,7 @@ export default function CatalogoIaPage() {
               <span className="text-pink-400">ESCALAR</span>
             </h2>
             <p className="text-sm sm:text-base text-gray-400 mb-6">
-              { "// Asegura precio preferencial antes del cierre de capital" }
+              {"// Asegura precio preferencial antes del cierre de capital"}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
