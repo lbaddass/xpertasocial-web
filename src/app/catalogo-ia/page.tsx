@@ -1,6 +1,7 @@
+"use client";
+
 import {
   ArrowRight,
-  CheckCircle2,
   Zap,
   TrendingUp,
   Shield,
@@ -289,8 +290,8 @@ export default function CatalogoIaPage() {
               <span className="text-pink-400">[SEED_PRICE]</span>
             </h1>
             <div className="text-sm sm:text-base text-gray-400 font-mono">
-              <span className="text-green-400">$</span> echo "Microservicios
-              enterprise | Descuento: 75-85% | Status: ONLINE"
+              <span className="text-green-400">$</span> echo &quot;Microservicios
+              enterprise | Descuento: 75-85% | Status: ONLINE&quot;
               <br />
               <span className="text-green-400">$</span> Fase:
               LEVANTAMIENTO_CAPITAL --limit PRIMEROS_5_CONTRATOS
@@ -401,7 +402,7 @@ export default function CatalogoIaPage() {
                         </h3>
                       </div>
                       <p className="text-xs sm:text-sm text-pink-400 mb-1">
-                        // {level.subtitle}
+                        {`// ${level.subtitle}`}
                       </p>
                       <p className="text-xs sm:text-sm text-gray-400">
                         {level.description}
@@ -472,7 +473,7 @@ export default function CatalogoIaPage() {
               <span className="text-pink-400">[PAQUETES_EXPRESS]</span>.init()
             </h2>
             <p className="text-sm sm:text-base text-gray-400">
-              // Combos plug & play para sectores específicos
+              { "// Combos plug & play para sectores específicos" }
             </p>
           </div>
 
@@ -521,7 +522,7 @@ export default function CatalogoIaPage() {
                 {/* Pricing */}
                 <div className="border-t border-green-500/20 pt-4">
                   <div className="text-xs text-gray-500 line-through mb-1">
-                    // value: {pack.realValue}
+                    {`// value: ${pack.realValue}`}
                   </div>
                   <div className="flex items-end justify-between">
                     <div className="text-2xl sm:text-3xl font-bold text-pink-400">
@@ -570,7 +571,7 @@ export default function CatalogoIaPage() {
               <span className="text-pink-400">ESCALAR</span>
             </h2>
             <p className="text-sm sm:text-base text-gray-400 mb-6">
-              // Asegura precio preferencial antes del cierre de capital
+              { "// Asegura precio preferencial antes del cierre de capital" }
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
