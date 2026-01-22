@@ -1,66 +1,28 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
-
-interface DropdownItem {
-  label: string;
-  link: string;
-}
 
 interface NavDropdownProps {
   label: string;
-  concept: string;
-  items: DropdownItem[];
+  subLinks: {
+    label: string;
+    link: string;
+  }[];
 }
 
-export default function NavDropdown({
-  label,
-  concept,
-  items,
-}: NavDropdownProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function NavDropdown({ label, subLinks }: NavDropdownProps) {
   return (
-    <div
-      className="relative group h-full flex items-center"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
-      <button className="flex items-center gap-1 text-[11px] font-mono tracking-widest text-white/60 hover:text-neonBlue transition-colors uppercase">
+    <div className="relative group">
+      <button className="text-sm font-mono tracking-widest uppercase text-white/70 hover:text-white transition-colors relative flex items-center gap-1">
         {label}
-        <ChevronDown
-          size={12}
-          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-        />
+        <ChevronDown size={16} className="transition-transform group-hover:rotate-180" />
+        <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-neonBlue group-hover:w-full transition-all duration-300"></span>
       </button>
-
-      {/* Dropdown Menu */}
-      <div
-        className={`absolute top-full left-0 w-64 bg-carbon/95 backdrop-blur-xl border border-white/10 shadow-2xl transform transition-all duration-200 origin-top-left ${
-          isOpen
-            ? "opacity-100 scale-100 visible"
-            : "opacity-0 scale-95 invisible"
-        }`}
-      >
-        <div className="p-4 border-b border-white/5">
-          <span className="text-[10px] font-mono text-neonBlue/80 uppercase tracking-wider block mb-1">
-            [ CONCEPT ]
-          </span>
-          <span className="text-sm font-bold text-white">{concept}</span>
-        </div>
-        <div className="py-2">
-          {items.map((item) => (
-            <Link
-              key={item.link}
-              href={item.link}
-              className="block px-4 py-3 text-xs font-mono text-white/70 hover:text-black hover:bg-neonBlue transition-all"
-            >
-              {item.label}
+      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-carbon border border-white/10 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
+        {subLinks.map(subLink => (
+            <Link key={subLink.link} href={subLink.link} className="block px-4 py-3 text-sm text-white/80 hover:bg-white/5 hover:text-neonBlue transition-colors">
+                {subLink.label}
             </Link>
-          ))}
-        </div>
+        ))}
       </div>
     </div>
   );
