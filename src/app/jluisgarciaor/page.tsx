@@ -44,8 +44,7 @@ const staggerContainer = {
 };
 
 export default function GorkaPortfolio() {
-  const [activeTab, setActiveTab] = useState("stack");
-
+  const [activeTab, setActiveTab] = useState("Automation");
   // --- Data ---
   const stackData: Record<string, TechItem[]> = {
     Automation: [
