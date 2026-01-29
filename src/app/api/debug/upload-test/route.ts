@@ -1,21 +1,22 @@
 import { NextResponse } from 'next/server';
-import { uploadToR2, getFromR2 } from '@/lib/r2';
+import { uploadFile, getReport } from '@/lib/r2';
 
 export async function GET() {
-  const testKey = 'test-object.json';
+  const jobId = 'test-job';
+  const testKey = `reports/${jobId}.json`;
   const testBody = JSON.stringify({ message: 'Hello from Vercel to R2!', timestamp: new Date() });
 
   try {
     // Upload a test object
-    await uploadToR2(testKey, testBody, 'application/json');
+    await uploadFile(testKey, testBody, 'application/json');
 
     // Get the object back
-    const retrievedBody = await getFromR2(testKey);
+    const retrievedBody = await getReport(jobId);
 
     return NextResponse.json({
       success: true,
       message: 'Successfully uploaded and retrieved a test object from R2.',
-      retrievedObject: JSON.parse(retrievedBody || '{}'),
+      retrievedObject: retrievedBody,
     });
   } catch (error) {
     return NextResponse.json({
