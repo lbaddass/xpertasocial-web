@@ -1,0 +1,59 @@
+version: "1.0"
+project: "Experta.social Intelligence Hub"
+
+targets:
+  - id: "winmill_devops"
+    name: "Winmill"
+    role: "DevOps & Cloud Architect"
+    description: "Especialista en infraestructura, CI/CD y optimización de servidores. Gestiona despliegues en Cloud Run y Vercel."
+    avatar_color: "bg-blue-600"
+    capabilities:
+      - "Infrastructure Audit"
+      - "Security Scanning"
+      - "Performance Tuning"
+    job_config:
+      gcp_job_name: "agent-devops-job"
+      cpu: "1"
+      memory: "512Mi"
+
+  - id: "dacoders_seo"
+    name: "DaCoders"
+    role: "SEO & Data Scientist"
+    description: "Experto en posicionamiento orgánico, análisis de palabras clave y estructura de datos estructurados."
+    avatar_color: "bg-green-600"
+    capabilities:
+      - "Keyword Research"
+      - "SERP Analysis"
+      - "Meta Tag Optimization"
+    job_config:
+      gcp_job_name: "agent-seo-job"
+      cpu: "2"
+      memory: "1Gi"
+
+  - id: "posiblex_creative"
+    name: "Posiblex"
+    role: "Creative Director"
+    description: "Generador de activos visuales y copys creativos. Especialista en consistencia de marca y diseño UI/UX."
+    avatar_color: "bg-purple-600"
+    capabilities:
+      - "Asset Generation"
+      - "Copywriting"
+      - "Visual Identity Check"
+    job_config:
+      gcp_job_name: "agent-creative-job"
+      cpu: "4"
+      memory: "2Gi"
+
+  - id: "bigtech_strategy"
+    name: "Big Tech"
+    role: "Business Strategist"
+    description: "Analista de mercado y estrategia de crecimiento. Simula escenarios de negocio y proyección de KPIs."
+    avatar_color: "bg-slate-800"
+    capabilities:
+      - "Market Analysis"
+      - "Revenue Projection"
+      - "Competitor Scouting"
+    job_config:
+      gcp_job_name: "agent-strategy-job"
+      cpu: "1"
+      memory: "1Gi"

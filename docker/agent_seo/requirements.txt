@@ -1,0 +1,4 @@
+google-cloud-run
+boto3
+python-dotenv
+requests
