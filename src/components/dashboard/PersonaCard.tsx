@@ -54,7 +54,7 @@ export default function PersonaCard({ target, onSelect }: PersonaCardProps) {
         <span className="flex items-center gap-1">
           <Activity className="w-3 h-3" /> Ready
         </span>
-        <span>v{target.version}</span>
+        <span>v2.0</span>
       </div>
     </div>
   );
