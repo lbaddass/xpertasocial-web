@@ -8,7 +8,7 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
-import Link from "next/link";
+import TrackedLink from "@/components/TrackedLink";
 import PageNav from "@/components/layout/PageNav";
 import MockDashboard from "@/components/ui/MockDashboard";
 
@@ -83,18 +83,20 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 w-full justify-center pt-4">
-            <Link
+            <TrackedLink
               href="/diagnostico"
+              event={{ action: 'click', category: 'Hero CTA', label: 'Diseñar Estrategia' }}
               className="inline-flex items-center justify-center gap-3 bg-neonBlue text-black px-8 py-4 font-bold rounded-sm hover:shadow-[0_0_20px_-5px_rgba(0,229,255,0.4)] transition-all"
             >
               DISEÑAR ESTRATEGIA <ArrowRight size={18} />
-            </Link>
-            <Link
+            </TrackedLink>
+            <TrackedLink
               href="/diagnostico#audit"
+              event={{ action: 'click', category: 'Hero CTA', label: 'Auditoría Online Gratis' }}
               className="inline-flex items-center justify-center gap-3 border border-black/20 dark:border-white/20 text-black dark:text-white px-8 py-4 font-mono text-sm rounded-sm hover:border-neonPink hover:text-neonPink transition-all"
             >
               AUDITORÍA ONLINE GRATIS
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </div>
@@ -114,8 +116,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Floor 1 */}
-            <Link
+            <TrackedLink
               href="/piso-1-infraestructura"
+              event={{ action: 'click', category: 'Methodology', label: 'Piso 1' }}
               className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonBlue/50 transition-all flex flex-col"
             >
               <div className="w-12 h-12 bg-black/5 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-neonBlue/10">
@@ -149,11 +152,12 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </Link>
+            </TrackedLink>
 
             {/* Floor 2 */}
-            <Link
+            <TrackedLink
               href="/piso-2-contenido-ia"
+              event={{ action: 'click', category: 'Methodology', label: 'Piso 2' }}
               className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonPink/50 transition-all flex flex-col"
             >
               <div className="w-12 h-12 bg-black/5 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-neonPink/10">
@@ -183,11 +187,12 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </Link>
+            </TrackedLink>
 
             {/* Floor 3 */}
-            <Link
+            <TrackedLink
               href="/piso-3-sistemas"
+              event={{ action: 'click', category: 'Methodology', label: 'Piso 3' }}
               className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonLime/50 transition-all flex flex-col"
             >
               <div className="w-12 h-12 bg-black/5 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-neonLime/10">
@@ -217,7 +222,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </div>
@@ -342,12 +347,13 @@ export default function Home() {
                   <p className="text-neonBlue font-bold text-sm mb-4">
                     RESULTADO: ROI Promedio estimado de 3.8x a 12.5x
                   </p>
-                  <Link
+                  <TrackedLink
                     href="/diagnostico"
+                    event={{ action: 'click', category: 'Andromeda CTA', label: 'Simular Campaña' }}
                     className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-bold rounded-sm hover:bg-neonBlue transition-all"
                   >
                     SIMULAR CAMPAÑA <ArrowRight size={18} />
-                  </Link>
+                  </TrackedLink>
                 </div>
               </div>
 
@@ -378,12 +384,13 @@ export default function Home() {
               </p>
             </div>
             <div className="shrink-0">
-              <Link
+              <TrackedLink
                 href="/catalogo-ia"
+                event={{ action: 'click', category: 'Catalog CTA', label: 'Ver Catálogo Completo' }}
                 className="inline-flex items-center gap-3 bg-neonBlue text-black px-6 py-3 font-bold rounded-sm hover:bg-white transition-all"
               >
                 VER CATÁLOGO COMPLETO <ArrowRight size={18} />
-              </Link>
+              </TrackedLink>
             </div>
           </div>
 
@@ -416,8 +423,9 @@ export default function Home() {
           </h2>
 
           <div className="space-y-4">
-            <Link
+            <TrackedLink
               href="/piso-1-infraestructura#landing"
+              event={{ action: 'click', category: 'Client Stage', label: 'Apenas empiezas' }}
               className="block p-6 border border-black/10 dark:border-white/10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group"
             >
               <div>
@@ -432,10 +440,11 @@ export default function Home() {
                 </span>
                 <ArrowRight className="text-black/30 dark:text-white/30 group-hover:text-black dark:group-hover:text-white transition-colors" />
               </div>
-            </Link>
+            </TrackedLink>
 
-            <Link
+            <TrackedLink
               href="/piso-2-contenido-ia#viral"
+              event={{ action: 'click', category: 'Client Stage', label: 'Ya tienes tracción' }}
               className="block p-6 border border-black/10 dark:border-white/10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group"
             >
               <div>
@@ -450,10 +459,11 @@ export default function Home() {
                 </span>
                 <ArrowRight className="text-black/30 dark:text-white/30 group-hover:text-black dark:group-hover:text-white transition-colors" />
               </div>
-            </Link>
+            </TrackedLink>
 
-            <Link
+            <TrackedLink
               href="/piso-3-sistemas#ventas"
+              event={{ action: 'click', category: 'Client Stage', label: 'Buscas Automatización' }}
               className="block p-6 border border-black/10 dark:border-white/10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group"
             >
               <div>
@@ -470,7 +480,7 @@ export default function Home() {
                 </span>
                 <ArrowRight className="text-black/30 dark:text-white/30 group-hover:text-black dark:group-hover:text-white transition-colors" />
               </div>
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </div>
