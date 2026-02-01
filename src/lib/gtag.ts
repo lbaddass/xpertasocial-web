@@ -1,5 +1,11 @@
 // lib/gtag.ts
 
+declare global {
+  interface Window {
+    gtag(param1: string, param2: any, param3?: any): void;
+  }
+}
+
 // IMPORTANT: In a real-world application, store this in an environment variable
 // (e.g., NEXT_PUBLIC_GA_ID)
 export const GA_TRACKING_ID = 'G-Y4VM4XNER6';
