@@ -264,7 +264,7 @@ export default function CatalogoIaPage() {
   return (
     <div className="min-h-screen bg-black text-green-400 font-mono">
       {/* ASCII Header */}
-      <section className="pt-24 pb-8 px-4 overflow-x-auto">
+      <section className="pt-24 pb-8 px-4 overflow-x-hidden">
         <pre className="text-[8px] sm:text-xs text-cyan-400 whitespace-pre leading-tight">
           {asciiHeader}
         </pre>

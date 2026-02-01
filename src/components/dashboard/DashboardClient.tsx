@@ -80,7 +80,7 @@ export default function DashboardClient({ targets }: DashboardClientProps) {
     <div>
       {/* Barra de Estado Global si hay carga */}
       {isLoading && (
-        <div className="fixed top-0 left-0 w-full bg-indigo-600 text-white p-2 text-center text-sm font-medium z-50 flex items-center justify-center gap-2 animate-in slide-in-from-top">
+        <div className="fixed top-0 left-0 w-full bg-neonBlue text-black p-2 text-center text-sm font-medium z-50 flex items-center justify-center gap-2 animate-in slide-in-from-top">
           <Loader2 className="w-4 h-4 animate-spin" />
           {statusMessage}
         </div>
@@ -88,7 +88,7 @@ export default function DashboardClient({ targets }: DashboardClientProps) {
 
       <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 transition-opacity duration-500 ${isLoading ? 'opacity-50 pointer-events-none' : ''}`}>
         {targets.map((target) => (
-          <div key={target.id} className={activeId === target.id ? 'ring-4 ring-indigo-500 rounded-2xl scale-105 transition-transform' : ''}>
+          <div key={target.id} className={activeId === target.id ? 'ring-4 ring-neonBlue rounded-2xl scale-105 transition-transform' : ''}>
             <PersonaCard target={target} onSelect={handleSelect} />
           </div>
         ))}

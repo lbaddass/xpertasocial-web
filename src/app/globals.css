@@ -3,8 +3,23 @@
 @tailwind utilities;
 
 :root {
+  --background: #ffffff;
+  --foreground: #0F0F0F;
+  --color-carbon: #ffffff;
+  --color-slate-ui: #F1F5F9;
+  --text-primary: #0F0F0F;
+  --text-secondary: #334155;
+  --border-color: #E2E8F0;
+}
+
+.dark {
   --background: #000000;
   --foreground: #e8f5e9;
+  --color-carbon: #0F0F0F;
+  --color-slate-ui: #1A1A1A;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
 }
 
 body {

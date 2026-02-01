@@ -50,15 +50,15 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
     <div
       className={`fixed inset-0 z-50 transition-transform transform ${
         isOpen ? "translate-x-0" : "translate-x-full"
-      } bg-carbon/90 backdrop-blur-xl text-white`}
+      } bg-white/80 dark:bg-carbon/90 backdrop-blur-xl text-black dark:text-white`}
     >
-      <div className="flex justify-between items-center p-6 border-b border-white/10">
+      <div className="flex justify-between items-center p-6 border-b border-black/10 dark:border-white/10">
         <h2 className="font-mono text-lg font-bold tracking-widest">MENÚ</h2>
         <button
           type="button"
           aria-label="Cerrar menú"
           onClick={onClose}
-          className="p-2 rounded-full hover:bg-white/10 transition-colors"
+          className="p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
         >
           <X size={24} />
         </button>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
+import { ThemeProvider } from "./ThemeProvider";
+import AuthProvider from "./AuthProvider";
 import "./globals.css";
 
 const grotesk = Space_Grotesk({
@@ -28,24 +30,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${grotesk.variable} ${plexMono.variable} antialiased bg-carbon text-techWhite selection:bg-neonBlue selection:text-black min-h-dvh flex flex-col`}
+        className={`${grotesk.variable} ${plexMono.variable} antialiased bg-white dark:bg-carbon text-black dark:text-techWhite selection:bg-neonBlue selection:text-black min-h-dvh flex flex-col`}
       >
-        {/* MAIN with container */}
-        <main className="flex-grow">
-          <div className="fixed inset-0 z-[-1] opacity-20 bg-grid-pattern pointer-events-none" />
-          {children}
-        </main>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <AuthProvider>
+            {/* MAIN with container */}
+            <main className="flex-grow">
+              <div className="fixed inset-0 z-[-1] opacity-20 bg-grid-pattern pointer-events-none" />
+              {children}
+            </main>
 
-        {/* FULL WIDTH FOOTER */}
-        <footer className="w-full border-t border-white/10">
-          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-            <Footer />
-          </div>
-        </footer>
+            {/* FULL WIDTH FOOTER */}
+            <footer className="w-full border-t border-white/10">
+              <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+                <Footer />
+              </div>
+            </footer>
 
-        <BackToTop />
+            <BackToTop />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
