@@ -69,7 +69,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {navSections.map((item).
+            {navSections.map((item) => (
               <div key={item.label} className="relative group">
                 {item.subLinks ? (
                   <NavDropdown label={item.label} subLinks={item.subLinks} />
