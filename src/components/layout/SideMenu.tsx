@@ -48,9 +48,9 @@ interface SideMenuProps {
 export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
   return (
     <div
-      className={`fixed inset-0 z-50 transition-transform transform ${
+      className={`fixed inset-0 z-[1000] transition-transform transform ${
         isOpen ? "translate-x-0" : "translate-x-full"
-      } bg-white/80 dark:bg-carbon/90 backdrop-blur-xl text-black dark:text-white`}
+      } bg-white/95 dark:bg-carbon/95 backdrop-blur-xl text-black dark:text-white`}
     >
       <div className="flex justify-between items-center p-6 border-b border-black/10 dark:border-white/10">
         <h2 className="font-mono text-lg font-bold tracking-widest">MENÚ</h2>
