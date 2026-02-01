@@ -5,7 +5,8 @@ import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 import { ThemeProvider } from "./ThemeProvider";
 import AuthProvider from "./AuthProvider";
-import Analytics from "@/components/Analytics";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const grotesk = Space_Grotesk({
@@ -71,7 +72,7 @@ export default function RootLayout({
         {/* End Google Tag Manager (noscript) */}
 
         <ThemeProvider>
-          <Analytics />
+          <GoogleAnalytics />
           <AuthProvider>
             {/* MAIN with container */}
             <main className="flex-grow">
@@ -89,6 +90,7 @@ export default function RootLayout({
             <BackToTop />
           </AuthProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
