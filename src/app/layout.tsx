@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 import { ThemeProvider } from "./ThemeProvider";
 import AuthProvider from "./AuthProvider";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 const grotesk = Space_Grotesk({
