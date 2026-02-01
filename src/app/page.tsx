@@ -37,16 +37,16 @@ const catalogLevels = [
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-x-hidden isolate">
       <PageNav />
       {/* Background Elements */}
-      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-neonBlue/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-neonPink/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-neonBlue/10 blur-[120px] rounded-full pointer-events-none animate-float-slow" aria-hidden="true" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-neonPink/10 blur-[120px] rounded-full pointer-events-none animate-glow-pulse" aria-hidden="true" />
 
       {/* Hero Section */}
-      <div className="relative min-h-screen flex flex-col items-center justify-center px-6">
+      <div className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-10 sm:pt-16">
         <div className="max-w-5xl mx-auto flex flex-col items-center text-center space-y-10 z-10">
-          <div className="space-y-2">
+          <div className="space-y-2 animate-rise">
             <div className="font-mono text-neonBlue text-xs tracking-[0.3em] uppercase">
               &gt; SYSTEM STATUS: ONLINE 🟢
             </div>
@@ -61,7 +61,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="text-lg text-black/60 dark:text-white/60 max-w-3xl font-light leading-relaxed space-y-6 text-left md:text-center">
+          <div className="text-lg text-black/60 dark:text-white/60 max-w-3xl font-light leading-relaxed space-y-6 text-left md:text-center animate-fade-in">
             <p>
               Muchos negocios fracasan no por su producto, sino por intentar
               vender sin <strong>infraestructura</strong>.
@@ -82,18 +82,18 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 w-full justify-center pt-4">
+          <div className="flex flex-col sm:flex-row gap-6 w-full justify-center pt-4 animate-rise">
             <TrackedLink
               href="/diagnostico"
               event={{ action: 'click', category: 'Hero CTA', label: 'Diseñar Estrategia' }}
-              className="inline-flex items-center justify-center gap-3 bg-neonBlue text-black px-8 py-4 font-bold rounded-sm hover:shadow-[0_0_20px_-5px_rgba(0,229,255,0.4)] transition-all"
+              className="inline-flex items-center justify-center gap-3 bg-neonBlue text-black px-8 py-4 font-bold rounded-sm hover:shadow-[0_0_24px_-6px_rgba(0,229,255,0.5)] transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neonBlue/70"
             >
               DISEÑAR ESTRATEGIA <ArrowRight size={18} />
             </TrackedLink>
             <TrackedLink
               href="/diagnostico#audit"
               event={{ action: 'click', category: 'Hero CTA', label: 'Auditoría Online Gratis' }}
-              className="inline-flex items-center justify-center gap-3 border border-black/20 dark:border-white/20 text-black dark:text-white px-8 py-4 font-mono text-sm rounded-sm hover:border-neonPink hover:text-neonPink transition-all"
+              className="inline-flex items-center justify-center gap-3 border border-black/20 dark:border-white/20 text-black dark:text-white px-8 py-4 font-mono text-sm rounded-sm hover:border-neonPink hover:text-neonPink transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neonPink/70"
             >
               AUDITORÍA ONLINE GRATIS
             </TrackedLink>
@@ -104,7 +104,7 @@ export default function Home() {
       {/* The Three Floors Methodology */}
       <div className="py-20 bg-gray-50 dark:bg-carbon/50 border-y border-black/5 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-rise">
             <h2 className="text-3xl font-bold text-black dark:text-white mb-4">
               Los 3 Pisos de la Arquitectura Digital
             </h2>
@@ -119,7 +119,7 @@ export default function Home() {
             <TrackedLink
               href="/piso-1-infraestructura"
               event={{ action: 'click', category: 'Methodology', label: 'Piso 1' }}
-              className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonBlue/50 transition-all flex flex-col"
+              className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonBlue/50 transition-all flex flex-col rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1"
             >
               <div className="w-12 h-12 bg-black/5 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-neonBlue/10">
                 <Layers className="text-neonBlue" size={24} />
@@ -158,7 +158,7 @@ export default function Home() {
             <TrackedLink
               href="/piso-2-contenido-ia"
               event={{ action: 'click', category: 'Methodology', label: 'Piso 2' }}
-              className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonPink/50 transition-all flex flex-col"
+              className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonPink/50 transition-all flex flex-col rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1"
             >
               <div className="w-12 h-12 bg-black/5 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-neonPink/10">
                 <Zap className="text-neonPink" size={24} />
@@ -193,7 +193,7 @@ export default function Home() {
             <TrackedLink
               href="/piso-3-sistemas"
               event={{ action: 'click', category: 'Methodology', label: 'Piso 3' }}
-              className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonLime/50 transition-all flex flex-col"
+              className="group p-8 border border-black/10 dark:border-white/10 bg-white dark:bg-carbon hover:border-neonLime/50 transition-all flex flex-col rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1"
             >
               <div className="w-12 h-12 bg-black/5 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-neonLime/10">
                 <TrendingUp className="text-neonLime" size={24} />
@@ -230,7 +230,7 @@ export default function Home() {
       {/* Ads & Platforms Section */}
       <div className="py-20 px-6 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 space-y-4">
+          <div className="text-center mb-16 space-y-4 animate-rise">
             <div className="inline-block px-3 py-1 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full">
               <span className="text-xs font-mono text-black dark:text-white tracking-widest uppercase">
                 INGENIERÍA DE TRÁFICO & PLATAFORMAS
@@ -252,7 +252,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {/* Google Ads */}
-            <div className="bg-gray-100 dark:bg-carbon border border-black/10 dark:border-white/10 p-6 hover:border-black/30 dark:hover:border-white/30 transition-all">
+            <div className="bg-gray-100 dark:bg-carbon border border-black/10 dark:border-white/10 p-6 rounded-2xl hover:border-black/30 dark:hover:border-white/30 transition-all hover:-translate-y-1 hover:shadow-lg">
               <div className="flex items-center gap-3 mb-4 text-black dark:text-white">
                 <Search size={24} />
                 <h4 className="font-bold">Captura de Intención</h4>
@@ -269,7 +269,7 @@ export default function Home() {
             </div>
 
             {/* Meta */}
-            <div className="bg-gray-100 dark:bg-carbon border border-black/10 dark:border-white/10 p-6 hover:border-black/30 dark:hover:border-white/30 transition-all">
+            <div className="bg-gray-100 dark:bg-carbon border border-black/10 dark:border-white/10 p-6 rounded-2xl hover:border-black/30 dark:hover:border-white/30 transition-all hover:-translate-y-1 hover:shadow-lg">
               <div className="flex items-center gap-3 mb-4 text-black dark:text-white">
                 <Globe size={24} />
                 <h4 className="font-bold">Descubrimiento Algorítmico</h4>
@@ -286,7 +286,7 @@ export default function Home() {
             </div>
 
             {/* TikTok */}
-            <div className="bg-gray-100 dark:bg-carbon border border-black/10 dark:border-white/10 p-6 hover:border-black/30 dark:hover:border-white/30 transition-all">
+            <div className="bg-gray-100 dark:bg-carbon border border-black/10 dark:border-white/10 p-6 rounded-2xl hover:border-black/30 dark:hover:border-white/30 transition-all hover:-translate-y-1 hover:shadow-lg">
               <div className="flex items-center gap-3 mb-4 text-black dark:text-white">
                 <Smartphone size={24} />
                 <h4 className="font-bold">Alcance Masivo</h4>
@@ -303,7 +303,7 @@ export default function Home() {
             </div>
 
             {/* Analytics */}
-            <div className="bg-gray-100 dark:bg-carbon border border-black/10 dark:border-white/10 p-6 hover:border-black/30 dark:hover:border-white/30 transition-all">
+            <div className="bg-gray-100 dark:bg-carbon border border-black/10 dark:border-white/10 p-6 rounded-2xl hover:border-black/30 dark:hover:border-white/30 transition-all hover:-translate-y-1 hover:shadow-lg">
               <div className="flex items-center gap-3 mb-4 text-black dark:text-white">
                 <BarChart3 size={24} />
                 <h4 className="font-bold">Auditoría de Datos</h4>
@@ -320,7 +320,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 p-8 rounded-lg">
+          <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 p-8 rounded-2xl">
             <div className="flex flex-col lg:flex-row items-center gap-12">
               <div className="space-y-6 flex-1">
                 <h3 className="text-2xl font-bold text-black dark:text-white">
@@ -350,7 +350,7 @@ export default function Home() {
                   <TrackedLink
                     href="/diagnostico"
                     event={{ action: 'click', category: 'Andromeda CTA', label: 'Simular Campaña' }}
-                    className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-bold rounded-sm hover:bg-neonBlue transition-all"
+                    className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-bold rounded-sm hover:bg-neonBlue transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neonBlue/70"
                   >
                     SIMULAR CAMPAÑA <ArrowRight size={18} />
                   </TrackedLink>
@@ -358,7 +358,7 @@ export default function Home() {
               </div>
 
               {/* Visual Dashboard */}
-              <div className="flex-1 w-full">
+              <div className="flex-1 w-full animate-fade-in">
                 <MockDashboard />
               </div>
             </div>
@@ -387,7 +387,7 @@ export default function Home() {
               <TrackedLink
                 href="/catalogo-ia"
                 event={{ action: 'click', category: 'Catalog CTA', label: 'Ver Catálogo Completo' }}
-                className="inline-flex items-center gap-3 bg-neonBlue text-black px-6 py-3 font-bold rounded-sm hover:bg-white transition-all"
+                className="inline-flex items-center gap-3 bg-neonBlue text-black px-6 py-3 font-bold rounded-sm hover:bg-white transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neonBlue/70"
               >
                 VER CATÁLOGO COMPLETO <ArrowRight size={18} />
               </TrackedLink>
@@ -398,7 +398,7 @@ export default function Home() {
             {catalogLevels.map((level) => (
               <div
                 key={level.title}
-                className="border border-black/10 dark:border-white/10 bg-white dark:bg-carbon p-6 hover:border-neonBlue/60 transition-all"
+                className="border border-black/10 dark:border-white/10 bg-white dark:bg-carbon p-6 rounded-2xl hover:border-neonBlue/60 transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="text-xs font-mono text-neonBlue uppercase tracking-[0.3em]">
                   {level.title}
@@ -426,7 +426,7 @@ export default function Home() {
             <TrackedLink
               href="/piso-1-infraestructura#landing"
               event={{ action: 'click', category: 'Client Stage', label: 'Apenas empiezas' }}
-              className="block p-6 border border-black/10 dark:border-white/10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group"
+              className="block p-6 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group hover:-translate-y-0.5"
             >
               <div>
                 <h4 className="text-lg font-bold text-black dark:text-white mb-1">
@@ -445,7 +445,7 @@ export default function Home() {
             <TrackedLink
               href="/piso-2-contenido-ia#viral"
               event={{ action: 'click', category: 'Client Stage', label: 'Ya tienes tracción' }}
-              className="block p-6 border border-black/10 dark:border-white/10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group"
+              className="block p-6 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group hover:-translate-y-0.5"
             >
               <div>
                 <h4 className="text-lg font-bold text-black dark:text-white mb-1">
@@ -464,7 +464,7 @@ export default function Home() {
             <TrackedLink
               href="/piso-3-sistemas#ventas"
               event={{ action: 'click', category: 'Client Stage', label: 'Buscas Automatización' }}
-              className="block p-6 border border-black/10 dark:border-white/10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group"
+              className="block p-6 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-between group hover:-translate-y-0.5"
             >
               <div>
                 <h4 className="text-lg font-bold text-black dark:text-white mb-1">
