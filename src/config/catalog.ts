@@ -381,7 +381,7 @@ export function formatPrice(price: Price): string {
 /** Nota fiscal para mostrar junto al precio. Vacía cuando no hay monto. */
 export function taxNote(price: Price): string {
   if (price.kind === "free" || price.kind === "quote" || price.kind === "pending") return "";
-  return price.currency === "USD" ? "USD" : "MXN + IVA";
+  return price.currency === "USD" ? "" : "MXN + IVA";
 }
 
 export function getDivision(id: Division["id"]): Division {

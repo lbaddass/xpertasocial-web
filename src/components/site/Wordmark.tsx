@@ -1,13 +1,15 @@
-export function Wordmark({ tone = "dark" }: { tone?: "dark" | "light" }) {
-  const base = tone === "dark" ? "text-white" : "text-ink";
-  const accent = tone === "dark" ? "text-mint" : "text-mint-700";
+export function Wordmark() {
   return (
-    <span className="flex flex-col leading-none">
-      <span className={`font-brand text-[15px] font-bold tracking-[0.22em] ${base}`}>
-        XPERTA<span className={accent}>SOCIAL</span>
+    <span className="flex flex-col justify-center">
+      <span className="font-mono text-sm font-bold tracking-[0.25em] text-white transition-colors group-hover:text-neonBlue md:text-base">
+        XPERTA<span className="text-neonBlue">SOCIAL</span>
       </span>
-      <span className={`mt-1 hidden font-brand text-[9px] tracking-[0.28em] sm:block ${tone === "dark" ? "text-white/55" : "text-muted"}`}>
-        GROWTH ENGINEERING SYSTEMS
+      <span className="mt-1 hidden items-center gap-2 font-mono text-[10px] tracking-[0.28em] text-white/50 sm:flex">
+        GROWTH SYSTEMS
+        <span className="flex items-center gap-1 rounded-full bg-white/5 px-2 py-0.5 text-[9px] text-neonBlue">
+          <span className="h-1.5 w-1.5 animate-glow-pulse rounded-full bg-neonBlue" aria-hidden="true" />
+          LIVE
+        </span>
       </span>
     </span>
   );

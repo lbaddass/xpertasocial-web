@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { Clock, Mail, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import { entryDiagnostics } from "@/config/catalog";
 import { site } from "@/config/site";
 import { PhoneLink, WhatsAppLink } from "@/components/site/ContactLinks";
 import { LeadForm } from "@/components/site/LeadForm";
-import { Container, Eyebrow, FeatureList, PriceTag } from "@/components/site/ui";
+import { buttonStyles, Container, Eyebrow, FeatureList, Glow, PriceTag } from "@/components/site/ui";
 
 export const metadata: Metadata = {
   title: "Solicita un diagnóstico",
@@ -12,57 +13,74 @@ export const metadata: Metadata = {
   alternates: { canonical: "/diagnostico" },
 };
 
-export default function DiagnosticoPage() {
-  return (
-    <>
-      <section className="bg-ink text-white" aria-labelledby="diag-titulo">
-        <Container className="py-16 sm:py-20">
-          <Eyebrow tone="dark">Diagnóstico</Eyebrow>
-          <h1 id="diag-titulo" className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Empecemos por revisar lo que ya tienes.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
-            Completa el formulario y te contactamos en un día hábil para agendar una llamada de diagnóstico sin costo de 30 minutos. Te
-            decimos por dónde empezar, aunque decidas hacerlo por tu cuenta.
-          </p>
-        </Container>
-      </section>
+const reassurance = [
+  { icon: Clock, text: "Respuesta en 1 día hábil" },
+  { icon: ShieldCheck, text: "Sin compromiso de contratación" },
+  { icon: MessageCircle, text: "Un solo contacto que conoce tu cuenta" },
+];
 
-      <section className="bg-surface py-14 sm:py-20">
-        <Container className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
-          <div>
-            <h2 className="sr-only">Formulario de diagnóstico</h2>
-            <LeadForm source="diagnostico" />
-          </div>
-          <aside className="space-y-6" aria-label="Otras formas de contacto">
-            <div className="rounded-card border border-line bg-paper p-6">
-              <h2 className="font-bold">¿Prefieres hablar ya?</h2>
-              <p className="mt-2 text-sm text-muted">
-                {site.city} · {site.coverage}
-              </p>
-              <WhatsAppLink
-                placement="diagnostico_aside"
-                className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-mint px-6 font-semibold text-ink hover:bg-mint-600"
-              >
-                Escríbenos por WhatsApp
-              </WhatsAppLink>
-              <p className="mt-3 text-center text-sm">
-                o llama al <PhoneLink placement="diagnostico_aside" className="font-semibold underline underline-offset-2" />
-              </p>
-            </div>
-            {entryDiagnostics.slice(0, 1).map((d) => (
-              <div key={d.id} className="rounded-card border border-line bg-paper p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-muted">{d.name}</h2>
-                <div className="mt-2">
-                  <PriceTag price={d.price} />
-                </div>
-                <p className="mt-1 text-sm text-muted">{d.note}</p>
-                {d.features ? <FeatureList items={d.features} /> : null}
-              </div>
+export default function DiagnosticoPage() {
+  const call = entryDiagnostics[0];
+  return (
+    <section className="relative overflow-hidden" aria-labelledby="diag-titulo">
+      <Glow />
+      <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[1fr_1.5fr] lg:items-start">
+        <div>
+          <Eyebrow>Diagnóstico</Eyebrow>
+          <h1 id="diag-titulo" className="mt-5 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+            Empecemos por <span className="text-neonBlue">revisar lo que ya tienes.</span>
+          </h1>
+          <p className="mt-5 text-lg font-light leading-relaxed text-white/75">
+            Completa el formulario y te contactamos para agendar una llamada de diagnóstico sin costo. Te decimos por dónde empezar, aunque
+            decidas hacerlo por tu cuenta.
+          </p>
+          <ul className="mt-8 space-y-3">
+            {reassurance.map(({ icon: Icon, text }) => (
+              <li key={text} className="flex items-center gap-3 text-white/80">
+                <Icon aria-hidden="true" size={18} className="text-neonBlue" />
+                {text}
+              </li>
             ))}
-          </aside>
-        </Container>
-      </section>
-    </>
+          </ul>
+        </div>
+
+        <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <h2 className="sr-only">Formulario de diagnóstico</h2>
+          <LeadForm source="diagnostico" />
+        </div>
+
+        <div>
+          <div className="rounded-lg border border-white/10 bg-panel p-6">
+            <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">{call.name}</h2>
+            <div className="mt-3">
+              <PriceTag price={call.price} />
+            </div>
+            <p className="mt-1 text-sm text-white/55">{call.note}</p>
+            {call.features ? <FeatureList items={call.features} /> : null}
+          </div>
+
+          <div className="mt-6 rounded-lg border border-neonLime/25 bg-panel p-6">
+            <h2 className="font-bold text-white">¿Prefieres hablar ya?</h2>
+            <WhatsAppLink placement="diagnostico_aside" className={`${buttonStyles.whatsapp} mt-4 w-full`}>
+              Escríbenos por WhatsApp
+            </WhatsAppLink>
+            <ul className="mt-4 space-y-2 text-sm text-white/70">
+              <li className="flex items-center gap-2">
+                <Phone aria-hidden="true" size={15} className="text-neonBlue" />
+                <PhoneLink placement="diagnostico_aside" className="hover:text-neonBlue" />
+              </li>
+              {site.email ? (
+                <li className="flex items-center gap-2">
+                  <Mail aria-hidden="true" size={15} className="text-neonBlue" />
+                  <a href={`mailto:${site.email}`} className="hover:text-neonBlue">
+                    {site.email}
+                  </a>
+                </li>
+              ) : null}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
   );
 }

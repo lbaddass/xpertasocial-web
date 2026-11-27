@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 export default function AvisoPrivacidadPage() {
   const responsable = site.legalName ?? "[TODO_OWNER: razón social o nombre del titular]";
   return (
-    <Container className="max-w-prose py-14 sm:py-20">
-      <p className="rounded-card border border-amber-300 bg-caution p-4 text-sm font-semibold" role="note">
+    <Container className="relative max-w-prose py-14 sm:py-20">
+      <p className="rounded-md border border-neonAmber/40 bg-neonAmber/10 p-4 font-mono text-xs uppercase tracking-wider text-neonAmber" role="note">
         BORRADOR — pendiente de revisión legal. Este texto no ha sido validado por un abogado y puede cambiar.
       </p>
-      <h1 className="mt-8 text-4xl font-extrabold tracking-tight">Aviso de privacidad</h1>
-      <div className="mt-8 space-y-6 leading-relaxed text-muted [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-body">
+      <h1 className="mt-8 text-4xl font-bold tracking-tight text-white">Aviso de privacidad</h1>
+      <div className="mt-8 space-y-6 leading-relaxed text-white/70 [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white">
         <p>
           {responsable}, que opera la marca {site.name} con domicilio en {site.city}, es responsable del tratamiento de los datos
           personales que nos proporcionas, conforme a la legislación mexicana de protección de datos personales en posesión de

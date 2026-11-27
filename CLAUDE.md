@@ -9,7 +9,8 @@ Prioridad: flujo de caja, leads calificados y clientes recurrentes. No complejid
 ## Fuente de verdad comercial
 - Precios, alcances, nombres de producto y condiciones viven SOLO en `src/config/catalog.ts`.
   Origen: "XpertaSocial — Catálogo de servicios 2026" (PDF, noviembre de 2026).
-- Datos de contacto y datos fiscales viven SOLO en `src/config/site.ts`.
+- Datos de contacto y datos fiscales viven SOLO en `src/config/site.ts` (WhatsApp de conversión +52 1 56 6021 3375 y xpertasocial@gmail.com, confirmados por el propietario).
+- Identidad visual: la original de XpertaSocial (carbón, retícula cian, Space Grotesk + IBM Plex Mono, acentos neón). Se moderniza; no se reemplaza.
 - Ningún componente contiene precios escritos a mano.
 - Un precio marcado `PENDING` se muestra como "Cotizar".
 - Precios en MXN antes de IVA, salvo Amazon Ads (USD). Siempre visible "+ IVA" o "antes de IVA".

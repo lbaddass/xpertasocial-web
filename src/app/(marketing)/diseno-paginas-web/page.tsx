@@ -9,12 +9,17 @@ import {
 } from "@/config/catalog";
 import { WhatsAppLink } from "@/components/site/ContactLinks";
 import { LeadForm } from "@/components/site/LeadForm";
+import { Building2, Factory, HardHat, Scale, X } from "lucide-react";
 import {
   ButtonLink,
+  buttonStyles,
+  Card,
   Container,
   Eyebrow,
   Faq,
   FeatureList,
+  Glow,
+  Pill,
   PriceTable,
   PriceTag,
   Section,
@@ -34,6 +39,8 @@ export const metadata: Metadata = {
   ).toLowerCase()} MXN + IVA, conectado a WhatsApp, formularios y medición.`,
   alternates: { canonical: "/diseno-paginas-web" },
 };
+
+const audienceIcons = [Building2, HardHat, Factory, Scale];
 
 const audiences = [
   { title: "Constructoras", text: "Portafolio de obra, capacidades y zonas de cobertura para licitaciones y clientes privados." },
@@ -101,78 +108,86 @@ export default function DisenoPaginasWebPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ink text-white" aria-labelledby="web-titulo">
-        <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+      <section className="relative overflow-hidden" aria-labelledby="web-titulo">
+        <Glow />
+        <Container className="relative grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.35fr_1fr] lg:items-center">
           <div>
-            <Eyebrow tone="dark">Diseño de páginas web para empresas</Eyebrow>
-            <h1 id="web-titulo" className="mt-4 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl">
-              Páginas hechas para vender, no solo para verse bien.
+            <Eyebrow>Diseño de páginas web para empresas</Eyebrow>
+            <h1 id="web-titulo" className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl">
+              Páginas hechas para vender,{" "}
+              <span className="bg-gradient-to-r from-neonBlue to-white bg-clip-text text-transparent">no solo para verse bien.</span>
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
+            <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/75">
               Sitios rápidos, adaptados a celular y conectados desde el primer día con WhatsApp, formularios y medición. Para constructoras,
-              contratistas, servicios industriales y despachos que necesitan cotizaciones, no solo visitas.
+              contratistas, servicios industriales y despachos que necesitan <span className="font-mono text-neonBlue">cotizaciones, no solo visitas</span>.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="#cotizar">Cotizar mi sitio</ButtonLink>
-              <WhatsAppLink
-                placement="web_hero"
-                message="Hola, quiero cotizar un sitio web para mi empresa."
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 px-6 font-semibold text-white hover:border-white"
-              >
-                Escribir por WhatsApp
+              <WhatsAppLink placement="web_hero" message="Hola, quiero cotizar un sitio web para mi empresa." className={buttonStyles.whatsapp}>
+                Hablar por WhatsApp
               </WhatsAppLink>
             </div>
           </div>
-          <div className="rounded-card border border-white/10 bg-ink-800 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.15em] text-white/70">{corporate.name}</p>
-            <p className="mt-2 text-4xl font-bold">{formatPrice(corporate.price)}</p>
-            <p className="mt-1 text-sm text-white/70">MXN + IVA · {corporate.idealFor}</p>
-            <dl className="mt-6 space-y-3 text-sm">
-              <div className="flex justify-between gap-4 border-t border-white/10 pt-3">
-                <dt className="text-white/70">Plazo</dt>
-                <dd className="text-right font-semibold">{corporateSiteTimeline}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-t border-white/10 pt-3">
-                <dt className="text-white/70">Pago</dt>
-                <dd className="text-right font-semibold">50 % anticipo · 50 % entrega</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-t border-white/10 pt-3">
-                <dt className="text-white/70">Revisiones</dt>
-                <dd className="text-right font-semibold">2 rondas incluidas</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-t border-white/10 pt-3">
-                <dt className="text-white/70">Garantía</dt>
-                <dd className="text-right font-semibold">30 días sobre defectos</dd>
-              </div>
+
+          <div className="rounded-xl border border-neonBlue/30 bg-panel/90 p-7 shadow-glow-sm backdrop-blur">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">{corporate.name} · más elegido</p>
+            <p className="mt-3 text-5xl font-bold tracking-tight text-white">{formatPrice(corporate.price)}</p>
+            <p className="mt-1 font-mono text-xs uppercase tracking-wider text-white/50">MXN + IVA · {corporate.idealFor}</p>
+            <dl className="mt-6 divide-y divide-white/10 text-sm">
+              {[
+                ["Plazo", corporateSiteTimeline],
+                ["Pago", "50 % anticipo · 50 % entrega"],
+                ["Revisiones", "2 rondas incluidas"],
+                ["Garantía", "30 días sobre defectos"],
+              ].map(([k, v]) => (
+                <div key={k} className="flex justify-between gap-4 py-3">
+                  <dt className="font-mono text-xs uppercase tracking-wider text-white/50">{k}</dt>
+                  <dd className="text-right font-semibold text-white">{v}</dd>
+                </div>
+              ))}
             </dl>
+            <Link href="#cotizar" className={`${buttonStyles.primary} mt-6 w-full`}>
+              Quiero mi cotización
+            </Link>
           </div>
         </Container>
       </section>
 
       {/* Para quién */}
-      <Section labelledBy="para-quien">
-        <SectionHeading id="para-quien" eyebrow="Para quién" title="Empresas que venden a otras empresas." />
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {audiences.map((a) => (
-            <li key={a.title} className="rounded-card border border-line p-6">
-              <h3 className="font-bold">{a.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{a.text}</p>
-            </li>
-          ))}
+      <Section tone="raised" labelledBy="para-quien">
+        <SectionHeading id="para-quien" eyebrow="Para quién" title="Empresas que venden" highlight="a otras empresas." />
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {audiences.map((a, i) => {
+            const Icon = audienceIcons[i];
+            return (
+              <li key={a.title}>
+                <Card className="h-full">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-neonBlue/10">
+                    <Icon aria-hidden="true" size={22} className="text-neonBlue" />
+                  </span>
+                  <h3 className="mt-5 font-bold text-white">{a.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/60">{a.text}</p>
+                </Card>
+              </li>
+            );
+          })}
         </ul>
       </Section>
 
       {/* Problema */}
-      <Section tone="muted" labelledBy="problema">
+      <Section labelledBy="problema">
         <SectionHeading
           id="problema"
           eyebrow="El problema"
-          title="Un sitio bonito que no genera cotizaciones es un gasto."
+          tone="pink"
+          title="Un sitio bonito que no genera cotizaciones"
+          highlight="es un gasto."
           intro="Estas son las fallas que más vemos en sitios de empresas B2B en México:"
         />
-        <ul className="mt-8 grid gap-4 md:grid-cols-2">
-          {problems.map((p) => (
-            <li key={p} className="rounded-card border border-line bg-paper p-5 leading-relaxed">
+        <ul className="mt-10 grid gap-4 md:grid-cols-2">
+          {problems.map((p, i) => (
+            <li key={p} className="flex gap-4 rounded-lg border border-white/10 bg-panel p-5 leading-relaxed text-white/80">
+              <span className="font-mono text-sm text-neonPink">{String(i + 1).padStart(2, "0")}</span>
               {p}
             </li>
           ))}
@@ -180,122 +195,121 @@ export default function DisenoPaginasWebPage() {
       </Section>
 
       {/* Qué incluye / qué no */}
-      <Section labelledBy="incluye">
-        <SectionHeading id="incluye" eyebrow="Alcance" title="Qué incluye y qué no." />
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <div className="rounded-card border border-line p-6">
-            <h3 className="font-bold">Incluido</h3>
+      <Section tone="raised" labelledBy="incluye">
+        <SectionHeading id="incluye" eyebrow="Alcance" title="Qué incluye" highlight="y qué no." />
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <Card highlight>
+            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Incluido</h3>
             <FeatureList items={included} />
-          </div>
-          <div className="rounded-card border border-line bg-surface p-6">
-            <h3 className="font-bold">No incluido</h3>
-            <ul className="mt-5 space-y-2 text-sm">
+          </Card>
+          <Card>
+            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-white/50">No incluido</h3>
+            <ul className="mt-5 space-y-2.5 text-sm text-white/60">
               {notIncluded.map((n) => (
-                <li key={n} className="flex gap-2">
-                  <span aria-hidden="true" className="mt-0.5 text-muted">—</span>
+                <li key={n} className="flex gap-2.5">
+                  <X aria-hidden="true" size={16} className="mt-0.5 flex-none text-white/35" />
                   <span>{n}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </Card>
         </div>
       </Section>
 
       {/* Precios */}
-      <Section tone="muted" id="precios" labelledBy="precios-titulo">
+      <Section id="precios" labelledBy="precios-titulo">
         <SectionHeading
           id="precios-titulo"
           eyebrow="Inversión"
-          title="Precios publicados, antes de IVA."
+          title="Precios publicados,"
+          highlight="antes de IVA."
           intro={`${web.footnote} ${conditions.validity}`}
         />
-        <div className="mt-10">
+        <div className="mt-12">
           <PriceTable plans={web.plans} caption="Precios de diseño web y e-commerce" />
         </div>
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <div className="rounded-card border border-line bg-paper p-6">
-            <h3 className="font-bold">Hitos de pago y condiciones</h3>
-            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted">
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
+          <Card>
+            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Hitos de pago y condiciones</h3>
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/65">
               <li>{conditions.projectPayments}</li>
               <li>{conditions.revisions}</li>
               <li>{conditions.timelineStart}</li>
               <li>{conditions.warranty}</li>
               <li>{conditions.exclusions}</li>
             </ul>
-          </div>
-          <div className="rounded-card border border-line bg-paper p-6">
-            <h3 className="font-bold">Lo que necesitamos de ti</h3>
-            <FeatureList items={clientResponsibilities} />
-          </div>
+          </Card>
+          <Card tone="pink">
+            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonPink">Lo que necesitamos de ti</h3>
+            <FeatureList items={clientResponsibilities} tone="pink" />
+          </Card>
         </div>
       </Section>
 
       {/* Proceso */}
-      <Section labelledBy="proceso-web">
-        <SectionHeading id="proceso-web" eyebrow="Proceso" title="De la llamada a la entrega, sin sorpresas." />
-        <ol className="mt-10 grid gap-5 md:grid-cols-5">
+      <Section tone="raised" labelledBy="proceso-web">
+        <SectionHeading id="proceso-web" eyebrow="Proceso" title="De la llamada a la entrega," highlight="sin sorpresas." />
+        <ol className="mt-12 grid gap-4 md:grid-cols-5">
           {steps.map((s, i) => (
-            <li key={s.title} className="rounded-card border-t-4 border-mint-600 bg-surface p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mint-700">Paso {i + 1}</p>
-              <h3 className="mt-2 font-bold">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{s.text}</p>
+            <li key={s.title} className="rounded-lg border border-white/10 bg-panel p-6">
+              <span className="font-mono text-xs text-neonBlue">{String(i + 1).padStart(2, "0")}.</span>
+              <h3 className="mt-2 font-bold text-white">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/60">{s.text}</p>
             </li>
           ))}
         </ol>
       </Section>
 
       {/* Recurrentes */}
-      <Section tone="muted" labelledBy="recurrentes">
+      <Section labelledBy="recurrentes">
         <SectionHeading
           id="recurrentes"
           eyebrow="Después de la entrega"
+          tone="lime"
           title="Servicios mensuales opcionales."
           intro="Nada de esto es obligatorio para contratar tu sitio."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
           {[maintenance, seoMonthly].map((p) => (
-            <article key={p.id} className="rounded-card border border-line bg-paper p-6">
-              <h3 className="font-bold">{p.name}</h3>
-              <div className="mt-2">
+            <Card key={p.id} tone="lime">
+              <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonLime">{p.name}</h3>
+              <div className="mt-3">
                 <PriceTag price={p.price} />
               </div>
-              <p className="mt-1 text-sm text-muted">{p.idealFor}</p>
-              {p.features ? <FeatureList items={p.features} /> : null}
-            </article>
+              <p className="mt-1.5 text-sm text-white/55">{p.idealFor}</p>
+              {p.features ? <FeatureList items={p.features} tone="lime" /> : null}
+            </Card>
           ))}
         </div>
-        <p className="mt-6 text-sm text-muted">
-          ¿También necesitas campañas? Revisa <Link href="/#google-ads" className="font-semibold text-mint-700 underline underline-offset-2">Google Ads</Link> o
-          un <Link href="/#sistemas" className="font-semibold text-mint-700 underline underline-offset-2">sistema integrado</Link>.
+        <p className="mt-6 text-sm text-white/60">
+          ¿También necesitas campañas? Revisa{" "}
+          <Link href="/#google-ads" className="font-semibold text-neonBlue underline-offset-4 hover:underline">Google Ads</Link> o un{" "}
+          <Link href="/#sistemas" className="font-semibold text-neonBlue underline-offset-4 hover:underline">sistema integrado</Link>.
         </p>
       </Section>
 
       {/* FAQ */}
-      <Section labelledBy="faq-web">
-        <SectionHeading id="faq-web" eyebrow="Preguntas frecuentes" title="Antes de cotizar tu sitio" />
-        <div className="mt-10 max-w-3xl">
+      <Section tone="raised" labelledBy="faq-web">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+          <SectionHeading id="faq-web" eyebrow="Preguntas frecuentes" title="Antes de cotizar tu sitio." />
           <Faq items={faq} />
         </div>
       </Section>
 
       {/* Formulario */}
-      <section id="cotizar" className="scroll-mt-20 bg-surface py-16 sm:py-20" aria-labelledby="cotizar-titulo">
-        <Container className="grid gap-10 lg:grid-cols-[1fr_1.6fr]">
+      <section id="cotizar" className="relative scroll-mt-20 overflow-hidden py-20 sm:py-24" aria-labelledby="cotizar-titulo">
+        <Glow />
+        <Container className="relative grid gap-12 lg:grid-cols-[1fr_1.6fr]">
           <div>
-            <Eyebrow>Cotizar</Eyebrow>
-            <h2 id="cotizar-titulo" className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Cuéntanos de tu empresa.
+            <Pill>Respuesta en 1 día hábil</Pill>
+            <h2 id="cotizar-titulo" className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-5xl">
+              Cuéntanos de <span className="text-neonBlue">tu empresa.</span>
             </h2>
-            <p className="mt-4 leading-relaxed text-muted">
-              Te respondemos en un día hábil con una recomendación y, si tiene sentido, una propuesta por escrito con alcance, precio y
-              plazo.
+            <p className="mt-5 leading-relaxed text-white/70">
+              Te respondemos con una recomendación y, si tiene sentido, una propuesta por escrito con alcance, precio y plazo.
             </p>
-            <WhatsAppLink
-              placement="web_form_aside"
-              message="Hola, quiero cotizar un sitio web para mi empresa."
-              className="mt-6 inline-flex font-semibold text-mint-700 underline underline-offset-4"
-            >
-              ¿Prefieres WhatsApp? Escríbenos →
+            <WhatsAppLink placement="web_form_aside" message="Hola, quiero cotizar un sitio web para mi empresa." className={`${buttonStyles.whatsapp} mt-8`}>
+              ¿Prefieres WhatsApp?
             </WhatsAppLink>
           </div>
           <LeadForm source="diseno_paginas_web" defaultSolution="Sitio web o landing page" />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
+import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "./ThemeProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -7,17 +7,14 @@ import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/config/site";
 import "./globals.css";
 
-// Fuentes del panel interno (admin/login).
-const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap", preload: false });
+// Identidad tipográfica de XpertaSocial: Space Grotesk (texto) + IBM Plex Mono (etiquetas).
+const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap" });
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-plex-mono",
   display: "swap",
-  preload: false,
 });
-// Fuente del sitio comercial.
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -56,7 +53,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${grotesk.variable} ${plexMono.variable} ${inter.variable} antialiased min-h-dvh flex flex-col`}
+        className={`${grotesk.variable} ${plexMono.variable} antialiased min-h-dvh flex flex-col`}
       >
         <noscript>
           <iframe

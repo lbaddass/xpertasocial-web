@@ -9,13 +9,13 @@ export const site = {
   city: "Ciudad de México",
   coverage: "Atención en México y LATAM",
 
-  /** Confirmado en el Catálogo de servicios 2026 (WhatsApp y teléfono). */
-  phoneE164: "+525516833133",
-  phoneDisplay: "+52 55 1683 3133",
-  whatsappNumber: "525516833133",
+  /** Contacto de conversión confirmado por el propietario (27 nov 2026): WhatsApp y llamadas. */
+  phoneE164: "+525660213375",
+  phoneDisplay: "+52 1 56 6021 3375",
+  whatsappNumber: "525660213375",
 
-  /** TODO_OWNER: correo comercial no confirmado. */
-  email: null as string | null,
+  /** Correo comercial confirmado por el propietario (27 nov 2026). */
+  email: "xpertasocial@gmail.com" as string | null,
   /** TODO_OWNER: razón social o nombre fiscal para el aviso de privacidad. */
   legalName: null as string | null,
 } as const;

@@ -48,7 +48,7 @@ function readAttribution(): Partial<Record<TrackingKey, string>> {
 }
 
 const fieldClass =
-  "mt-1.5 block w-full rounded-lg border border-line bg-paper px-3.5 py-3 text-base text-body placeholder:text-muted/70 focus:border-mint-700 focus:outline-none focus:ring-2 focus:ring-mint-600/30 aria-[invalid=true]:border-red-600";
+  "mt-2 block w-full rounded-md border border-white/15 bg-void px-3.5 py-3 text-base text-white placeholder:text-white/35 transition focus:border-neonBlue focus:outline-none focus:ring-2 focus:ring-neonBlue/25 aria-[invalid=true]:border-red-400 [&>option]:bg-panel";
 
 function Field({
   id,
@@ -65,12 +65,12 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="text-sm font-semibold">
-        {label} {optional ? <span className="font-normal text-muted">(opcional)</span> : null}
+      <label htmlFor={id} className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/70">
+        {label} {optional ? <span className="normal-case tracking-normal text-white/60">(opcional)</span> : null}
       </label>
       {children}
       {error ? (
-        <p id={`${id}-error`} className="mt-1.5 text-sm text-red-700">
+        <p id={`${id}-error`} className="mt-1.5 text-sm text-red-400">
           {error}
         </p>
       ) : null}
@@ -113,11 +113,13 @@ export function LeadForm({ source, defaultSolution }: { source: string; defaultS
     readAttribution();
   }, []);
 
+  // Preselecciona la solución: ?solucion=… (desde los CTA de cada servicio) o la prop de la página.
   useEffect(() => {
-    if (defaultSolution && formRef.current) {
-      const el = formRef.current.elements.namedItem("solution") as HTMLSelectElement | null;
-      if (el) el.value = defaultSolution;
-    }
+    const el = formRef.current?.elements.namedItem("solution") as HTMLSelectElement | null;
+    if (!el) return;
+    const fromUrl = new URLSearchParams(window.location.search).get("solucion");
+    const value = fromUrl && (solutionOptions as readonly string[]).includes(fromUrl) ? fromUrl : defaultSolution;
+    if (value) el.value = value;
   }, [defaultSolution]);
 
   function onFirstInteraction() {
@@ -182,15 +184,16 @@ export function LeadForm({ source, defaultSolution }: { source: string; defaultS
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-card border border-mint-600 bg-mint-50 p-8" data-testid="lead-success">
-        <h3 className="text-2xl font-bold">Recibimos tu solicitud.</h3>
-        <p className="mt-3 leading-relaxed text-muted">
+      <div role="status" className="rounded-xl border border-neonLime/40 bg-panel p-8 shadow-[0_0_30px_-10px_rgba(200,255,0,0.45)]" data-testid="lead-success">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-neonLime">&gt; Solicitud registrada</p>
+        <h3 className="mt-3 text-2xl font-bold text-white">Recibimos tu solicitud.</h3>
+        <p className="mt-3 leading-relaxed text-white/70">
           Te contactamos en un día hábil por WhatsApp o correo para agendar la llamada de diagnóstico. Si es urgente, escríbenos ahora.
         </p>
         <WhatsAppLink
           placement={`${source}_success`}
           message="Hola, acabo de enviar el formulario de diagnóstico en su sitio."
-          className="mt-6 inline-flex min-h-12 items-center rounded-full bg-ink px-6 font-semibold text-white hover:bg-ink-700"
+          className="mt-6 inline-flex min-h-12 items-center rounded-md bg-neonLime px-6 font-bold text-black transition hover:shadow-[0_0_24px_-6px_rgba(200,255,0,0.7)]"
         >
           Escribir por WhatsApp →
         </WhatsAppLink>
@@ -207,7 +210,7 @@ export function LeadForm({ source, defaultSolution }: { source: string; defaultS
       noValidate
       onSubmit={onSubmit}
       onFocusCapture={onFirstInteraction}
-      className="rounded-card border border-line bg-paper p-6 shadow-card sm:p-8"
+      className="relative rounded-xl border border-white/10 bg-panel/90 p-6 shadow-glow-sm backdrop-blur sm:p-8"
       aria-describedby={`${p}nota`}
     >
       {TURNSTILE_SITE_KEY ? <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer /> : null}
@@ -252,25 +255,25 @@ export function LeadForm({ source, defaultSolution }: { source: string; defaultS
       </div>
 
       <div className="mt-6">
-        <label className="flex gap-3 text-sm leading-relaxed">
+        <label className="flex gap-3 text-sm leading-relaxed text-white/75">
           <input
             type="checkbox"
             name="privacy"
             required
             aria-invalid={e.privacy ? true : undefined}
             aria-describedby={e.privacy ? `${p}privacy-error` : undefined}
-            className="mt-1 h-4 w-4 flex-none accent-mint-700"
+            className="mt-1 h-4 w-4 flex-none accent-[#00E5FF]"
           />
           <span>
             Acepto el{" "}
-            <Link href="/aviso-de-privacidad" className="font-semibold text-mint-700 underline underline-offset-2" target="_blank">
+            <Link href="/aviso-de-privacidad" className="font-semibold text-neonBlue underline underline-offset-2" target="_blank">
               aviso de privacidad
             </Link>{" "}
             y que XpertaSocial me contacte sobre esta solicitud.
           </span>
         </label>
         {e.privacy ? (
-          <p id={`${p}privacy-error`} className="mt-1.5 text-sm text-red-700">
+          <p id={`${p}privacy-error`} className="mt-1.5 text-sm text-red-400">
             {e.privacy}
           </p>
         ) : null}
@@ -279,7 +282,7 @@ export function LeadForm({ source, defaultSolution }: { source: string; defaultS
       {TURNSTILE_SITE_KEY ? <div className="cf-turnstile mt-6" data-sitekey={TURNSTILE_SITE_KEY} data-language="es" /> : null}
 
       {status === "error" && errorMessage ? (
-        <div role="alert" className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800" data-testid="lead-error">
+        <div role="alert" className="mt-6 rounded-md border border-red-400/40 bg-red-500/10 p-4 text-sm text-red-200" data-testid="lead-error">
           {errorMessage}{" "}
           <WhatsAppLink placement={`${source}_error`} className="font-semibold underline">
             Abrir WhatsApp
@@ -291,11 +294,11 @@ export function LeadForm({ source, defaultSolution }: { source: string; defaultS
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-7 font-semibold text-white transition hover:bg-ink-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint-700 disabled:opacity-60"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-neonBlue px-7 font-bold text-black transition hover:shadow-glow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neonBlue disabled:opacity-60"
         >
           {status === "sending" ? "Enviando…" : "Solicitar diagnóstico"}
         </button>
-        <p id={`${p}nota`} className="text-sm text-muted">
+        <p id={`${p}nota`} className="font-mono text-xs uppercase tracking-wider text-white/50">
           Respuesta en 1 día hábil. Sin compromiso de contratación.
         </p>
       </div>
