@@ -3,7 +3,7 @@ import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "./ThemeProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import { MetaPixel } from "@/components/MetaPixel";
+import { MetaPixel, MetaPixelNoscript } from "@/components/MetaPixel";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/config/site";
 import "./globals.css";
@@ -52,6 +52,7 @@ export default function RootLayout({
             gtag('config', 'G-Y4VM4XNER6');
           `}
         </Script>
+        <MetaPixel />
       </head>
       <body
         className={`${grotesk.variable} ${plexMono.variable} antialiased min-h-dvh flex flex-col`}
@@ -64,12 +65,12 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
+        <MetaPixelNoscript />
         <ThemeProvider>
           <GoogleAnalytics />
           {children}
         </ThemeProvider>
         <Analytics />
-        <MetaPixel />
       </body>
     </html>
   );
