@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { site } from "@/config/site";
+import { MotionProvider } from "@/components/motion/primitives";
 import { PhoneLink, WhatsAppLink } from "@/components/site/ContactLinks";
 import { Wordmark } from "@/components/site/Wordmark";
 
@@ -9,7 +10,8 @@ import { Wordmark } from "@/components/site/Wordmark";
  */
 export default function CampaignLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative flex min-h-dvh flex-col bg-void font-sans text-white selection:bg-neonBlue selection:text-black">
+    <MotionProvider>
+      <div className="relative flex min-h-dvh flex-col bg-void font-sans text-white selection:bg-neonBlue selection:text-black">
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 bg-grid-pattern bg-grid opacity-60" />
       <header className="sticky top-0 z-40 border-b border-white/10 bg-void/80 backdrop-blur-xl">
         <div className="mx-auto flex h-14 max-w-content items-center justify-between gap-4 px-5 sm:px-6">
@@ -49,6 +51,7 @@ export default function CampaignLayout({ children }: { children: React.ReactNode
           </p>
         </div>
       </footer>
-    </div>
+      </div>
+    </MotionProvider>
   );
 }

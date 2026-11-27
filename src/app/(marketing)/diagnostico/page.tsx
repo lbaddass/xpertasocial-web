@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Mail, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import { entryDiagnostics } from "@/config/catalog";
 import { site } from "@/config/site";
+import { HeroItem, HeroLine, HeroSequence, Reveal } from "@/components/motion/primitives";
 import { PhoneLink, WhatsAppLink } from "@/components/site/ContactLinks";
 import { LeadForm } from "@/components/site/LeadForm";
 import { buttonStyles, Container, Eyebrow, FeatureList, Glow, PriceTag } from "@/components/site/ui";
@@ -25,31 +26,38 @@ export default function DiagnosticoPage() {
     <section className="relative overflow-hidden" aria-labelledby="diag-titulo">
       <Glow />
       <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[1fr_1.5fr] lg:items-start">
-        <div>
-          <Eyebrow>Diagnóstico</Eyebrow>
-          <h1 id="diag-titulo" className="mt-5 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-            Empecemos por <span className="text-neonBlue">revisar lo que ya tienes.</span>
-          </h1>
-          <p className="mt-5 text-lg font-light leading-relaxed text-white/75">
-            Completa el formulario y te contactamos para agendar una llamada de diagnóstico sin costo. Te decimos por dónde empezar, aunque
-            decidas hacerlo por tu cuenta.
-          </p>
-          <ul className="mt-8 space-y-3">
-            {reassurance.map(({ icon: Icon, text }) => (
-              <li key={text} className="flex items-center gap-3 text-white/80">
-                <Icon aria-hidden="true" size={18} className="text-neonBlue" />
-                {text}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <HeroSequence>
+          <HeroItem immediateOpacity>
+            <Eyebrow>Diagnóstico</Eyebrow>
+            <h1 id="diag-titulo" className="mt-5 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+              Empecemos por <span className="text-neonBlue">revisar lo que ya tienes.</span>
+            </h1>
+          </HeroItem>
+          <HeroLine className="mt-6" />
+          <HeroItem>
+            <p className="mt-5 text-lg font-light leading-relaxed text-white/75">
+              Completa el formulario y te contactamos para agendar una llamada de diagnóstico sin costo. Te decimos por dónde empezar, aunque
+              decidas hacerlo por tu cuenta.
+            </p>
+          </HeroItem>
+          <HeroItem>
+            <ul className="mt-8 space-y-3">
+              {reassurance.map(({ icon: Icon, text }) => (
+                <li key={text} className="flex items-center gap-3 text-white/80">
+                  <Icon aria-hidden="true" size={18} className="text-neonBlue" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </HeroItem>
+        </HeroSequence>
 
-        <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+        <Reveal className="lg:col-start-2 lg:row-span-2 lg:row-start-1" delay={0.08}>
           <h2 className="sr-only">Formulario de diagnóstico</h2>
           <LeadForm source="diagnostico" />
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={0.14}>
           <div className="rounded-lg border border-white/10 bg-panel p-6">
             <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">{call.name}</h2>
             <div className="mt-3">
@@ -59,7 +67,7 @@ export default function DiagnosticoPage() {
             {call.features ? <FeatureList items={call.features} /> : null}
           </div>
 
-          <div className="mt-6 rounded-lg border border-neonLime/25 bg-panel p-6">
+          <div className="mt-6 rounded-lg border border-neonLime/25 bg-panel p-6 transition-colors hover:border-neonLime/45">
             <h2 className="font-bold text-white">¿Prefieres hablar ya?</h2>
             <WhatsAppLink placement="diagnostico_aside" className={`${buttonStyles.whatsapp} mt-4 w-full`}>
               Escríbenos por WhatsApp
@@ -79,7 +87,7 @@ export default function DiagnosticoPage() {
               ) : null}
             </ul>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

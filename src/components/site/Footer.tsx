@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { conditions } from "@/config/catalog";
 import { site } from "@/config/site";
+import { DrawLine, Reveal, StaggerContainer, StaggerItem } from "@/components/motion/primitives";
 import { PhoneLink, WhatsAppLink } from "./ContactLinks";
 import { Wordmark } from "./Wordmark";
 
@@ -26,8 +27,9 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
 export function Footer() {
   return (
     <footer className="relative border-t border-white/10 bg-void pb-24 md:pb-0">
-      <div className="mx-auto grid max-w-content gap-12 px-5 py-16 sm:px-6 md:grid-cols-[1.3fr_1fr_1.2fr]">
-        <div>
+      <DrawLine className="bg-gradient-to-r from-neonBlue/60 via-white/10 to-transparent" />
+      <StaggerContainer className="mx-auto grid max-w-content gap-12 px-5 py-16 sm:px-6 md:grid-cols-[1.3fr_1fr_1.2fr]">
+        <StaggerItem>
           <Link href="/" className="group inline-flex">
             <Wordmark />
           </Link>
@@ -37,59 +39,65 @@ export function Footer() {
           <p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-white/50">
             {site.city} · {site.coverage}
           </p>
-        </div>
+        </StaggerItem>
 
-        <nav aria-label="Servicios">
-          <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-white/50">Servicios</h2>
-          <ul className="mt-5 space-y-3">
-            {services.map((s) => (
-              <li key={s.href}>
-                <FooterLink href={s.href}>{s.label}</FooterLink>
-              </li>
-            ))}
-            <li>
-              <FooterLink href="/aviso-de-privacidad">Aviso de privacidad</FooterLink>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="rounded-lg border border-neonBlue/20 bg-panel p-6 shadow-glow-sm">
-          <h2 className="text-lg font-bold text-white">Atención inmediata</h2>
-          <p className="mt-1 text-sm text-white/60">Respuesta en 1 día hábil. Un solo contacto que conoce tu cuenta.</p>
-          <ul className="mt-5 space-y-3 text-sm">
-            <li>
-              <WhatsAppLink placement="footer" className="flex items-center gap-3 text-white transition hover:text-neonLime">
-                <MessageCircle aria-hidden="true" size={16} className="text-neonLime" />
-                WhatsApp {site.phoneDisplay}
-              </WhatsAppLink>
-            </li>
-            <li className="flex items-center gap-3 text-white">
-              <Phone aria-hidden="true" size={16} className="text-neonBlue" />
-              <PhoneLink placement="footer" className="transition hover:text-neonBlue" />
-            </li>
-            {site.email ? (
+        <StaggerItem>
+          <nav aria-label="Servicios">
+            <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-white/50">Servicios</h2>
+            <ul className="mt-5 space-y-3">
+              {services.map((s) => (
+                <li key={s.href}>
+                  <FooterLink href={s.href}>{s.label}</FooterLink>
+                </li>
+              ))}
               <li>
-                <a className="flex items-center gap-3 text-white transition hover:text-neonBlue" href={`mailto:${site.email}`}>
-                  <Mail aria-hidden="true" size={16} className="text-neonBlue" />
-                  {site.email}
-                </a>
+                <FooterLink href="/aviso-de-privacidad">Aviso de privacidad</FooterLink>
               </li>
-            ) : null}
-          </ul>
-          <Link
-            href="/diagnostico"
-            className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-neonBlue px-4 py-3 text-sm font-bold text-black transition hover:shadow-glow"
-          >
-            Solicitar diagnóstico sin costo
-          </Link>
+            </ul>
+          </nav>
+        </StaggerItem>
+
+        <StaggerItem>
+          <div className="rounded-lg border border-neonBlue/20 bg-panel p-6 shadow-glow-sm">
+            <h2 className="text-lg font-bold text-white">Atención inmediata</h2>
+            <p className="mt-1 text-sm text-white/60">Respuesta en 1 día hábil. Un solo contacto que conoce tu cuenta.</p>
+            <ul className="mt-5 space-y-3 text-sm">
+              <li>
+                <WhatsAppLink placement="footer" className="flex items-center gap-3 text-white transition hover:text-neonLime">
+                  <MessageCircle aria-hidden="true" size={16} className="text-neonLime" />
+                  WhatsApp {site.phoneDisplay}
+                </WhatsAppLink>
+              </li>
+              <li className="flex items-center gap-3 text-white">
+                <Phone aria-hidden="true" size={16} className="text-neonBlue" />
+                <PhoneLink placement="footer" className="transition hover:text-neonBlue" />
+              </li>
+              {site.email ? (
+                <li>
+                  <a className="flex items-center gap-3 text-white transition hover:text-neonBlue" href={`mailto:${site.email}`}>
+                    <Mail aria-hidden="true" size={16} className="text-neonBlue" />
+                    {site.email}
+                  </a>
+                </li>
+              ) : null}
+            </ul>
+            <Link
+              href="/diagnostico"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-neonBlue px-4 py-3 text-sm font-bold text-black transition duration-200 hover:shadow-glow active:scale-[0.985]"
+            >
+              Solicitar diagnóstico sin costo
+            </Link>
+          </div>
+        </StaggerItem>
+      </StaggerContainer>
+      <Reveal>
+        <div className="border-t border-white/10">
+          <p className="mx-auto max-w-content px-5 py-6 text-xs leading-relaxed text-white/60 sm:px-6">
+            {conditions.tax} {conditions.validity} XpertaSocial gestiona campañas de Amazon, Google y Meta de forma independiente; no
+            es agencia oficial ni socio de esas plataformas. © {new Date().getFullYear()} {site.name}. Growth Engineering Systems.
+          </p>
         </div>
-      </div>
-      <div className="border-t border-white/10">
-        <p className="mx-auto max-w-content px-5 py-6 text-xs leading-relaxed text-white/60 sm:px-6">
-          {conditions.tax} {conditions.validity} XpertaSocial gestiona campañas de Amazon, Google y Meta de forma independiente; no
-          es agencia oficial ni socio de esas plataformas. © {new Date().getFullYear()} {site.name}. Growth Engineering Systems.
-        </p>
-      </div>
+      </Reveal>
     </footer>
   );
 }

@@ -7,6 +7,7 @@ import {
   getDivision,
   webIncludedInAllProjects,
 } from "@/config/catalog";
+import { DrawLine, HeroItem, HeroLine, HeroSequence, Reveal, StaggerContainer, StaggerItem } from "@/components/motion/primitives";
 import { WhatsAppLink } from "@/components/site/ContactLinks";
 import { LeadForm } from "@/components/site/LeadForm";
 import { Building2, Factory, HardHat, MessageCircle, Scale, X } from "lucide-react";
@@ -113,101 +114,121 @@ export default function DisenoPaginasWebPage() {
       <section className="relative overflow-hidden" aria-labelledby="web-titulo">
         <Glow />
         <Container className="relative grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.35fr_1fr] lg:items-center">
-          <div>
-            <Eyebrow>Diseño de páginas web para empresas</Eyebrow>
-            <h1 id="web-titulo" className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl">
-              Páginas hechas para vender,{" "}
-              <span className="bg-gradient-to-r from-neonBlue to-white bg-clip-text text-transparent">no solo para verse bien.</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/75">
-              Sitios rápidos, adaptados a celular y conectados desde el primer día con WhatsApp, formularios y medición. Para constructoras,
-              contratistas, servicios industriales y despachos que necesitan <span className="font-mono text-neonBlue">cotizaciones, no solo visitas</span>.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="#precios">Ver planes y precios</ButtonLink>
-              <WhatsAppLink placement="web_hero" message="Hola, quiero cotizar un sitio web para mi empresa." className={buttonStyles.whatsapp}>
-                Hablar por WhatsApp
+          <HeroSequence>
+            <HeroItem immediateOpacity>
+              <Eyebrow>Diseño de páginas web para empresas</Eyebrow>
+              <h1 id="web-titulo" className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl">
+                Páginas hechas para vender,{" "}
+                <span className="bg-gradient-to-r from-neonBlue to-white bg-clip-text text-transparent">no solo para verse bien.</span>
+              </h1>
+            </HeroItem>
+            <HeroLine className="mt-6" />
+            <HeroItem>
+              <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/75">
+                Sitios rápidos, adaptados a celular y conectados desde el primer día con WhatsApp, formularios y medición. Para constructoras,
+                contratistas, servicios industriales y despachos que necesitan <span className="font-mono text-neonBlue">cotizaciones, no solo visitas</span>.
+              </p>
+            </HeroItem>
+            <HeroItem>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="#precios">Ver planes y precios</ButtonLink>
+                <WhatsAppLink placement="web_hero" message="Hola, quiero cotizar un sitio web para mi empresa." className={buttonStyles.whatsapp}>
+                  Hablar por WhatsApp
+                </WhatsAppLink>
+              </div>
+            </HeroItem>
+          </HeroSequence>
+
+          <Reveal delay={0.12}>
+            <div className="rounded-xl border border-neonBlue/30 bg-panel/90 p-7 shadow-glow-sm backdrop-blur">
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">{corporate.name} · más elegido</p>
+              <p className="mt-3 text-5xl font-bold tracking-tight text-white">{formatPrice(corporate.price)}</p>
+              <p className="mt-1 font-mono text-xs uppercase tracking-wider text-white/50">MXN + IVA · {corporate.idealFor}</p>
+              <dl className="mt-6 divide-y divide-white/10 text-sm">
+                {[
+                  ["Plazo", corporateSiteTimeline],
+                  ["Pago", "50 % anticipo · 50 % entrega"],
+                  ["Revisiones", "2 rondas incluidas"],
+                  ["Garantía", "30 días sobre defectos"],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex justify-between gap-4 py-3">
+                    <dt className="font-mono text-xs uppercase tracking-wider text-white/50">{k}</dt>
+                    <dd className="text-right font-semibold text-white">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <WhatsAppLink
+                placement="web_hero_card"
+                message={planMessage(web.name, corporate)}
+                className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-neonLime px-4 font-bold text-black transition duration-200 hover:shadow-[0_0_24px_-6px_rgba(200,255,0,0.7)] active:scale-[0.985]"
+              >
+                <MessageCircle aria-hidden="true" size={18} />
+                Lo quiero
               </WhatsAppLink>
             </div>
-          </div>
-
-          <div className="rounded-xl border border-neonBlue/30 bg-panel/90 p-7 shadow-glow-sm backdrop-blur">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">{corporate.name} · más elegido</p>
-            <p className="mt-3 text-5xl font-bold tracking-tight text-white">{formatPrice(corporate.price)}</p>
-            <p className="mt-1 font-mono text-xs uppercase tracking-wider text-white/50">MXN + IVA · {corporate.idealFor}</p>
-            <dl className="mt-6 divide-y divide-white/10 text-sm">
-              {[
-                ["Plazo", corporateSiteTimeline],
-                ["Pago", "50 % anticipo · 50 % entrega"],
-                ["Revisiones", "2 rondas incluidas"],
-                ["Garantía", "30 días sobre defectos"],
-              ].map(([k, v]) => (
-                <div key={k} className="flex justify-between gap-4 py-3">
-                  <dt className="font-mono text-xs uppercase tracking-wider text-white/50">{k}</dt>
-                  <dd className="text-right font-semibold text-white">{v}</dd>
-                </div>
-              ))}
-            </dl>
-            <WhatsAppLink
-              placement="web_hero_card"
-              message={planMessage(web.name, corporate)}
-              className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-neonLime px-4 font-bold text-black transition hover:shadow-[0_0_24px_-6px_rgba(200,255,0,0.7)]"
-            >
-              <MessageCircle aria-hidden="true" size={18} />
-              Lo quiero
-            </WhatsAppLink>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
       {/* Precios */}
       <Section id="precios" labelledBy="precios-titulo">
-        <SectionHeading
-          id="precios-titulo"
-          eyebrow="Inversión"
-          title="Planes cerrados,"
-          highlight="precio fijo."
-          intro={`${web.footnote} ${conditions.validity}`}
-        />
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <Reveal>
+          <SectionHeading
+            id="precios-titulo"
+            eyebrow="Inversión"
+            title="Planes cerrados,"
+            highlight="precio fijo."
+            intro={`${web.footnote} ${conditions.validity}`}
+          />
+        </Reveal>
+        <StaggerContainer className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {web.plans
             .filter((p) => p.features?.length)
             .map((p) => (
-              <PlanCard
-                key={p.id}
-                plan={p}
-                whatsapp={{ message: planMessage(web.name, p), label: planCtaLabel(p), placement: `web_plan_${p.id}` }}
-              />
+              <StaggerItem key={p.id} className="flex">
+                <PlanCard
+                  plan={p}
+                  whatsapp={{ message: planMessage(web.name, p), label: planCtaLabel(p), placement: `web_plan_${p.id}` }}
+                />
+              </StaggerItem>
             ))}
-        </div>
-        <h3 className="mb-3 mt-10 font-mono text-xs uppercase tracking-[0.25em] text-white/60">Otros proyectos</h3>
-        <PriceTable plans={web.plans.filter((p) => !p.features?.length)} caption="Otros proyectos web" />
-        <div className="mt-6 grid gap-5 md:grid-cols-2">
-          <Card>
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Hitos de pago y condiciones</h3>
-            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/65">
-              <li>{conditions.projectPayments}</li>
-              <li>{conditions.revisions}</li>
-              <li>{conditions.timelineStart}</li>
-              <li>{conditions.warranty}</li>
-              <li>{conditions.exclusions}</li>
-            </ul>
-          </Card>
-          <Card tone="pink">
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonPink">Lo que necesitamos de ti</h3>
-            <FeatureList items={clientResponsibilities} tone="pink" />
-          </Card>
-        </div>
+        </StaggerContainer>
+        <Reveal>
+          <h3 className="mb-3 mt-10 font-mono text-xs uppercase tracking-[0.25em] text-white/60">Otros proyectos</h3>
+          <PriceTable plans={web.plans.filter((p) => !p.features?.length)} caption="Otros proyectos web" />
+        </Reveal>
+        <StaggerContainer className="mt-6 grid gap-5 md:grid-cols-2">
+          <StaggerItem>
+            <Card className="h-full">
+              <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Hitos de pago y condiciones</h3>
+              <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/65">
+                <li>{conditions.projectPayments}</li>
+                <li>{conditions.revisions}</li>
+                <li>{conditions.timelineStart}</li>
+                <li>{conditions.warranty}</li>
+                <li>{conditions.exclusions}</li>
+              </ul>
+            </Card>
+          </StaggerItem>
+          <StaggerItem>
+            <Card tone="pink" className="h-full">
+              <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonPink">Lo que necesitamos de ti</h3>
+              <FeatureList items={clientResponsibilities} tone="pink" />
+            </Card>
+          </StaggerItem>
+        </StaggerContainer>
       </Section>
 
       {/* Para quién */}
       <Section tone="raised" labelledBy="para-quien">
-        <SectionHeading id="para-quien" eyebrow="Para quién" title="Empresas que venden" highlight="a otras empresas." />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal>
+          <SectionHeading id="para-quien" eyebrow="Para quién" title="Empresas que venden" highlight="a otras empresas." />
+        </Reveal>
+        <StaggerContainer as="ul" className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {audiences.map((a, i) => {
             const Icon = audienceIcons[i];
             return (
-              <li key={a.title}>
+              <StaggerItem key={a.title} as="li">
                 <Card className="h-full">
                   <span className="flex h-12 w-12 items-center justify-center rounded-full bg-neonBlue/10">
                     <Icon aria-hidden="true" size={22} className="text-neonBlue" />
@@ -215,66 +236,79 @@ export default function DisenoPaginasWebPage() {
                   <h3 className="mt-5 font-bold text-white">{a.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-white/60">{a.text}</p>
                 </Card>
-              </li>
+              </StaggerItem>
             );
           })}
-        </ul>
+        </StaggerContainer>
       </Section>
 
       {/* Problema */}
       <Section labelledBy="problema">
-        <SectionHeading
-          id="problema"
-          eyebrow="El problema"
-          tone="pink"
-          title="Un sitio bonito que no genera cotizaciones"
-          highlight="es un gasto."
-          intro="Estas son las fallas que más vemos en sitios de empresas B2B en México:"
-        />
-        <ul className="mt-10 grid gap-4 md:grid-cols-2">
+        <Reveal>
+          <SectionHeading
+            id="problema"
+            eyebrow="El problema"
+            tone="pink"
+            title="Un sitio bonito que no genera cotizaciones"
+            highlight="es un gasto."
+            intro="Estas son las fallas que más vemos en sitios de empresas B2B en México:"
+          />
+        </Reveal>
+        <StaggerContainer as="ul" className="mt-10 grid gap-4 md:grid-cols-2">
           {problems.map((p, i) => (
-            <li key={p} className="flex gap-4 rounded-lg border border-white/10 bg-panel p-5 leading-relaxed text-white/80">
+            <StaggerItem key={p} as="li" className="flex gap-4 rounded-lg border border-white/10 bg-panel p-5 leading-relaxed text-white/80 transition-colors hover:border-neonPink/40">
               <span className="font-mono text-sm text-neonPink">{String(i + 1).padStart(2, "0")}</span>
               {p}
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </StaggerContainer>
       </Section>
 
       {/* Qué incluye / qué no */}
       <Section tone="raised" labelledBy="incluye">
-        <SectionHeading id="incluye" eyebrow="Alcance" title="Qué incluye" highlight="y qué no." />
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          <Card highlight>
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Incluido</h3>
-            <FeatureList items={included} />
-          </Card>
-          <Card>
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-white/50">No incluido</h3>
-            <ul className="mt-5 space-y-2.5 text-sm text-white/60">
-              {notIncluded.map((n) => (
-                <li key={n} className="flex gap-2.5">
-                  <X aria-hidden="true" size={16} className="mt-0.5 flex-none text-white/35" />
-                  <span>{n}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        </div>
+        <Reveal>
+          <SectionHeading id="incluye" eyebrow="Alcance" title="Qué incluye" highlight="y qué no." />
+        </Reveal>
+        <StaggerContainer className="mt-12 grid gap-5 md:grid-cols-2">
+          <StaggerItem>
+            <Card highlight className="h-full">
+              <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Incluido</h3>
+              <FeatureList items={included} />
+            </Card>
+          </StaggerItem>
+          <StaggerItem>
+            <Card className="h-full">
+              <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-white/50">No incluido</h3>
+              <ul className="mt-5 space-y-2.5 text-sm text-white/60">
+                {notIncluded.map((n) => (
+                  <li key={n} className="flex gap-2.5">
+                    <X aria-hidden="true" size={16} className="mt-0.5 flex-none text-white/35" />
+                    <span>{n}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </StaggerItem>
+        </StaggerContainer>
       </Section>
 
       {/* Proceso */}
       <Section tone="raised" labelledBy="proceso-web">
-        <SectionHeading id="proceso-web" eyebrow="Proceso" title="De la llamada a la entrega," highlight="sin sorpresas." />
-        <ol className="mt-12 grid gap-4 md:grid-cols-5">
-          {steps.map((s, i) => (
-            <li key={s.title} className="rounded-lg border border-white/10 bg-panel p-6">
-              <span className="font-mono text-xs text-neonBlue">{String(i + 1).padStart(2, "0")}.</span>
-              <h3 className="mt-2 font-bold text-white">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">{s.text}</p>
-            </li>
-          ))}
-        </ol>
+        <Reveal>
+          <SectionHeading id="proceso-web" eyebrow="Proceso" title="De la llamada a la entrega," highlight="sin sorpresas." />
+        </Reveal>
+        <div className="relative mt-12">
+          <DrawLine className="mb-4 hidden bg-gradient-to-r from-neonBlue/70 via-neonBlue/30 to-transparent md:block" />
+          <StaggerContainer as="ol" className="grid gap-4 md:grid-cols-5">
+            {steps.map((s, i) => (
+              <StaggerItem key={s.title} as="li" className="rounded-lg border border-white/10 bg-panel p-6 transition-colors hover:border-neonBlue/40">
+                <span className="font-mono text-xs text-neonBlue">{String(i + 1).padStart(2, "0")}.</span>
+                <h3 className="mt-2 font-bold text-white">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{s.text}</p>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
       </Section>
 
       {/* Recurrentes */}

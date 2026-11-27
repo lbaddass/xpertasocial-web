@@ -40,6 +40,7 @@ import {
   weNeedFromYou,
 } from "@/content/home";
 import { divisionUi, planCtaLabel, planMessage } from "@/content/divisionUi";
+import { DrawLine, HeroItem, HeroLine, HeroSequence, Reveal, StaggerContainer, StaggerItem } from "@/components/motion/primitives";
 import { WhatsAppLink } from "@/components/site/ContactLinks";
 import {
   accent,
@@ -129,16 +130,17 @@ function DivisionBlock({ division }: { division: Division }) {
 
         <div>
           {fixedPlans.length ? (
-            <div className={`grid gap-5 pt-3 md:grid-cols-2 ${fixedPlans.length === 3 ? "2xl:grid-cols-3" : ""}`}>
+            <StaggerContainer className={`grid gap-5 pt-3 md:grid-cols-2 ${fixedPlans.length === 3 ? "2xl:grid-cols-3" : ""}`}>
               {fixedPlans.map((p) => (
-                <PlanCard
-                  key={p.id}
-                  plan={p}
-                  tone={ui.accent}
-                  whatsapp={{ message: planMessage(division.name, p), label: planCtaLabel(p), placement: `plan_${p.id}` }}
-                />
+                <StaggerItem key={p.id} className="flex">
+                  <PlanCard
+                    plan={p}
+                    tone={ui.accent}
+                    whatsapp={{ message: planMessage(division.name, p), label: planCtaLabel(p), placement: `plan_${p.id}` }}
+                  />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           ) : null}
           {tablePlans.length ? (
             <div className={fixedPlans.length ? "mt-6" : ""}>
@@ -191,133 +193,149 @@ export default function HomePage() {
       <section className="relative overflow-hidden" aria-labelledby="hero-titulo">
         <Glow />
         <Container className="relative grid gap-12 pb-16 pt-16 sm:pt-24 lg:grid-cols-[1.25fr_1fr] lg:items-center lg:pb-24">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-neonBlue">
-              &gt; System status: online <span className="ml-1 inline-block h-2 w-2 animate-glow-pulse rounded-full bg-neonLime align-middle" aria-hidden="true" />
-            </p>
-            <h1 id="hero-titulo" className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Que te encuentren, te elijan{" "}
-              <span className="bg-gradient-to-r from-neonBlue to-white bg-clip-text text-transparent">y te compren.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-white/75 sm:text-xl">
-              Publicidad en Google, Meta y Amazon, sitios web, tiendas en línea y posicionamiento en buscadores e IA,{" "}
-              <span className="font-mono text-neonBlue">integrados en un solo sistema de ventas</span> que puedes medir.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/diagnostico">Cotizar mi proyecto</ButtonLink>
-              <WhatsAppLink placement="home_hero" className={buttonStyles.whatsapp}>
-                Hablar por WhatsApp
-              </WhatsAppLink>
-            </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-wider text-white/55">
-              <li>✓ Precios publicados</li>
-              <li>✓ Cuentas a tu nombre</li>
-              <li>✓ Respuesta en 1 día hábil</li>
-            </ul>
-          </div>
+          <HeroSequence>
+            <HeroItem immediateOpacity>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-neonBlue">
+                &gt; System status: online <span className="ml-1 inline-block h-2 w-2 animate-glow-pulse rounded-full bg-neonLime align-middle" aria-hidden="true" />
+              </p>
+              <h1 id="hero-titulo" className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+                Que te encuentren, te elijan{" "}
+                <span className="bg-gradient-to-r from-neonBlue to-white bg-clip-text text-transparent">y te compren.</span>
+              </h1>
+            </HeroItem>
+            <HeroLine className="mt-6" />
+            <HeroItem>
+              <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-white/75 sm:text-xl">
+                Publicidad en Google, Meta y Amazon, sitios web, tiendas en línea y posicionamiento en buscadores e IA,{" "}
+                <span className="font-mono text-neonBlue">integrados en un solo sistema de ventas</span> que puedes medir.
+              </p>
+            </HeroItem>
+            <HeroItem>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/diagnostico">Cotizar mi proyecto</ButtonLink>
+                <WhatsAppLink placement="home_hero" className={buttonStyles.whatsapp}>
+                  Hablar por WhatsApp
+                </WhatsAppLink>
+              </div>
+              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-wider text-white/55">
+                <li>✓ Precios publicados</li>
+                <li>✓ Cuentas a tu nombre</li>
+                <li>✓ Respuesta en 1 día hábil</li>
+              </ul>
+            </HeroItem>
+          </HeroSequence>
 
           {/* Selector de necesidad: un clic al formulario con la solución preseleccionada */}
-          <div className="relative rounded-xl border border-white/10 bg-panel/80 p-2 shadow-glow-sm backdrop-blur">
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-              <span className="flex gap-1.5" aria-hidden="true">
-                <span className="h-2.5 w-2.5 rounded-full bg-signalRed/70" />
-                <span className="h-2.5 w-2.5 rounded-full bg-neonAmber/70" />
-                <span className="h-2.5 w-2.5 rounded-full bg-neonLime/70" />
-              </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60">¿Qué necesitas hoy?</span>
-            </div>
-            <ul className="p-2">
-              {divisions.map((d) => {
-                const ui = divisionUi[d.id];
-                const Icon = divisionIcon[d.id];
-                return (
-                  <li key={d.id}>
-                    <Link
-                      href={`#${d.id}`}
-                      className="group flex items-center gap-4 rounded-lg px-3 py-3.5 transition hover:bg-white/[0.04]"
-                    >
-                      <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-full ${accent[ui.accent].bg}`}>
-                        <Icon aria-hidden="true" size={18} className={accent[ui.accent].text} />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-semibold text-white">{ui.short}</span>
-                        <span className="block font-mono text-[11px] uppercase tracking-wider text-white/50">
-                          {d.name} · {entryPrice(d)}
+          <Reveal delay={0.12}>
+            <div className="relative rounded-xl border border-white/10 bg-panel/80 p-2 shadow-glow-sm backdrop-blur">
+              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                <span className="flex gap-1.5" aria-hidden="true">
+                  <span className="h-2.5 w-2.5 rounded-full bg-signalRed/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-neonAmber/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-neonLime/70" />
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60">¿Qué necesitas hoy?</span>
+              </div>
+              <ul className="p-2">
+                {divisions.map((d) => {
+                  const ui = divisionUi[d.id];
+                  const Icon = divisionIcon[d.id];
+                  return (
+                    <li key={d.id}>
+                      <Link
+                        href={`#${d.id}`}
+                        className="group flex items-center gap-4 rounded-lg px-3 py-3.5 transition-colors duration-200 hover:bg-white/[0.04]"
+                      >
+                        <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-105 ${accent[ui.accent].bg}`}>
+                          <Icon aria-hidden="true" size={18} className={accent[ui.accent].text} />
                         </span>
-                      </span>
-                      <ArrowRight aria-hidden="true" size={18} className={`flex-none text-white/30 transition group-hover:translate-x-1 ${accent[ui.accent].hoverText} group-hover:text-white`} />
-                    </Link>
-                  </li>
-                );
-              })}
-              <li>
-                <Link href="#sistemas" className="group mt-1 flex items-center justify-between rounded-lg border border-dashed border-white/15 px-4 py-3 font-mono text-xs uppercase tracking-wider text-white/60 transition hover:border-neonBlue hover:text-neonBlue">
-                  Necesito varias piezas conectadas
-                  <ArrowRight aria-hidden="true" size={14} />
-                </Link>
-              </li>
-            </ul>
-          </div>
+                        <span className="min-w-0 flex-1">
+                          <span className="block font-semibold text-white">{ui.short}</span>
+                          <span className="block font-mono text-[11px] uppercase tracking-wider text-white/50">
+                            {d.name} · {entryPrice(d)}
+                          </span>
+                        </span>
+                        <ArrowRight aria-hidden="true" size={18} className={`flex-none text-white/30 transition duration-200 group-hover:translate-x-1 ${accent[ui.accent].hoverText} group-hover:text-white`} />
+                      </Link>
+                    </li>
+                  );
+                })}
+                <li>
+                  <Link href="#sistemas" className="group mt-1 flex items-center justify-between rounded-lg border border-dashed border-white/15 px-4 py-3 font-mono text-xs uppercase tracking-wider text-white/60 transition duration-200 hover:border-neonBlue hover:text-neonBlue">
+                    Necesito varias piezas conectadas
+                    <ArrowRight aria-hidden="true" size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
       {/* ───────────── Sistema ───────────── */}
       <Section tone="raised" labelledBy="sistema-titulo">
-        <SectionHeading
-          id="sistema-titulo"
-          eyebrow="Por qué XpertaSocial"
-          title="No vendemos campañas sueltas."
-          highlight="Construimos sistemas de adquisición."
-          intro="La mayoría de las empresas no tiene un problema de anuncios: tiene un sistema incompleto. Campañas que llevan tráfico a páginas que no convierten, prospectos que nadie mide y presupuestos que se gastan sin saber qué funcionó."
-          center
-        />
-        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {systemStages.map((s, i) => {
-            const Icon = stageIcons[i];
-            const a = accent[stageAccents[i]];
-            return (
-              <li key={s.n}>
-                <Card tone={stageAccents[i]} className="h-full p-7">
-                  <span className={`flex h-12 w-12 items-center justify-center rounded-full bg-white/5 ${a.text}`}>
-                    <Icon aria-hidden="true" size={22} />
-                  </span>
-                  <p className={`mt-6 font-mono text-xs uppercase tracking-[0.2em] ${a.text}`}>
-                    {s.n} · {s.title}
-                  </p>
-                  <p className="mt-3 leading-relaxed text-white/70">{s.text}</p>
-                </Card>
-              </li>
-            );
-          })}
-        </ol>
+        <Reveal>
+          <SectionHeading
+            id="sistema-titulo"
+            eyebrow="Por qué XpertaSocial"
+            title="No vendemos campañas sueltas."
+            highlight="Construimos sistemas de adquisición."
+            intro="La mayoría de las empresas no tiene un problema de anuncios: tiene un sistema incompleto. Campañas que llevan tráfico a páginas que no convierten, prospectos que nadie mide y presupuestos que se gastan sin saber qué funcionó."
+            center
+          />
+        </Reveal>
+        <div className="relative mt-14">
+          <DrawLine className="mb-5 hidden bg-gradient-to-r from-neonBlue/70 via-neonPink/50 to-neonAmber/70 lg:block" />
+          <StaggerContainer as="ol" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {systemStages.map((s, i) => {
+              const Icon = stageIcons[i];
+              const a = accent[stageAccents[i]];
+              return (
+                <StaggerItem key={s.n} as="li">
+                  <Card tone={stageAccents[i]} className="h-full p-7">
+                    <span className={`flex h-12 w-12 items-center justify-center rounded-full bg-white/5 ${a.text}`}>
+                      <Icon aria-hidden="true" size={22} />
+                    </span>
+                    <p className={`mt-6 font-mono text-xs uppercase tracking-[0.2em] ${a.text}`}>
+                      {s.n} · {s.title}
+                    </p>
+                    <p className="mt-3 leading-relaxed text-white/70">{s.text}</p>
+                  </Card>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+        </div>
       </Section>
 
       {/* ───────────── Por dónde empezar ───────────── */}
       <Section labelledBy="empezar-titulo">
-        <SectionHeading
-          id="empezar-titulo"
-          eyebrow="Empieza aquí"
-          title="¿Por dónde empezar?"
-          intro="Elige según lo que más necesitas hoy. Cada división funciona sola y se integra con las demás cuando tu negocio crece."
-        />
-        <ul className="mt-12 space-y-3">
+        <Reveal>
+          <SectionHeading
+            id="empezar-titulo"
+            eyebrow="Empieza aquí"
+            title="¿Por dónde empezar?"
+            intro="Elige según lo que más necesitas hoy. Cada división funciona sola y se integra con las demás cuando tu negocio crece."
+          />
+        </Reveal>
+        <StaggerContainer as="ul" className="mt-12 space-y-3">
           {startHere.map((row) => (
-            <li key={row.solution}>
+            <StaggerItem key={row.solution} as="li">
               <Link
                 href={row.href}
-                className="group grid gap-3 rounded-lg border border-white/10 bg-panel p-5 transition hover:border-neonBlue/40 hover:bg-panel2 sm:grid-cols-[1.3fr_1fr_auto] sm:items-center sm:p-6"
+                className="group grid gap-3 rounded-lg border border-white/10 bg-panel p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-neonBlue/40 hover:bg-panel2 motion-reduce:hover:translate-y-0 sm:grid-cols-[1.3fr_1fr_auto] sm:items-center sm:p-6"
               >
                 <span className="font-semibold text-white">{row.situation}</span>
                 <span className="font-mono text-xs uppercase tracking-wider text-neonBlue">
                   Solución: {row.solution} <span className="text-white/60">· {row.detail}</span>
                 </span>
-                <ArrowRight aria-hidden="true" size={18} className="hidden text-white/60 transition group-hover:translate-x-1 group-hover:text-neonBlue sm:block" />
+                <ArrowRight aria-hidden="true" size={18} className="hidden text-white/60 transition duration-200 group-hover:translate-x-1 group-hover:text-neonBlue sm:block" />
               </Link>
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </StaggerContainer>
 
-        <div className="mt-20 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <Reveal className="mt-20 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <Pill>Diagnósticos de entrada</Pill>
             <h3 className="mt-4 text-2xl font-bold text-white sm:text-3xl">Primero revisamos lo que ya tienes.</h3>
@@ -326,35 +344,38 @@ export default function HomePage() {
               primer mes.
             </p>
           </div>
-        </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        </Reveal>
+        <StaggerContainer className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {entryDiagnostics.map((p, i) => (
-            <PlanCard
-              key={p.id}
-              plan={p}
-              tone={(["cyan", "amber", "lime", "pink"] as Accent[])[i]}
-              whatsapp={{
-                message:
-                  p.price.kind === "free"
-                    ? "Hola, quiero agendar la llamada de diagnóstico sin costo. Mi negocio es: "
-                    : planMessage("Diagnóstico", p),
-                label: p.price.kind === "free" ? "Agendar por WhatsApp" : "Pedir auditoría",
-                placement: `diag_${p.id}`,
-              }}
-            />
+            <StaggerItem key={p.id} className="flex">
+              <PlanCard
+                plan={p}
+                tone={(["cyan", "amber", "lime", "pink"] as Accent[])[i]}
+                whatsapp={{
+                  message:
+                    p.price.kind === "free"
+                      ? "Hola, quiero agendar la llamada de diagnóstico sin costo. Mi negocio es: "
+                      : planMessage("Diagnóstico", p),
+                  label: p.price.kind === "free" ? "Agendar por WhatsApp" : "Pedir auditoría",
+                  placement: `diag_${p.id}`,
+                }}
+              />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Section>
 
       {/* ───────────── Soluciones ───────────── */}
       <Section id="soluciones" tone="raised" labelledBy="soluciones-titulo">
-        <SectionHeading
-          id="soluciones-titulo"
-          eyebrow="Ingeniería de tráfico y plataformas"
-          title="Cinco divisiones."
-          highlight="Un solo sistema de ventas."
-          intro={`${conditions.tax} ${conditions.validity}`}
-        />
+        <Reveal>
+          <SectionHeading
+            id="soluciones-titulo"
+            eyebrow="Ingeniería de tráfico y plataformas"
+            title="Cinco divisiones."
+            highlight="Un solo sistema de ventas."
+            intro={`${conditions.tax} ${conditions.validity}`}
+          />
+        </Reveal>
         <div className="mt-16 space-y-24">
           {divisions.map((d) => (
             <DivisionBlock key={d.id} division={d} />
@@ -364,67 +385,74 @@ export default function HomePage() {
 
       {/* ───────────── Experiencia (terminal) ───────────── */}
       <Section labelledBy="experiencia-titulo">
-        <div className="overflow-hidden rounded-xl border border-white/10 bg-panel">
-          <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
-            <span className="flex gap-1.5" aria-hidden="true">
-              <span className="h-2.5 w-2.5 rounded-full bg-signalRed/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-neonAmber/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-neonLime/70" />
-            </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60">experiencia // amazon ads</span>
-          </div>
-          <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-            <div>
-              <Eyebrow tone="amber">Experiencia</Eyebrow>
-              <h2 id="experiencia-titulo" className="mt-4 text-2xl font-bold tracking-tight text-white sm:text-4xl">
-                {amazonExperience.title}
-              </h2>
-              <p className="mt-4 leading-relaxed text-white/70">{amazonExperience.text}</p>
+        <Reveal>
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-panel">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
+              <span className="flex gap-1.5" aria-hidden="true">
+                <span className="h-2.5 w-2.5 rounded-full bg-signalRed/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-neonAmber/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-neonLime/70" />
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60">experiencia // amazon ads</span>
             </div>
-            <ul className="space-y-3 font-mono text-sm text-white/75">
-              <li><span className="text-neonAmber">01</span> · Video en streaming, display y DSP</li>
-              <li><span className="text-neonAmber">02</span> · Cuentas de Canadá y Estados Unidos</li>
-              <li><span className="text-neonAmber">03</span> · Tecnología, bebidas y entretenimiento</li>
-              <li><span className="text-neonAmber">04</span> · La misma disciplina de medición, para México y LATAM</li>
-            </ul>
+            <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+              <div>
+                <Eyebrow tone="amber">Experiencia</Eyebrow>
+                <h2 id="experiencia-titulo" className="mt-4 text-2xl font-bold tracking-tight text-white sm:text-4xl">
+                  {amazonExperience.title}
+                </h2>
+                <p className="mt-4 leading-relaxed text-white/70">{amazonExperience.text}</p>
+              </div>
+              <ul className="space-y-3 font-mono text-sm text-white/75">
+                <li><span className="text-neonAmber">01</span> · Video en streaming, display y DSP</li>
+                <li><span className="text-neonAmber">02</span> · Cuentas de Canadá y Estados Unidos</li>
+                <li><span className="text-neonAmber">03</span> · Tecnología, bebidas y entretenimiento</li>
+                <li><span className="text-neonAmber">04</span> · La misma disciplina de medición, para México y LATAM</li>
+              </ul>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </Section>
 
       {/* ───────────── Sistemas integrados ───────────── */}
       <Section id="sistemas" tone="raised" labelledBy="sistemas-titulo">
-        <SectionHeading
-          id="sistemas-titulo"
-          eyebrow="Sistemas integrados"
-          title="Todo conectado,"
-          highlight="en un solo proyecto."
-          intro="Paquetes de implementación que juntan lo que normalmente contratarías por separado, con un solo responsable. La gestión mensual se contrata aparte, según el canal."
-        />
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Reveal>
+          <SectionHeading
+            id="sistemas-titulo"
+            eyebrow="Sistemas integrados"
+            title="Todo conectado,"
+            highlight="en un solo proyecto."
+            intro="Paquetes de implementación que juntan lo que normalmente contratarías por separado, con un solo responsable. La gestión mensual se contrata aparte, según el canal."
+          />
+        </Reveal>
+        <StaggerContainer className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {integratedSystems.map((p) => (
-            <PlanCard
-              key={p.id}
-              plan={p}
-              whatsapp={{ message: planMessage("Sistema integrado", p), label: planCtaLabel(p), placement: `system_${p.id}` }}
-            />
+            <StaggerItem key={p.id} className="flex">
+              <PlanCard
+                plan={p}
+                whatsapp={{ message: planMessage("Sistema integrado", p), label: planCtaLabel(p), placement: `system_${p.id}` }}
+              />
+            </StaggerItem>
           ))}
-          <div className="flex flex-col justify-between rounded-lg border border-neonAmber/30 bg-neonAmber/5 p-6">
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonAmber">Para vendedores en Amazon</h3>
-              <p className="mt-3 leading-relaxed text-white/80">
-                Combina un plan de Sponsored Ads con una landing externa y Google Ads para llevar tráfico propio a tus productos. Lo
-                armamos como propuesta a la medida después de la auditoría.
-              </p>
+          <StaggerItem className="flex">
+            <div className="flex w-full flex-col justify-between rounded-lg border border-neonAmber/30 bg-neonAmber/5 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-neonAmber/55 motion-reduce:hover:translate-y-0">
+              <div>
+                <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonAmber">Para vendedores en Amazon</h3>
+                <p className="mt-3 leading-relaxed text-white/80">
+                  Combina un plan de Sponsored Ads con una landing externa y Google Ads para llevar tráfico propio a tus productos. Lo
+                  armamos como propuesta a la medida después de la auditoría.
+                </p>
+              </div>
+              <WhatsAppLink
+                placement="amazon_combo"
+                message="Hola, vendo en Amazon y quiero la auditoría para armar un plan con landing externa y Google Ads. Mi marca es: "
+                className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-neonAmber hover:underline"
+              >
+                Pedir auditoría de Amazon <ArrowRight aria-hidden="true" size={14} />
+              </WhatsAppLink>
             </div>
-            <WhatsAppLink
-              placement="amazon_combo"
-              message="Hola, vendo en Amazon y quiero la auditoría para armar un plan con landing externa y Google Ads. Mi marca es: "
-              className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-neonAmber hover:underline"
-            >
-              Pedir auditoría de Amazon <ArrowRight aria-hidden="true" size={14} />
-            </WhatsAppLink>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
         <p className="mt-6 text-xs text-white/60">
           {conditions.tax} {conditions.projectPayments}
         </p>
@@ -432,63 +460,74 @@ export default function HomePage() {
 
       {/* ───────────── Método ───────────── */}
       <Section id="proceso" labelledBy="proceso-titulo">
-        <SectionHeading id="proceso-titulo" eyebrow="Cómo trabajamos" title="Un método simple," highlight="repetido cada mes." />
-        <ol className="mt-12 grid gap-4 lg:grid-cols-5">
-          {method.map((step, i) => (
-            <li key={step.title} className="relative rounded-lg border border-white/10 bg-panel p-6">
-              <span className="font-mono text-xs text-neonBlue">{String(i + 1).padStart(2, "0")}.</span>
-              <h3 className="mt-2 text-lg font-bold text-white">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">{step.text}</p>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
-          <Card>
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Qué incluye tu reporte</h3>
-            <FeatureList items={reportIncludes} />
-          </Card>
-          <Card tone="pink">
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonPink">Qué necesitamos de ti</h3>
-            <FeatureList items={weNeedFromYou} tone="pink" />
-          </Card>
+        <Reveal>
+          <SectionHeading id="proceso-titulo" eyebrow="Cómo trabajamos" title="Un método simple," highlight="repetido cada mes." />
+        </Reveal>
+        <div className="relative mt-12">
+          <DrawLine className="mb-4 hidden bg-gradient-to-r from-neonBlue/70 via-neonBlue/30 to-transparent lg:block" />
+          <StaggerContainer as="ol" className="grid gap-4 lg:grid-cols-5">
+            {method.map((step, i) => (
+              <StaggerItem key={step.title} as="li" className="relative rounded-lg border border-white/10 bg-panel p-6 transition-colors hover:border-neonBlue/40">
+                <span className="font-mono text-xs text-neonBlue">{String(i + 1).padStart(2, "0")}.</span>
+                <h3 className="mt-2 text-lg font-bold text-white">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{step.text}</p>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
+        <StaggerContainer className="mt-8 grid gap-5 md:grid-cols-2">
+          <StaggerItem>
+            <Card className="h-full">
+              <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Qué incluye tu reporte</h3>
+              <FeatureList items={reportIncludes} />
+            </Card>
+          </StaggerItem>
+          <StaggerItem>
+            <Card tone="pink" className="h-full">
+              <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonPink">Qué necesitamos de ti</h3>
+              <FeatureList items={weNeedFromYou} tone="pink" />
+            </Card>
+          </StaggerItem>
+        </StaggerContainer>
       </Section>
 
       {/* ───────────── Compromisos ───────────── */}
       <Section id="compromisos" tone="raised" labelledBy="compromisos-titulo">
-        <SectionHeading
-          id="compromisos-titulo"
-          eyebrow="Nuestros compromisos"
-          title="Sin promesas infladas."
-          highlight="Esto sí lo garantizamos."
-          center
-        />
-        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal>
+          <SectionHeading
+            id="compromisos-titulo"
+            eyebrow="Nuestros compromisos"
+            title="Sin promesas infladas."
+            highlight="Esto sí lo garantizamos."
+            center
+          />
+        </Reveal>
+        <StaggerContainer as="ul" className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {commitments.map((c, i) => {
             const Icon = commitmentIcons[i] ?? ShieldCheck;
             return (
-              <li key={c.title}>
+              <StaggerItem key={c.title} as="li">
                 <Card className="h-full">
                   <Icon aria-hidden="true" size={22} className="text-neonBlue" />
                   <h3 className="mt-4 text-lg font-bold text-white">{c.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-white/60">{c.text}</p>
                 </Card>
-              </li>
+              </StaggerItem>
             );
           })}
-        </ul>
+        </StaggerContainer>
       </Section>
 
       {/* ───────────── FAQ ───────────── */}
       <Section id="preguntas" labelledBy="preguntas-titulo">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">
-          <div>
+          <Reveal>
             <SectionHeading id="preguntas-titulo" eyebrow="Preguntas frecuentes" title="Lo que nos preguntan antes de empezar." />
             <WhatsAppLink placement="faq" className={`${buttonStyles.whatsapp} mt-8`}>
               ¿Otra pregunta? WhatsApp
             </WhatsAppLink>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={0.08}>
             <Faq items={generalFaq} />
             <div className="mt-6 rounded-lg border border-white/10 bg-panel p-6 text-sm leading-relaxed text-white/55">
               <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-white/70">Condiciones generales</h3>
@@ -497,7 +536,7 @@ export default function HomePage() {
                 {conditions.auditsCredit}
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
@@ -505,19 +544,21 @@ export default function HomePage() {
       <section className="relative overflow-hidden border-t border-white/10" aria-labelledby="cta-titulo">
         <Glow />
         <Container className="relative py-24 text-center sm:py-32">
-          <Pill>Llamada de diagnóstico · sin costo · 30 min</Pill>
-          <h2 id="cta-titulo" className="mx-auto mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-6xl">
-            Empecemos por <span className="text-neonBlue">revisar lo que ya tienes.</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-white/70">
-            En 30 minutos te decimos por dónde empezar, aunque decidas hacerlo por tu cuenta.
-          </p>
-          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <ButtonLink href="/diagnostico">Cotizar mi proyecto</ButtonLink>
-            <WhatsAppLink placement="home_final_cta" className={buttonStyles.whatsapp}>
-              Escríbenos por WhatsApp
-            </WhatsAppLink>
-          </div>
+          <Reveal>
+            <Pill>Llamada de diagnóstico · sin costo · 30 min</Pill>
+            <h2 id="cta-titulo" className="mx-auto mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-6xl">
+              Empecemos por <span className="text-neonBlue">revisar lo que ya tienes.</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg text-white/70">
+              En 30 minutos te decimos por dónde empezar, aunque decidas hacerlo por tu cuenta.
+            </p>
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+              <ButtonLink href="/diagnostico">Cotizar mi proyecto</ButtonLink>
+              <WhatsAppLink placement="home_final_cta" className={buttonStyles.whatsapp}>
+                Escríbenos por WhatsApp
+              </WhatsAppLink>
+            </div>
+          </Reveal>
         </Container>
       </section>
     </>

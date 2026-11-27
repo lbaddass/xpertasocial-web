@@ -102,12 +102,12 @@ export function SectionHeading({
 }
 
 const buttonBase =
-  "group inline-flex min-h-12 items-center justify-center gap-3 rounded-md px-6 text-base transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neonBlue";
+  "group inline-flex min-h-12 items-center justify-center gap-3 rounded-md px-6 text-base transition-all duration-200 active:scale-[0.985] motion-reduce:active:scale-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neonBlue";
 
 export const buttonStyles = {
-  primary: `${buttonBase} bg-neonBlue font-bold text-black hover:shadow-glow`,
-  ghost: `${buttonBase} border border-white/20 font-mono text-sm uppercase tracking-wider text-white hover:border-neonBlue hover:text-neonBlue`,
-  whatsapp: `${buttonBase} border border-neonLime/40 bg-neonLime/10 font-semibold text-neonLime hover:bg-neonLime hover:text-black`,
+  primary: `${buttonBase} bg-neonBlue font-bold text-black hover:-translate-y-0.5 hover:shadow-glow motion-reduce:hover:translate-y-0`,
+  ghost: `${buttonBase} border border-white/20 font-mono text-sm uppercase tracking-wider text-white hover:-translate-y-0.5 hover:border-neonBlue hover:text-neonBlue motion-reduce:hover:translate-y-0`,
+  whatsapp: `${buttonBase} border border-neonLime/40 bg-neonLime/10 font-semibold text-neonLime hover:-translate-y-0.5 hover:bg-neonLime hover:text-black motion-reduce:hover:translate-y-0`,
 };
 
 export function ButtonLink({
@@ -173,7 +173,7 @@ export function Card({
 }) {
   return (
     <div
-      className={`relative rounded-lg border bg-panel p-6 transition-colors ${
+      className={`relative rounded-lg border bg-panel p-6 transition-all duration-200 hover:-translate-y-0.5 motion-reduce:hover:translate-y-0 ${
         highlight ? `${accent[tone].border} ring-1 ${accent[tone].ring}` : `border-white/10 ${accent[tone].hoverBorder}`
       } ${className}`}
     >
