@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server';
 import { getReport } from '@/lib/r2';
+import { requireAdmin } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const { searchParams } = new URL(request.url);
   const jobId = searchParams.get('jobId');
 
