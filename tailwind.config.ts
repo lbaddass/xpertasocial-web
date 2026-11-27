@@ -24,10 +24,41 @@ const config: Config = {
         techWhite: "#E8F5E9",
         signalRed: "#E63946",
         moneyGreen: "#4CAF50",
+
+        // XpertaSocial 2026 marketing tokens (Catálogo de servicios 2026)
+        ink: {
+          DEFAULT: "#0E1726", // fondo oscuro principal
+          800: "#16213A",
+          700: "#22304D",
+          600: "#3A4A66",
+        },
+        mint: {
+          DEFAULT: "#3DD9A4", // acento sobre fondo oscuro
+          600: "#10B981",
+          700: "#047857", // acento sobre fondo claro (contraste AA)
+          50: "#E7F8F1",
+        },
+        paper: "#FFFFFF",
+        surface: "#F4F6F9",
+        line: "#E3E8EF",
+        body: "#0F172A",
+        muted: "#4B5565",
+        caution: "#FFF6DB",
       },
       fontFamily: {
         sans: ["var(--font-grotesk)"],
         mono: ["var(--font-plex-mono)"],
+        brand: ["var(--font-inter)", "system-ui", "sans-serif"],
+      },
+      maxWidth: {
+        content: "72rem",
+        prose: "44rem",
+      },
+      borderRadius: {
+        card: "1rem",
+      },
+      boxShadow: {
+        card: "0 1px 2px rgba(14, 23, 38, 0.06), 0 8px 24px -12px rgba(14, 23, 38, 0.12)",
       },
       backgroundImage: {
         "grid-pattern":
