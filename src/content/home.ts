@@ -24,6 +24,12 @@ export const startHere = [
     href: "/#google-ads",
   },
   {
+    situation: "Quieres más clientes y mensajes desde Facebook e Instagram",
+    solution: "Meta Ads",
+    detail: "campañas de mensajes, tráfico y prospectos",
+    href: "/#meta-ads",
+  },
+  {
     situation: "Tienes tráfico o anuncios, pero tu sitio no convierte o no existe",
     solution: "Web, E-commerce y Conversión",
     detail: "sitios, landing pages y tiendas",
@@ -68,8 +74,8 @@ export const weNeedFromYou = [
 
 /** Compromisos: Catálogo 2026 + especificación v1.1. Sustituyen cualquier "garantía de riesgo cero". */
 export const commitments = [
-  { title: "Tus cuentas son tuyas", text: "Dominio, Google Ads, Amazon y Analytics quedan a tu nombre desde el primer día. Si un día te vas, te llevas todo." },
-  { title: "Tu inversión, directo a la plataforma", text: "El presupuesto de anuncios lo pagas tú a Google o Amazon. Nunca pasa por nosotros." },
+  { title: "Tus cuentas son tuyas", text: "Dominio, Google Ads, Meta, Amazon y Analytics quedan a tu nombre desde el primer día. Si un día te vas, te llevas todo." },
+  { title: "Tu inversión, directo a la plataforma", text: "El presupuesto de anuncios lo pagas tú a Google, Meta o Amazon. Nunca pasa por nosotros." },
   { title: "Todo por escrito antes de iniciar", text: "Alcance, precio y plazo acordados por escrito antes de cobrar el anticipo." },
   { title: "Medición verificada", text: "Probamos formularios, WhatsApp y llamadas antes de la entrega, para que cada contacto quede registrado." },
   { title: "Reportes que se entienden", text: "Qué se gastó, qué generó y qué haremos el próximo mes, en lenguaje de negocio." },
@@ -86,9 +92,9 @@ export const amazonExperience = {
 };
 
 export const generalFaq: FaqItem[] = [
-  { q: "¿La inversión en anuncios está incluida?", a: "No. Pagas tu presupuesto directamente a Google o Amazon con tu propia tarjeta. Nuestra tarifa es solo por la gestión." },
+  { q: "¿La inversión en anuncios está incluida?", a: "No. Pagas tu presupuesto directamente a Google, Meta o Amazon con tu propia tarjeta. Nuestra tarifa es solo por la gestión." },
   { q: "¿Garantizan resultados?", a: "No prometemos ventas, posiciones ni cifras específicas, porque dependen de tu producto, precio, competencia y presupuesto. Sí garantizamos trabajo documentado, medición correcta y reportes honestos." },
-  { q: "¿En cuánto tiempo veo resultados?", a: "Google Ads y Amazon Ads generan datos desde la primera semana, y las campañas suelen necesitar de 4 a 8 semanas para estabilizarse. El SEO es más lento y acumulativo." },
+  { q: "¿En cuánto tiempo veo resultados?", a: "Google Ads, Meta Ads y Amazon Ads generan datos desde la primera semana, y las campañas suelen necesitar de 4 a 8 semanas para estabilizarse. El SEO es más lento y acumulativo." },
   { q: "¿Hay plazo forzoso?", a: "Los planes mensuales tienen un mínimo de 3 meses, el tiempo necesario para optimizar con datos. Después continúan mes a mes con aviso de 30 días." },
   { q: "¿De quién son las cuentas y el sitio?", a: "Tuyos. Trabajamos con acceso de usuario en tus propias cuentas y el sitio se entrega a tu nombre al liquidar el proyecto." },
   { q: "¿Trabajan con empresas fuera de México?", a: "Sí. Atendemos negocios de México y LATAM, y marcas que venden en Amazon Estados Unidos." },

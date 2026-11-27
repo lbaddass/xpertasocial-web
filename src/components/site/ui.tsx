@@ -1,19 +1,21 @@
 import Link from "next/link";
-import { ArrowRight, Check as CheckIcon } from "lucide-react";
+import { ArrowRight, Check as CheckIcon, MessageCircle } from "lucide-react";
 import { formatPrice, taxNote, type Plan, type Price } from "@/config/catalog";
+import { WhatsAppLink } from "./ContactLinks";
 
 /**
  * Sistema visual del sitio comercial: identidad original de XpertaSocial (carbón, retícula cian,
  * Space Grotesk + IBM Plex Mono, acentos neón), modernizada y orientada a conversión.
  */
 
-export type Accent = "cyan" | "pink" | "lime" | "amber";
+export type Accent = "cyan" | "pink" | "lime" | "amber" | "violet";
 
 /** Clases literales por acento (Tailwind necesita verlas completas). */
 export const accent: Record<Accent, { text: string; hoverText: string; border: string; hoverBorder: string; bg: string; dot: string; ring: string }> = {
   cyan: { text: "text-neonBlue", hoverText: "hover:text-neonBlue", border: "border-neonBlue/50", hoverBorder: "hover:border-neonBlue/50", bg: "bg-neonBlue/10", dot: "bg-neonBlue", ring: "ring-neonBlue/40" },
   pink: { text: "text-neonPink", hoverText: "hover:text-neonPink", border: "border-neonPink/50", hoverBorder: "hover:border-neonPink/50", bg: "bg-neonPink/10", dot: "bg-neonPink", ring: "ring-neonPink/40" },
   lime: { text: "text-neonLime", hoverText: "hover:text-neonLime", border: "border-neonLime/50", hoverBorder: "hover:border-neonLime/50", bg: "bg-neonLime/10", dot: "bg-neonLime", ring: "ring-neonLime/40" },
+  violet: { text: "text-neonViolet", hoverText: "hover:text-neonViolet", border: "border-neonViolet/50", hoverBorder: "hover:border-neonViolet/50", bg: "bg-neonViolet/10", dot: "bg-neonViolet", ring: "ring-neonViolet/40" },
   amber: { text: "text-neonAmber", hoverText: "hover:text-neonAmber", border: "border-neonAmber/50", hoverBorder: "hover:border-neonAmber/50", bg: "bg-neonAmber/10", dot: "bg-neonAmber", ring: "ring-neonAmber/40" },
 };
 
@@ -180,7 +182,24 @@ export function Card({
   );
 }
 
-export function PlanCard({ plan, tone = "cyan", cta }: { plan: Plan; tone?: Accent; cta?: { href: string; label: string } }) {
+export interface WhatsAppCta {
+  message: string;
+  label: string;
+  placement: string;
+}
+
+export function PlanCard({
+  plan,
+  tone = "cyan",
+  cta,
+  whatsapp,
+}: {
+  plan: Plan;
+  tone?: Accent;
+  cta?: { href: string; label: string };
+  /** CTA directo a WhatsApp con el plan escrito (preferido para conversión). */
+  whatsapp?: WhatsAppCta;
+}) {
   const flag = plan.recommended ? "Recomendado" : plan.badge;
   return (
     <Card tone={tone} highlight={plan.recommended} className="flex flex-col">
@@ -195,8 +214,27 @@ export function PlanCard({ plan, tone = "cyan", cta }: { plan: Plan; tone?: Acce
       </div>
       {plan.note ? <p className="mt-1.5 text-sm text-white/55">{plan.note}</p> : null}
       {plan.idealFor ? <p className="mt-1.5 text-sm text-white/55">{plan.idealFor}</p> : null}
+      {plan.timeline ? (
+        <p className="mt-3 inline-flex w-fit rounded-full border border-white/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white/70">
+          Entrega: {plan.timeline}
+        </p>
+      ) : null}
       {plan.features ? <FeatureList items={plan.features} tone={tone} /> : null}
-      {cta ? (
+      {whatsapp ? (
+        <div className="mt-auto pt-6">
+          <WhatsAppLink
+            placement={whatsapp.placement}
+            message={whatsapp.message}
+            className={`group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md px-4 font-bold transition ${
+              plan.recommended ? "bg-neonLime text-black hover:shadow-[0_0_24px_-6px_rgba(200,255,0,0.7)]" : "border border-neonLime/40 bg-neonLime/10 text-neonLime hover:bg-neonLime hover:text-black"
+            }`}
+          >
+            <MessageCircle aria-hidden="true" size={17} />
+            {whatsapp.label}
+          </WhatsAppLink>
+        </div>
+      ) : null}
+      {!whatsapp && cta ? (
         <div className="mt-auto pt-6">
           <Link
             href={cta.href}

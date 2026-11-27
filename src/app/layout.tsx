@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "./ThemeProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { MetaPixel } from "@/components/MetaPixel";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/config/site";
 import "./globals.css";
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | XpertaSocial",
   },
   description:
-    "Amazon Ads, Google Ads, sitios web, tiendas en línea y SEO, GEO y AEO integrados en un solo sistema de ventas medible. Ciudad de México.",
+    "Google Ads, Meta Ads, Amazon Ads, sitios web, tiendas en línea y SEO, GEO y AEO integrados en un solo sistema de ventas medible. Ciudad de México.",
 };
 
 export default function RootLayout({
@@ -68,6 +69,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
         <Analytics />
+        <MetaPixel />
       </body>
     </html>
   );

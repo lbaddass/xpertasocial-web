@@ -14,6 +14,7 @@ import {
   Search,
   ShieldCheck,
   ShoppingCart,
+  Megaphone,
   Sparkles,
   TrendingUp,
   Wallet,
@@ -38,7 +39,7 @@ import {
   systemStages,
   weNeedFromYou,
 } from "@/content/home";
-import { divisionUi, quoteHref } from "@/content/divisionUi";
+import { divisionUi, planCtaLabel, planMessage } from "@/content/divisionUi";
 import { WhatsAppLink } from "@/components/site/ContactLinks";
 import {
   accent,
@@ -61,7 +62,7 @@ import {
 export const metadata: Metadata = {
   title: { absolute: "XpertaSocial | Publicidad, sitios web y posicionamiento conectados" },
   description:
-    "Amazon Ads, Google Ads, sitios web, tiendas en línea y SEO, GEO y AEO integrados en un solo sistema de ventas medible. Precios publicados. Ciudad de México.",
+    "Google Ads, Meta Ads, Amazon Ads, sitios web, tiendas en línea y SEO, GEO y AEO integrados en un solo sistema de ventas medible. Planes con precio publicado. Ciudad de México.",
   alternates: { canonical: "/" },
 };
 
@@ -69,6 +70,7 @@ const divisionIcon: Record<Division["id"], LucideIcon> = {
   "amazon-ads": ShoppingCart,
   "google-ads": MousePointerClick,
   web: Layers,
+  "meta-ads": Megaphone,
   "seo-geo-aeo": Sparkles,
 };
 
@@ -88,7 +90,8 @@ function DivisionBlock({ division }: { division: Division }) {
   const a = accent[ui.accent];
   const Icon = divisionIcon[division.id];
   const headingId = `${division.id}-titulo`;
-  const usesTable = division.id === "web" || division.id === "seo-geo-aeo";
+  const fixedPlans = division.plans.filter((p) => p.features?.length);
+  const tablePlans = division.plans.filter((p) => !p.features?.length);
   return (
     <article id={division.id} aria-labelledby={headingId} className="scroll-mt-24">
       <div className="grid gap-10 xl:grid-cols-[1fr_1.9fr]">
@@ -109,10 +112,13 @@ function DivisionBlock({ division }: { division: Division }) {
           </h3>
           <p className="mt-4 leading-relaxed text-white/65">{division.summary}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href={quoteHref(ui.solution)} className={buttonStyles.primary}>
-              {ui.cta}
-              <ArrowRight aria-hidden="true" size={18} className="transition-transform group-hover:translate-x-1" />
-            </Link>
+            <WhatsAppLink
+              placement={`division_${division.id}`}
+              message={`Hola, quiero información de ${division.name}. Mi negocio es: `}
+              className={buttonStyles.whatsapp}
+            >
+              Preguntar por WhatsApp
+            </WhatsAppLink>
             {division.href ? (
               <Link href={division.href} className={buttonStyles.ghost}>
                 Ver detalle
@@ -122,15 +128,26 @@ function DivisionBlock({ division }: { division: Division }) {
         </div>
 
         <div>
-          {usesTable ? (
-            <PriceTable plans={division.plans} caption={`Precios de ${division.name}`} tone={ui.accent} />
-          ) : (
-            <div className="grid gap-5 pt-3 md:grid-cols-3">
-              {division.plans.map((p) => (
-                <PlanCard key={p.id} plan={p} tone={ui.accent} cta={{ href: quoteHref(ui.solution), label: `Quiero ${p.name}` }} />
+          {fixedPlans.length ? (
+            <div className={`grid gap-5 pt-3 md:grid-cols-2 ${fixedPlans.length === 3 ? "2xl:grid-cols-3" : ""}`}>
+              {fixedPlans.map((p) => (
+                <PlanCard
+                  key={p.id}
+                  plan={p}
+                  tone={ui.accent}
+                  whatsapp={{ message: planMessage(division.name, p), label: planCtaLabel(p), placement: `plan_${p.id}` }}
+                />
               ))}
             </div>
-          )}
+          ) : null}
+          {tablePlans.length ? (
+            <div className={fixedPlans.length ? "mt-6" : ""}>
+              {fixedPlans.length ? (
+                <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-white/60">Otros servicios</h4>
+              ) : null}
+              <PriceTable plans={tablePlans} caption={`Precios de ${division.name}`} tone={ui.accent} />
+            </div>
+          ) : null}
 
           {division.extras?.length ? (
             <div className="mt-6 rounded-lg border border-white/10 bg-panel p-5">
@@ -183,7 +200,7 @@ export default function HomePage() {
               <span className="bg-gradient-to-r from-neonBlue to-white bg-clip-text text-transparent">y te compren.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-white/75 sm:text-xl">
-              Publicidad en Amazon y Google, sitios web, tiendas en línea y posicionamiento en buscadores e IA,{" "}
+              Publicidad en Google, Meta y Amazon, sitios web, tiendas en línea y posicionamiento en buscadores e IA,{" "}
               <span className="font-mono text-neonBlue">integrados en un solo sistema de ventas</span> que puedes medir.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -216,7 +233,7 @@ export default function HomePage() {
                 return (
                   <li key={d.id}>
                     <Link
-                      href={quoteHref(ui.solution)}
+                      href={`#${d.id}`}
                       className="group flex items-center gap-4 rounded-lg px-3 py-3.5 transition hover:bg-white/[0.04]"
                     >
                       <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-full ${accent[ui.accent].bg}`}>
@@ -234,7 +251,7 @@ export default function HomePage() {
                 );
               })}
               <li>
-                <Link href={quoteHref("Sistema integrado (varias piezas)")} className="group mt-1 flex items-center justify-between rounded-lg border border-dashed border-white/15 px-4 py-3 font-mono text-xs uppercase tracking-wider text-white/60 transition hover:border-neonBlue hover:text-neonBlue">
+                <Link href="#sistemas" className="group mt-1 flex items-center justify-between rounded-lg border border-dashed border-white/15 px-4 py-3 font-mono text-xs uppercase tracking-wider text-white/60 transition hover:border-neonBlue hover:text-neonBlue">
                   Necesito varias piezas conectadas
                   <ArrowRight aria-hidden="true" size={14} />
                 </Link>
@@ -316,7 +333,14 @@ export default function HomePage() {
               key={p.id}
               plan={p}
               tone={(["cyan", "amber", "lime", "pink"] as Accent[])[i]}
-              cta={{ href: "/diagnostico", label: p.price.kind === "free" ? "Agendar llamada" : "Solicitar auditoría" }}
+              whatsapp={{
+                message:
+                  p.price.kind === "free"
+                    ? "Hola, quiero agendar la llamada de diagnóstico sin costo. Mi negocio es: "
+                    : planMessage("Diagnóstico", p),
+                label: p.price.kind === "free" ? "Agendar por WhatsApp" : "Pedir auditoría",
+                placement: `diag_${p.id}`,
+              }}
             />
           ))}
         </div>
@@ -327,7 +351,7 @@ export default function HomePage() {
         <SectionHeading
           id="soluciones-titulo"
           eyebrow="Ingeniería de tráfico y plataformas"
-          title="Cuatro divisiones."
+          title="Cinco divisiones."
           highlight="Un solo sistema de ventas."
           intro={`${conditions.tax} ${conditions.validity}`}
         />
@@ -378,7 +402,11 @@ export default function HomePage() {
         />
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {integratedSystems.map((p) => (
-            <PlanCard key={p.id} plan={p} cta={{ href: quoteHref("Sistema integrado (varias piezas)"), label: `Cotizar ${p.name}` }} />
+            <PlanCard
+              key={p.id}
+              plan={p}
+              whatsapp={{ message: planMessage("Sistema integrado", p), label: planCtaLabel(p), placement: `system_${p.id}` }}
+            />
           ))}
           <div className="flex flex-col justify-between rounded-lg border border-neonAmber/30 bg-neonAmber/5 p-6">
             <div>
@@ -388,9 +416,13 @@ export default function HomePage() {
                 armamos como propuesta a la medida después de la auditoría.
               </p>
             </div>
-            <Link href={quoteHref("Amazon Ads")} className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-neonAmber hover:underline">
+            <WhatsAppLink
+              placement="amazon_combo"
+              message="Hola, vendo en Amazon y quiero la auditoría para armar un plan con landing externa y Google Ads. Mi marca es: "
+              className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-neonAmber hover:underline"
+            >
               Pedir auditoría de Amazon <ArrowRight aria-hidden="true" size={14} />
-            </Link>
+            </WhatsAppLink>
           </div>
         </div>
         <p className="mt-6 text-xs text-white/60">

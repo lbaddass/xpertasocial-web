@@ -9,7 +9,8 @@ import {
 } from "@/config/catalog";
 import { WhatsAppLink } from "@/components/site/ContactLinks";
 import { LeadForm } from "@/components/site/LeadForm";
-import { Building2, Factory, HardHat, Scale, X } from "lucide-react";
+import { Building2, Factory, HardHat, MessageCircle, Scale, X } from "lucide-react";
+import { planCtaLabel, planMessage } from "@/content/divisionUi";
 import {
   ButtonLink,
   buttonStyles,
@@ -20,6 +21,7 @@ import {
   FeatureList,
   Glow,
   Pill,
+  PlanCard,
   PriceTable,
   PriceTag,
   Section,
@@ -88,7 +90,7 @@ const steps = [
 const faq: FaqItem[] = [
   {
     q: "¿Cuánto cuesta un sitio web para mi empresa?",
-    a: `Un sitio corporativo para empresas de servicios empieza en ${formatPrice(corporate.price).replace("Desde ", "")} MXN + IVA. El precio final depende del número de páginas, el contenido y las funciones. Una landing page para campañas empieza en $2,000 y una tienda Shopify en $9,000.`,
+    a: `Tenemos planes cerrados: Landing Page Express $2,000, Landing Page Pro $4,000, Sitio corporativo ${formatPrice(corporate.price)} (hasta 5 páginas) y Tienda Shopify $9,000 (hasta 30 productos), todos MXN + IVA. Lo que exceda el alcance del plan se cotiza aparte.`,
   },
   {
     q: "¿En cuánto tiempo queda listo?",
@@ -122,7 +124,7 @@ export default function DisenoPaginasWebPage() {
               contratistas, servicios industriales y despachos que necesitan <span className="font-mono text-neonBlue">cotizaciones, no solo visitas</span>.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="#cotizar">Cotizar mi sitio</ButtonLink>
+              <ButtonLink href="#precios">Ver planes y precios</ButtonLink>
               <WhatsAppLink placement="web_hero" message="Hola, quiero cotizar un sitio web para mi empresa." className={buttonStyles.whatsapp}>
                 Hablar por WhatsApp
               </WhatsAppLink>
@@ -146,12 +148,57 @@ export default function DisenoPaginasWebPage() {
                 </div>
               ))}
             </dl>
-            <Link href="#cotizar" className={`${buttonStyles.primary} mt-6 w-full`}>
-              Quiero mi cotización
-            </Link>
+            <WhatsAppLink
+              placement="web_hero_card"
+              message={planMessage(web.name, corporate)}
+              className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-neonLime px-4 font-bold text-black transition hover:shadow-[0_0_24px_-6px_rgba(200,255,0,0.7)]"
+            >
+              <MessageCircle aria-hidden="true" size={18} />
+              Lo quiero
+            </WhatsAppLink>
           </div>
         </Container>
       </section>
+
+      {/* Precios */}
+      <Section id="precios" labelledBy="precios-titulo">
+        <SectionHeading
+          id="precios-titulo"
+          eyebrow="Inversión"
+          title="Planes cerrados,"
+          highlight="precio fijo."
+          intro={`${web.footnote} ${conditions.validity}`}
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {web.plans
+            .filter((p) => p.features?.length)
+            .map((p) => (
+              <PlanCard
+                key={p.id}
+                plan={p}
+                whatsapp={{ message: planMessage(web.name, p), label: planCtaLabel(p), placement: `web_plan_${p.id}` }}
+              />
+            ))}
+        </div>
+        <h3 className="mb-3 mt-10 font-mono text-xs uppercase tracking-[0.25em] text-white/60">Otros proyectos</h3>
+        <PriceTable plans={web.plans.filter((p) => !p.features?.length)} caption="Otros proyectos web" />
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
+          <Card>
+            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Hitos de pago y condiciones</h3>
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/65">
+              <li>{conditions.projectPayments}</li>
+              <li>{conditions.revisions}</li>
+              <li>{conditions.timelineStart}</li>
+              <li>{conditions.warranty}</li>
+              <li>{conditions.exclusions}</li>
+            </ul>
+          </Card>
+          <Card tone="pink">
+            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonPink">Lo que necesitamos de ti</h3>
+            <FeatureList items={clientResponsibilities} tone="pink" />
+          </Card>
+        </div>
+      </Section>
 
       {/* Para quién */}
       <Section tone="raised" labelledBy="para-quien">
@@ -212,36 +259,6 @@ export default function DisenoPaginasWebPage() {
                 </li>
               ))}
             </ul>
-          </Card>
-        </div>
-      </Section>
-
-      {/* Precios */}
-      <Section id="precios" labelledBy="precios-titulo">
-        <SectionHeading
-          id="precios-titulo"
-          eyebrow="Inversión"
-          title="Precios publicados,"
-          highlight="antes de IVA."
-          intro={`${web.footnote} ${conditions.validity}`}
-        />
-        <div className="mt-12">
-          <PriceTable plans={web.plans} caption="Precios de diseño web y e-commerce" />
-        </div>
-        <div className="mt-6 grid gap-5 md:grid-cols-2">
-          <Card>
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonBlue">Hitos de pago y condiciones</h3>
-            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/65">
-              <li>{conditions.projectPayments}</li>
-              <li>{conditions.revisions}</li>
-              <li>{conditions.timelineStart}</li>
-              <li>{conditions.warranty}</li>
-              <li>{conditions.exclusions}</li>
-            </ul>
-          </Card>
-          <Card tone="pink">
-            <h3 className="font-mono text-xs uppercase tracking-[0.25em] text-neonPink">Lo que necesitamos de ti</h3>
-            <FeatureList items={clientResponsibilities} tone="pink" />
           </Card>
         </div>
       </Section>

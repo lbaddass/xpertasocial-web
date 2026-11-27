@@ -1,12 +1,13 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.describe("Navegación principal", () => {
   test("Home muestra H1, CTA y precios del catálogo", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Que te encuentren");
     await expect(page.getByRole("link", { name: "Cotizar mi proyecto" }).first()).toHaveAttribute("href", "/diagnostico");
-    await expect(page.getByText("Desde $7,500").first()).toBeVisible();
+    await expect(page.getByText("$7,500").first()).toBeVisible();
     await expect(page.getByText("450 USD/mes").first()).toBeVisible();
+    await expect(page.getByText("$2,500/mes").first()).toBeVisible(); // Meta Ads
   });
 
   test("Home no contiene afirmaciones retiradas", async ({ page }) => {
@@ -61,50 +62,50 @@ test.describe("Redirecciones y URLs retiradas", () => {
   }
 });
 
-async function fillValidForm(page: Page, scope = "#contenido") {
-  const form = page.locator(`${scope} form`).first();
-  await form.getByLabel("Nombre").fill("Prueba Automatizada");
-  await form.getByLabel("Empresa").fill("Constructora de Prueba");
-  await form.getByLabel("Sector").selectOption("Construcción");
-  await form.getByLabel("Solución que buscas").selectOption("Sitio web o landing page");
-  await form.getByLabel("Rango de inversión").selectOption("Aún no lo sé");
-  await form.getByLabel("¿Para cuándo lo necesitas?").selectOption("En 1 a 3 meses");
-  await form.getByLabel("¿Tomas la decisión?").selectOption("Sí");
-  await form.getByLabel("Correo").fill("prueba@example.com");
-  await form.getByLabel("Teléfono o WhatsApp").fill("55 1234 5678");
-  await form.getByRole("checkbox").check();
-  return form;
-}
-
-test.describe("Formulario de diagnóstico", () => {
-  test("envío inválido muestra errores y no envía", async ({ page }) => {
-    let posted = false;
-    page.on("request", (r) => {
-      if (r.url().endsWith("/api/leads")) posted = true;
+test.describe("Formulario → WhatsApp", () => {
+  test("envío inválido muestra errores y no abre WhatsApp", async ({ page }) => {
+    await page.addInitScript(() => {
+      (window as unknown as { __opened: string[] }).__opened = [];
+      window.open = ((url: string) => {
+        (window as unknown as { __opened: string[] }).__opened.push(String(url));
+        return {} as Window;
+      }) as typeof window.open;
     });
     await page.goto("/diagnostico");
-    await page.getByRole("button", { name: "Solicitar diagnóstico" }).click();
+    await page.getByRole("button", { name: "Continuar en WhatsApp" }).click();
     await expect(page.getByText("Escribe tu nombre.")).toBeVisible();
-    await expect(page.getByText("Necesitamos tu aceptación del aviso de privacidad.")).toBeVisible();
-    expect(posted).toBe(false);
+    const opened = await page.evaluate(() => (window as unknown as { __opened: string[] }).__opened);
+    expect(opened).toHaveLength(0);
   });
 
-  test("envío válido con UTM y gclid llega al servidor y dispara generate_lead una vez", async ({ page }) => {
-    // Sin red hacia Google: solo contamos lo que el sitio empuja a dataLayer vía gtag().
+  test("envío válido abre WhatsApp con nombre, solución y origen, y registra generate_lead una vez", async ({ page }) => {
     await page.route(/googletagmanager\.com|google-analytics\.com/, (r) => r.abort());
-    await page.goto("/diagnostico?utm_source=google&utm_medium=cpc&utm_campaign=prueba&gclid=TEST123");
-    await fillValidForm(page);
-
-    const [req] = await Promise.all([
-      page.waitForRequest((r) => r.url().endsWith("/api/leads") && r.method() === "POST"),
-      page.getByRole("button", { name: "Solicitar diagnóstico" }).click(),
-    ]);
-    const body = req.postDataJSON() as { tracking: Record<string, string>; empresa_web: string };
-    expect(body.tracking.gclid).toBe("TEST123");
-    expect(body.tracking.utm_campaign).toBe("prueba");
-    expect(body.empresa_web).toBe("");
+    await page.addInitScript(() => {
+      (window as unknown as { __opened: string[] }).__opened = [];
+      window.open = ((url: string) => {
+        (window as unknown as { __opened: string[] }).__opened.push(String(url));
+        return {} as Window;
+      }) as typeof window.open;
+    });
+    await page.goto("/diagnostico?solucion=Google%20Ads&utm_source=meta&utm_campaign=prueba");
+    const form = page.locator("#contenido form").first();
+    await expect(form.getByLabel("¿Qué necesitas?")).toHaveValue("Google Ads");
+    await form.getByLabel("Nombre").fill("Ana Prueba");
+    await form.getByLabel("Negocio o empresa").fill("Constructora Demo");
+    await form.getByRole("button", { name: "Continuar en WhatsApp" }).click();
 
     await expect(page.getByTestId("lead-success")).toBeVisible();
+    const opened = await page.evaluate(() => (window as unknown as { __opened: string[] }).__opened);
+    expect(opened).toHaveLength(1);
+    const url = new URL(opened[0]);
+    expect(url.hostname).toBe("wa.me");
+    expect(url.pathname).toBe("/525660213375");
+    const text = url.searchParams.get("text") ?? "";
+    expect(text).toContain("Ana Prueba");
+    expect(text).toContain("Constructora Demo");
+    expect(text).toContain("Google Ads");
+    expect(text).toContain("Origen: meta / prueba");
+
     const leads = await page.evaluate(() =>
       ((window as unknown as { dataLayer: ArrayLike<unknown>[] }).dataLayer || [])
         .map((e) => Array.from(e as ArrayLike<unknown>))
@@ -113,10 +114,45 @@ test.describe("Formulario de diagnóstico", () => {
     expect(leads).toHaveLength(1);
   });
 
-  test("API rechaza datos inválidos (422) y acepta honeypot sin guardar", async ({ request }) => {
+  test("API de leads sigue validando (422) y acepta honeypot sin guardar", async ({ request }) => {
     const bad = await request.post("/api/leads", { data: { name: "x" } });
     expect(bad.status()).toBe(422);
     const bot = await request.post("/api/leads", { data: { empresa_web: "spam" } });
     expect(bot.status()).toBe(200);
+  });
+});
+
+test.describe("Planes con CTA directo a WhatsApp", () => {
+  test("cada plan del sitio web abre WhatsApp con el plan escrito", async ({ page }) => {
+    await page.goto("/diseno-paginas-web");
+    const cta = page.getByRole("link", { name: "Lo quiero" }).first();
+    const href = (await cta.getAttribute("href")) ?? "";
+    expect(href).toContain("wa.me/525660213375");
+    expect(decodeURIComponent(href)).toContain("Sitio corporativo");
+  });
+});
+
+test.describe("Páginas de campaña (Meta)", () => {
+  for (const [slug, plan] of [
+    ["pagina-web", "Landing Page Express"],
+    ["tienda-en-linea", "Tienda Shopify"],
+    ["anuncios", "Crecimiento"],
+    ["presencia-digital", "Presencia digital"],
+  ]) {
+    test(`/lp/${slug} carga, es noindex y sus planes abren WhatsApp`, async ({ page }) => {
+      const res = await page.goto(`/lp/${slug}`);
+      expect(res?.status()).toBe(200);
+      await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      const links = page.locator('a[href*="wa.me/525660213375"]');
+      expect(await links.count()).toBeGreaterThan(3);
+      const hrefs = await links.evaluateAll((els) => els.map((e) => decodeURIComponent((e as HTMLAnchorElement).href)));
+      expect(hrefs.some((h) => h.includes(plan))).toBe(true);
+    });
+  }
+
+  test("/lp/no-existe responde 404", async ({ request }) => {
+    const res = await request.get("/lp/no-existe");
+    expect(res.status()).toBe(404);
   });
 });

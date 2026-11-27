@@ -30,10 +30,12 @@ export interface Plan {
   features?: string[];
   recommended?: boolean;
   badge?: string;
+  /** Plazo de entrega de referencia, cuando está definido. */
+  timeline?: string;
 }
 
 export interface Division {
-  id: "amazon-ads" | "google-ads" | "web" | "seo-geo-aeo";
+  id: "amazon-ads" | "google-ads" | "meta-ads" | "web" | "seo-geo-aeo";
   number: string;
   name: string;
   eyebrow: string;
@@ -213,25 +215,88 @@ export const divisions: Division[] = [
       },
     ],
     footnote:
-      "Meta Ads y TikTok Ads para remarketing se cotizan según alcance. La inversión publicitaria se paga directamente a Google. Mínimo 3 meses en planes mensuales.",
+      "TikTok Ads se cotiza según alcance. La inversión publicitaria se paga directamente a Google. Mínimo 3 meses en planes mensuales.",
+  },
+  {
+    id: "meta-ads",
+    number: "03",
+    name: "Meta Ads",
+    eyebrow: "División 03 · Meta Ads (Facebook e Instagram)",
+    headline: "Haz que tu negocio aparezca donde tus clientes pasan el día.",
+    summary:
+      "Campañas en Facebook e Instagram para generar mensajes de WhatsApp, prospectos y ventas. Medimos cada conversación y cada contacto para saber qué anuncio funciona y dónde poner el presupuesto.",
+    currency: "MXN",
+    plans: [
+      {
+        id: "meta-arranque",
+        name: "Arranque",
+        price: mxn(2500, "month"),
+        note: "Inversión en Meta de hasta $15,000 MXN/mes",
+        features: ["1 a 2 campañas: mensajes, tráfico o clientes potenciales", "Públicos y segmentación por zona", "Optimización cada 15 días", "Reporte mensual"],
+      },
+      {
+        id: "meta-crecimiento",
+        name: "Crecimiento",
+        price: mxn(3500, "month"),
+        note: "Inversión en Meta de hasta $40,000 MXN/mes",
+        recommended: true,
+        features: ["Hasta 4 campañas, incluido remarketing", "Optimización semanal", "Pruebas A/B de anuncios", "Reporte y llamada mensual"],
+      },
+      {
+        id: "meta-escala",
+        name: "Escala",
+        price: mxn(4500, "month"),
+        note: "Inversión de hasta $80,000 MXN/mes; arriba, 7 % de la inversión",
+        features: ["Estructura multicampaña en Facebook, Instagram y Reels", "Medición de conversiones del lado del servidor cuando convenga", "Recomendaciones de conversión en tu landing", "Reporte quincenal"],
+      },
+    ],
+    footnote:
+      "La inversión publicitaria se paga directamente a Meta. No incluye producción de fotografía ni video. Mínimo 3 meses en planes mensuales. XpertaSocial no es agencia oficial ni socio de Meta.",
   },
   {
     id: "web",
-    number: "03",
+    number: "04",
     name: "Web, E-commerce y Conversión",
-    eyebrow: "División 03 · Web, E-commerce y Conversión",
+    eyebrow: "División 04 · Web, E-commerce y Conversión",
     headline: "Páginas hechas para vender, no solo para verse bien.",
     summary:
       "Sitios rápidos, adaptados a celular y conectados desde el primer día con WhatsApp, formularios y medición. Elegimos la tecnología según tu operación: Next.js, Shopify o WordPress.",
     currency: "MXN",
     href: "/diseno-paginas-web",
     plans: [
-      { id: "web-landing-express", name: "Landing Page Express", price: fromMxn(2000, "once"), idealFor: "Una oferta, un objetivo, lista en días" },
-      { id: "web-landing-pro", name: "Landing Page Pro", price: fromMxn(4000, "once"), idealFor: "Campañas de Google o Meta con varias secciones y pruebas" },
+      {
+        id: "web-landing-express",
+        name: "Landing Page Express",
+        price: mxn(2000, "once"),
+        idealFor: "Una oferta, un objetivo, lista en días",
+        timeline: "3 a 5 días hábiles",
+        features: ["1 página con 1 oferta", "Botón de WhatsApp y formulario", "Diseño adaptado a celular", "Google Analytics configurado"],
+      },
+      {
+        id: "web-landing-pro",
+        name: "Landing Page Pro",
+        price: mxn(4000, "once"),
+        idealFor: "Campañas de Google o Meta con varias secciones y pruebas",
+        features: ["1 página larga, hasta 8 secciones", "Pruebas A/B de titulares o llamadas a la acción", "WhatsApp, formulario y medición de conversiones", "Lista para campañas de Google y Meta"],
+      },
       { id: "web-catalog", name: "Catálogo digital", price: fromMxn(3500, "once"), idealFor: "Productos o servicios en web, indexable y fácil de actualizar" },
       { id: "web-catalog-interactive", name: "Catálogo interactivo", price: fromMxn(6000, "once"), idealFor: "Filtros, búsqueda y cotización por WhatsApp" },
-      { id: "web-corporate", name: "Sitio corporativo", price: fromMxn(7500, "once"), idealFor: "Empresas de servicios con varias páginas", recommended: true },
-      { id: "web-shopify", name: "Tienda Shopify", price: fromMxn(9000, "once"), idealFor: "Venta en línea con pagos y envíos" },
+      {
+        id: "web-corporate",
+        name: "Sitio corporativo",
+        price: mxn(7500, "once"),
+        idealFor: "Empresas de servicios con varias páginas",
+        recommended: true,
+        timeline: "8 a 12 días hábiles",
+        features: ["Hasta 5 páginas", "WhatsApp, formulario y medición de contactos", "SEO técnico básico y velocidad optimizada", "Dominio y cuentas a tu nombre"],
+      },
+      {
+        id: "web-shopify",
+        name: "Tienda Shopify",
+        price: mxn(9000, "once"),
+        idealFor: "Venta en línea con pagos y envíos",
+        features: ["Hasta 30 productos cargados", "Pagos y envíos configurados", "Diseño adaptado a celular", "Medición de compras en Google Analytics"],
+      },
       { id: "web-nextjs", name: "Sitio a medida en Next.js", price: fromMxn(12000, "once"), idealFor: "Alto rendimiento, funciones propias y escalabilidad" },
       { id: "web-ecommerce-advanced", name: "E-commerce avanzado", price: fromMxn(15000, "once"), idealFor: "Catálogos grandes, integraciones y automatizaciones" },
       { id: "web-custom", name: "Rediseño, migración, CRM y API", price: { kind: "quote" }, idealFor: "Modernizar lo que ya tienes o conectar tu operación" },
@@ -246,13 +311,13 @@ export const divisions: Division[] = [
       },
     ],
     footnote:
-      "No incluyen dominio, hosting, licencias, apps de Shopify ni fotografía. El precio final depende de páginas, contenido y funciones.",
+      "Los planes con precio fijo incluyen el alcance indicado; lo que lo exceda se cotiza aparte. No incluyen dominio, hosting, licencias, apps de Shopify ni fotografía.",
   },
   {
     id: "seo-geo-aeo",
-    number: "04",
+    number: "05",
     name: "SEO, GEO y AEO",
-    eyebrow: "División 04 · Search Intelligence",
+    eyebrow: "División 05 · Search Intelligence",
     headline: "Que te encuentren en Google y te entiendan los asistentes de IA.",
     summary:
       "Cada vez más personas preguntan a ChatGPT, Gemini o a los resúmenes de IA de Google antes de comprar. Trabajamos tu sitio para que buscadores y motores de respuesta lo puedan entender, rastrear y citar.",
@@ -395,6 +460,7 @@ export const solutionOptions = [
   "Sitio web o landing page",
   "Tienda en línea (Shopify o a medida)",
   "Google Ads",
+  "Meta Ads (Facebook e Instagram)",
   "Amazon Ads",
   "SEO, GEO y AEO",
   "Sistema integrado (varias piezas)",

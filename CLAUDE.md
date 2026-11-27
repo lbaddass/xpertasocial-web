@@ -1,19 +1,27 @@
 # XpertaSocial — Reglas del proyecto
 
 ## Contexto
-XpertaSocial vende servicios digitales en cuatro divisiones: Amazon Ads, Google Ads y Performance,
-Web/E-commerce/Conversión y SEO/GEO/AEO, más paquetes de Sistemas integrados. Opera una sola persona
+XpertaSocial vende servicios digitales en cinco divisiones: Amazon Ads, Google Ads y Performance,
+Meta Ads, Web/E-commerce/Conversión y SEO/GEO/AEO, más paquetes de Sistemas integrados. Opera una sola persona
 desde Ciudad de México. Mercado: México y LATAM; marcas que venden en Amazon EE. UU.
 Prioridad: flujo de caja, leads calificados y clientes recurrentes. No complejidad técnica.
 
 ## Fuente de verdad comercial
 - Precios, alcances, nombres de producto y condiciones viven SOLO en `src/config/catalog.ts`.
-  Origen: "XpertaSocial — Catálogo de servicios 2026" (PDF, noviembre de 2026).
+  Origen: "XpertaSocial — Catálogo de servicios 2026" (PDF, noviembre de 2026), más los precios de
+  Meta Ads y los alcances de los planes web cerrados aprobados por el propietario el 27 nov 2026.
 - Datos de contacto y datos fiscales viven SOLO en `src/config/site.ts` (WhatsApp de conversión +52 1 56 6021 3375 y xpertasocial@gmail.com, confirmados por el propietario).
 - Identidad visual: la original de XpertaSocial (carbón, retícula cian, Space Grotesk + IBM Plex Mono, acentos neón). Se moderniza; no se reemplaza.
 - Ningún componente contiene precios escritos a mano.
 - Un precio marcado `PENDING` se muestra como "Cotizar".
 - Precios en MXN antes de IVA, salvo Amazon Ads (USD). Siempre visible "+ IVA" o "antes de IVA".
+
+## Conversión
+- Toda acción de contacto termina en WhatsApp (+52 1 56 6021 3375) con el mensaje ya escrito.
+  El formulario no depende del servidor; `/api/leads` queda disponible para cuando exista un CRM.
+- Planes con precio fijo y alcance definido: el botón del plan abre WhatsApp con el plan escrito.
+- Páginas de campaña de Meta en `/lp/*` (contenido en `src/content/campaigns.ts`): `noindex`,
+  sin menú, una sola acción. Meta Pixel solo si existe `NEXT_PUBLIC_META_PIXEL_ID`.
 
 ## Idioma
 - Todo el copy público está en español de México, profesional y directo.

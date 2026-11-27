@@ -30,6 +30,7 @@ const config: Config = {
         panel: "#0D0F12", // tarjetas
         panel2: "#13161B", // tarjetas elevadas / hover
         neonAmber: "#FFB547", // acento de Amazon Ads
+        neonViolet: "#B79CFF", // acento de SEO, GEO y AEO
       },
       fontFamily: {
         sans: ["var(--font-grotesk)", "system-ui", "sans-serif"],

@@ -8,6 +8,7 @@ import { Wordmark } from "./Wordmark";
 const services = [
   { href: "/#amazon-ads", label: "Amazon Ads" },
   { href: "/#google-ads", label: "Google Ads" },
+  { href: "/#meta-ads", label: "Meta Ads" },
   { href: "/diseno-paginas-web", label: "Diseño de páginas web" },
   { href: "/#seo-geo-aeo", label: "SEO, GEO y AEO" },
   { href: "/#sistemas", label: "Sistemas integrados" },
@@ -85,8 +86,8 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <p className="mx-auto max-w-content px-5 py-6 text-xs leading-relaxed text-white/60 sm:px-6">
-          {conditions.tax} {conditions.validity} XpertaSocial gestiona campañas de Amazon Ads y Google Ads de forma independiente; no
-          es agencia oficial ni socio de Amazon ni de Google. © {new Date().getFullYear()} {site.name}. Growth Engineering Systems.
+          {conditions.tax} {conditions.validity} XpertaSocial gestiona campañas de Amazon, Google y Meta de forma independiente; no
+          es agencia oficial ni socio de esas plataformas. © {new Date().getFullYear()} {site.name}. Growth Engineering Systems.
         </p>
       </div>
     </footer>
