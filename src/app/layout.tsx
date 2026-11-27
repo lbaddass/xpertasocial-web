@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
-import Footer from "@/components/layout/Footer";
-import BackToTop from "@/components/ui/BackToTop";
 import { ThemeProvider } from "./ThemeProvider";
-import AuthProvider from "./AuthProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/next";
+import { site } from "@/config/site";
 import "./globals.css";
 
-const grotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-grotesk",
-  display: "swap",
-});
-
+// Identidad tipográfica de XpertaSocial: Space Grotesk (texto) + IBM Plex Mono (etiquetas).
+const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap" });
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -23,8 +17,13 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "XpertaSocial | Growth Engineering Systems",
-  description: "Automated revenue infrastructure. Not an agency.",
+  metadataBase: new URL(site.url),
+  title: {
+    default: "XpertaSocial | Publicidad, sitios web y posicionamiento conectados",
+    template: "%s | XpertaSocial",
+  },
+  description:
+    "Amazon Ads, Google Ads, sitios web, tiendas en línea y SEO, GEO y AEO integrados en un solo sistema de ventas medible. Ciudad de México.",
 };
 
 export default function RootLayout({
@@ -33,9 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="es-MX" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        {/* Google Tag Manager */}
+        {/* Google Tag Manager — IDs existentes. Se migran a variables de entorno y Consent Mode en la Sesión 4. */}
         <Script id="gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -43,9 +42,6 @@ export default function RootLayout({
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-5PCNSH54');`}
         </Script>
-        {/* End Google Tag Manager */}
-
-        {/* Google Analytics */}
         <Script id="ga-src" strategy="afterInteractive" async src="https://www.googletagmanager.com/gtag/js?id=G-Y4VM4XNER6"></Script>
         <Script id="ga-inline" strategy="afterInteractive">
           {`
@@ -55,40 +51,21 @@ export default function RootLayout({
             gtag('config', 'G-Y4VM4XNER6');
           `}
         </Script>
-        {/* End Google Analytics */}
       </head>
       <body
-        className={`${grotesk.variable} ${plexMono.variable} antialiased bg-white dark:bg-carbon text-black dark:text-techWhite selection:bg-neonBlue selection:text-black min-h-dvh flex flex-col`}
+        className={`${grotesk.variable} ${plexMono.variable} antialiased min-h-dvh flex flex-col`}
       >
-        {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-5PCNSH54"
             height="0"
             width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
+            style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
-
         <ThemeProvider>
           <GoogleAnalytics />
-          <AuthProvider>
-            {/* MAIN with container */}
-            <main className="flex-grow">
-              <div className="fixed inset-0 z-[-1] opacity-20 bg-grid-pattern pointer-events-none" />
-              {children}
-            </main>
-
-            {/* FULL WIDTH FOOTER */}
-            <footer className="w-full border-t border-white/10">
-              <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-                <Footer />
-              </div>
-            </footer>
-
-            <BackToTop />
-          </AuthProvider>
+          {children}
         </ThemeProvider>
         <Analytics />
       </body>

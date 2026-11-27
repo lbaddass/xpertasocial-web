@@ -24,14 +24,31 @@ const config: Config = {
         techWhite: "#E8F5E9",
         signalRed: "#E63946",
         moneyGreen: "#4CAF50",
+
+        // Sitio comercial: identidad original (carbón + neón), modernizada.
+        void: "#050505", // fondo de página
+        panel: "#0D0F12", // tarjetas
+        panel2: "#13161B", // tarjetas elevadas / hover
+        neonAmber: "#FFB547", // acento de Amazon Ads
       },
       fontFamily: {
-        sans: ["var(--font-grotesk)"],
-        mono: ["var(--font-plex-mono)"],
+        sans: ["var(--font-grotesk)", "system-ui", "sans-serif"],
+        mono: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
+      },
+      maxWidth: {
+        content: "76rem",
+        prose: "44rem",
+      },
+      boxShadow: {
+        glow: "0 0 28px -6px rgba(0, 229, 255, 0.55)",
+        "glow-sm": "0 0 18px -8px rgba(0, 229, 255, 0.6)",
       },
       backgroundImage: {
         "grid-pattern":
-          "linear-gradient(to right, rgba(0, 229, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 229, 255, 0.03) 1px, transparent 1px)",
+          "linear-gradient(to right, rgba(0, 229, 255, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 229, 255, 0.04) 1px, transparent 1px)",
+      },
+      backgroundSize: {
+        grid: "40px 40px",
       },
       animation: {
         "glow-pulse": "glowPulse 3s ease-in-out infinite",
