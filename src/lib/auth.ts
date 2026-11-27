@@ -50,7 +50,18 @@ export const authOptions: NextAuthOptions = {
  * the caller may proceed.
  */
 export async function requireAdmin(): Promise<NextResponse | null> {
-  const session = await getServerSession(authOptions);
+  let session = null;
+  try {
+    session = await getServerSession(authOptions);
+  } catch (error) {
+    // next-auth throws when NEXTAUTH_SECRET is missing in production.
+    // Fail closed with an explicit status instead of an opaque 500.
+    console.error("Auth configuration error:", error);
+    return NextResponse.json(
+      { error: "Authentication is not configured" },
+      { status: 503 }
+    );
+  }
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
