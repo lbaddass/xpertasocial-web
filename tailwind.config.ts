@@ -38,6 +38,12 @@ const config: Config = {
         techWhite: "#E8F5E9",
         signalRed: "#E63946",
         moneyGreen: "#4CAF50",
+
+        // Sitio comercial: identidad original (carbón + neón), modernizada.
+        void: "#050505", // fondo de página
+        panel: "#0D0F12", // tarjetas
+        panel2: "#13161B", // tarjetas elevadas / hover
+        neonAmber: "#FFB547", // acento de Amazon Ads
       },
       backgroundColor: {
         primary: "#080B09",
@@ -52,9 +58,17 @@ const config: Config = {
         border: "#27332B",
       },
       fontFamily: {
-        heading: ["var(--font-heading)", "system-ui", "sans-serif"],
-        sans: ["var(--font-body)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        heading: ["var(--font-heading)", "var(--font-grotesk)", "system-ui", "sans-serif"],
+        sans: ["var(--font-grotesk)", "var(--font-body)", "system-ui", "sans-serif"],
+        mono: ["var(--font-plex-mono)", "var(--font-mono)", "ui-monospace", "monospace"],
+      },
+      maxWidth: {
+        content: "76rem",
+        prose: "44rem",
+      },
+      boxShadow: {
+        glow: "0 0 28px -6px rgba(0, 229, 255, 0.55)",
+        "glow-sm": "0 0 18px -8px rgba(0, 229, 255, 0.6)",
       },
       backgroundImage: {
         "grid-pattern":

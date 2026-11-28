@@ -2,8 +2,12 @@
 import { NextResponse } from 'next/server';
 import { getManifest } from '@/lib/manifest-parser';
 import { getGCPClient, getCloudRunJobUrl } from '@/lib/gcp-auth';
+import { requireAdmin } from '@/lib/auth';
 
 export async function POST(request: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   try {
     const body = await request.json();
     const { targetId } = body;
@@ -66,10 +70,10 @@ export async function POST(request: Request) {
         message: `Job ${jobName} triggered successfully in GCP.`
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Trigger Error:', error);
     return NextResponse.json(
-        { error: error.message || 'Internal Server Error' }, 
+        { error: error instanceof Error ? error.message : 'Internal Server Error' },
         { status: 500 }
     );
   }

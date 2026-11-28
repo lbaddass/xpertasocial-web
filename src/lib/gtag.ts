@@ -2,7 +2,7 @@
 
 declare global {
   interface Window {
-    gtag(param1: string, param2: any, param3?: any): void;
+    gtag(command: string, target: string | Date, params?: Record<string, unknown>): void;
   }
 }
 
