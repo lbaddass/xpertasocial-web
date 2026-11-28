@@ -1,133 +1,86 @@
-import { ArrowRight, Calendar, Mail, ShieldCheck } from "lucide-react";
-import Link from "next/link";
+import type { Metadata } from "next";
+import { Calendar, CheckCircle2, Clock, ShieldCheck } from "lucide-react";
 import PageNav from "@/components/layout/PageNav";
+import { DiagnosticoForm } from "@/components/contact/DiagnosticoForm";
+
+export const metadata: Metadata = {
+  title: "Solicita un diagnóstico | XpertaSocial",
+  description:
+    "Cuéntanos qué necesitas: sitio web, tienda, Google Ads, Amazon Ads o SEO. Te respondemos en un día hábil con una recomendación de por dónde empezar.",
+};
 
 export default function DiagnosticPage() {
   return (
-    <div className="min-h-screen pt-20 pb-20">
+    <div className="min-h-screen bg-bg-primary pt-20 pb-20">
       <PageNav />
-      {/* Header */}
-      <div className="max-w-4xl mx-auto px-6 mb-16 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
-          DIAGNÓSTICO <span className="text-neonBlue">&</span> ESTRATEGIA
-        </h1>
-        <p className="text-xl text-white/60 max-w-2xl mx-auto font-light">
-          Dos caminos para comenzar. Elige el que mejor se adapte a tu etapa
-          actual.
-        </p>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Option 1: Free Audit (Lead Magnet) */}
-          <div
-            id="audit"
-            className="bg-carbon border border-white/10 p-8 md:p-12 flex flex-col relative overflow-hidden group hover:border-white/30 transition-all"
-          >
-            <div className="absolute top-0 right-0 p-4 opacity-10">
-              <ShieldCheck size={64} />
-            </div>
-
-            <div className="mb-8">
-              <div className="inline-block px-3 py-1 bg-white/5 border border-white/10 rounded-sm mb-4">
-                <span className="text-xs font-mono text-white tracking-widest uppercase">
-                  OPCIÓN A: SIN COSTO
-                </span>
-              </div>
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Auditoría Online Gratuita
-              </h2>
-              <p className="text-white/60 leading-relaxed">
-                Analizamos tu presencia digital actual para detectar
-                &quot;vulnerabilidades expuestas&quot; y fugas de dinero en tus
-                campañas.
-              </p>
-            </div>
-
-            <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-start gap-3 text-sm text-white/80">
-                <ShieldCheck
-                  size={16}
-                  className="text-neonBlue mt-0.5 shrink-0"
-                />
-                Análisis de velocidad y conversión web
-              </li>
-              <li className="flex items-start gap-3 text-sm text-white/80">
-                <ShieldCheck
-                  size={16}
-                  className="text-neonBlue mt-0.5 shrink-0"
-                />
-                Revisión de estructura de campañas (Ads)
-              </li>
-              <li className="flex items-start gap-3 text-sm text-white/80">
-                <ShieldCheck
-                  size={16}
-                  className="text-neonBlue mt-0.5 shrink-0"
-                />
-                Reporte de oportunidades perdidas
-              </li>
-            </ul>
-
-            <Link
-              href="mailto:auditoria@xpertasocial.com?subject=Solicitud%20de%20Auditoría%20Gratuita"
-              className="w-full flex items-center justify-center gap-2 bg-transparent border border-white/20 text-white font-bold py-4 rounded-sm hover:bg-white hover:text-black transition-all"
-            >
-              <Mail size={18} /> SOLICITAR POR CORREO
-            </Link>
-          </div>
-
-          {/* Option 2: Strategy Session (High Ticket) */}
-          <div className="bg-neonBlue text-black p-8 md:p-12 flex flex-col relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-10">
-              <Calendar size={64} />
-            </div>
-
-            <div className="mb-8">
-              <div className="inline-block px-3 py-1 bg-black/10 border border-black/10 rounded-sm mb-4">
-                <span className="text-xs font-mono text-black tracking-widest uppercase">
-                  OPCIÓN B: ACCIÓN INMEDIATA
-                </span>
-              </div>
-              <h2 className="text-3xl font-bold text-black mb-4">
-                Diseñar mi Estrategia
-              </h2>
-              <p className="text-black/70 leading-relaxed">
-                Sesión estratégica para arquitectar tu crecimiento. Diseñamos la
-                ruta exacta para que impulses tus ventas sin desperdiciar
-                dinero.
-              </p>
-            </div>
-
-            <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-start gap-3 text-sm text-black/80">
-                <ArrowRight size={16} className="text-black mt-0.5 shrink-0" />
-                Plan de Arquitectura Digital completo
-              </li>
-              <li className="flex items-start gap-3 text-sm text-black/80">
-                <ArrowRight size={16} className="text-black mt-0.5 shrink-0" />
-                Propuesta económica transparente
-              </li>
-              <li className="flex items-start gap-3 text-sm text-black/80">
-                <ArrowRight size={16} className="text-black mt-0.5 shrink-0" />
-                Garantía de Resultados (Risk-Free)
-              </li>
-            </ul>
-
-            <Link
-              href="https://calendly.com/"
-              target="_blank"
-              className="w-full flex items-center justify-center gap-2 bg-black text-white font-bold py-4 rounded-sm hover:bg-white hover:text-black transition-all shadow-xl"
-            >
-              <Calendar size={18} /> AGENDAR SESIÓN
-            </Link>
-
-            <p className="text-xs text-center mt-4 text-black/50">
-              * Si nuestra estrategia no mejora tus resultados en el primer mes,
-              tu factura inicial no tendrá costo.
+      <main
+        id="contenido"
+        className="mx-auto grid max-w-6xl gap-10 px-6 py-12 lg:grid-cols-[1fr_minmax(0,560px)] lg:items-start"
+      >
+        {/* Columna izquierda: encabezado, beneficios y llamada de diagnóstico */}
+        <div className="space-y-8">
+          <div>
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-neon">
+              DIAGNÓSTICO &amp; ESTRATEGIA
+            </p>
+            <h1 className="font-heading text-4xl font-bold tracking-tight text-white md:text-5xl">
+              Solicita un diagnóstico{" "}
+              <span className="text-neon">técnico y comercial</span>
+            </h1>
+            <p className="mt-4 text-lg font-light leading-relaxed text-white/65">
+              Cuéntanos qué necesitas: sitio web, tienda en línea, Google Ads,
+              Meta Ads, Amazon Ads o posicionamiento SEO / GEO / AEO. Te
+              respondemos en máximo 1 día hábil con una recomendación clara de
+              por dónde empezar.
             </p>
           </div>
+
+          <div className="rounded-2xl border border-white/10 bg-[#0e1114]/90 p-6 sm:p-8">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-white/10 bg-white/5 px-3 py-1">
+              <Calendar size={14} className="text-neon" />
+              <span className="font-mono text-xs uppercase tracking-widest text-white">
+                Llamada de diagnóstico · 30 min sin costo
+              </span>
+            </div>
+            <h2 className="font-heading text-xl font-semibold text-white">
+              Qué revisamos contigo
+            </h2>
+            <ul className="mt-5 space-y-3.5 text-sm text-white/75">
+              <li className="flex items-start gap-3">
+                <ShieldCheck size={17} className="mt-0.5 shrink-0 text-neon" />
+                <span>
+                  Velocidad, arquitectura web y puntos de fuga en tu conversión
+                  actual.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-neon" />
+                <span>
+                  Visibilidad en buscadores tradicionales (SEO) y motores de IA
+                  (GEO / AEO).
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock size={17} className="mt-0.5 shrink-0 text-neon" />
+                <span>
+                  Prioridades de ejecución según tu presupuesto, urgencia y
+                  etapa del negocio.
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+
+        {/* Columna derecha: formulario multi-paso */}
+        <section
+          id="formulario"
+          aria-label="Formulario de diagnóstico"
+          className="scroll-mt-24"
+        >
+          <div id="audit" className="scroll-mt-24" />
+          <DiagnosticoForm />
+        </section>
+      </main>
     </div>
   );
 }

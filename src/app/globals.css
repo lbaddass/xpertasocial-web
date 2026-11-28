@@ -2,146 +2,195 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #0F0F0F;
-  --color-carbon: #ffffff;
-  --color-slate-ui: #F1F5F9;
-  --text-primary: #0F0F0F;
-  --text-secondary: #334155;
-  --border-color: #E2E8F0;
+/* ============================================================
+   XpertaSocial 2.0 — Global Styles
+   Design System: Dark Engineering + Premium Technology
+   ============================================================ */
+
+@layer base {
+  :root {
+    --color-bg-primary: #080B09;
+    --color-bg-secondary: #101611;
+    --color-bg-elevated: #151D17;
+    --color-neon: #A3FF66;
+    --color-neon-secondary: #C5FF9A;
+    --color-text-primary: #F5F7F4;
+    --color-text-secondary: #9AA59C;
+    --color-border: #27332B;
+    --color-muted-green: #315B37;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: var(--color-text-primary);
+    background: var(--color-bg-primary);
+    font-family: var(--font-body), system-ui, sans-serif;
+  }
+
+  ::selection {
+    background: rgba(163, 255, 102, 0.3);
+    color: #F5F7F4;
+  }
+
+  /* Heading defaults */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+  }
 }
 
-.dark {
-  --background: #000000;
-  --foreground: #e8f5e9;
-  --color-carbon: #0F0F0F;
-  --color-slate-ui: #1A1A1A;
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
-  --border-color: #334155;
-}
+/* ============================================================
+   Grid background pattern
+   ============================================================ */
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-grotesk), Arial, Helvetica, sans-serif;
-  scroll-behavior: smooth;
+.bg-grid {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(163, 255, 102, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(163, 255, 102, 0.03) 1px, transparent 1px);
 }
 
-::selection {
-  background: #4caf50;
-  color: #0a0e1a;
+/* ============================================================
+   Utility classes
+   ============================================================ */
+
+.text-gradient-neon {
+  background: linear-gradient(135deg, #A3FF66, #C5FF9A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.blueprint-border {
-  border: 1px solid rgba(232, 245, 233, 0.1);
+.glow-neon {
+  box-shadow: 0 0 20px rgba(163, 255, 102, 0.15),
+              0 0 40px rgba(163, 255, 102, 0.05);
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.glow-neon-strong {
+  box-shadow: 0 0 24px rgba(163, 255, 102, 0.3),
+              0 0 48px rgba(163, 255, 102, 0.1);
 }
 
-@keyframes scanLine {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(100%);
-  }
+.border-glow {
+  border-color: rgba(163, 255, 102, 0.2);
 }
 
-.animate-rise {
-  animation: rise 0.6s ease-out both;
+/* ============================================================
+   Staggered animation delays
+   ============================================================ */
+
+.stagger-1 { animation-delay: 0ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 200ms; }
+.stagger-4 { animation-delay: 300ms; }
+.stagger-5 { animation-delay: 400ms; }
+.stagger-6 { animation-delay: 500ms; }
+
+/* ============================================================
+   SVG connection line animations
+   ============================================================ */
+
+.connection-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawConnection 1.5s ease-out forwards;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out both;
-}
-
-.animate-scan-line {
-  animation: scanLine 1.2s linear infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulseBorder {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.35);
-  }
-
-  50% {
-    box-shadow: 0 0 18px 4px rgba(76, 175, 80, 0.35);
-  }
-}
-
-@keyframes drawLine {
-  from {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-  }
-
+@keyframes drawConnection {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-.shadow-glow-money {
-  box-shadow: 0 0 20px rgba(76, 175, 80, 0.35);
+/* ============================================================
+   Scroll-triggered reveal (used with IntersectionObserver)
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.shadow-glow-money-strong {
-  box-shadow:
-    0 0 28px rgba(76, 175, 80, 0.5),
-    0 0 52px rgba(0, 230, 118, 0.35);
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.shadow-glow-red {
-  box-shadow:
-    0 0 24px rgba(230, 57, 70, 0.45),
-    0 0 48px rgba(6, 182, 212, 0.25);
+/* ============================================================
+   Accordion animation (CSS grid trick)
+   ============================================================ */
+
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-out;
 }
+
+.accordion-content[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+  overflow: hidden;
+}
+
+/* ============================================================
+   Focus styles
+   ============================================================ */
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-neon);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* ============================================================
+   Scrollbar customization
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-green);
+}
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .connection-line {
+    stroke-dashoffset: 0;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
