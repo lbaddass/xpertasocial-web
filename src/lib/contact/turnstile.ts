@@ -3,12 +3,11 @@ const VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 export async function verifyTurnstile(token: string, ip?: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
   if (!secret) {
-    // En desarrollo se permite sin Turnstile; en producción falla cerrado.
-    if (process.env.NODE_ENV !== "production") return true;
-    console.error("[lead] TURNSTILE_SECRET_KEY no configurado");
-    return false;
+    // Si aún no se configuran las claves de Turnstile en el entorno,
+    // se permite el envío apoyándose en el honeypot para no bloquear usuarios.
+    return true;
   }
-  if (!token) return false;
+  if (!token || token === "dev") return false;
 
   const body = new URLSearchParams({ secret, response: token });
   if (ip) body.set("remoteip", ip);
