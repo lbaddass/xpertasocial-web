@@ -1,14 +1,29 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import Script from "next/script";
 import { ThemeProvider } from "./ThemeProvider";
+import AuthProvider from "./AuthProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/next";
+import { AttributionCapture } from "@/components/contact/AttributionCapture";
+import { FloatingContact } from "@/components/contact/FloatingContact";
 import { site } from "@/config/site";
 import "./globals.css";
 
-// Identidad tipográfica de XpertaSocial: Space Grotesk (texto) + IBM Plex Mono (etiquetas).
-const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap" });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const grotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-grotesk",
+  display: "swap",
+});
+
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -17,7 +32,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(site?.url || process.env.NEXT_PUBLIC_SITE_URL || "https://xpertasocial.com"),
   title: {
     default: "XpertaSocial | Publicidad, sitios web y posicionamiento conectados",
     template: "%s | XpertaSocial",
@@ -32,9 +47,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-MX" className="scroll-smooth" suppressHydrationWarning>
+    <html
+      lang="es-MX"
+      className={`${spaceGrotesk.variable} ${grotesk.variable} ${plexMono.variable} ${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <head>
-        {/* Google Tag Manager — IDs existentes. Se migran a variables de entorno y Consent Mode en la Sesión 4. */}
+        {/* Google Tag Manager */}
         <Script id="gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -52,9 +71,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body
-        className={`${grotesk.variable} ${plexMono.variable} antialiased min-h-dvh flex flex-col`}
-      >
+      <body className="antialiased min-h-dvh flex flex-col bg-bg-primary text-text-primary">
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-5PCNSH54"
@@ -64,9 +81,13 @@ export default function RootLayout({
           ></iframe>
         </noscript>
         <ThemeProvider>
-          <GoogleAnalytics />
-          {children}
+          <AuthProvider>
+            <GoogleAnalytics />
+            {children}
+          </AuthProvider>
         </ThemeProvider>
+        <AttributionCapture />
+        <FloatingContact />
         <Analytics />
       </body>
     </html>

@@ -3,7 +3,7 @@ import { Clock, Mail, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import { entryDiagnostics } from "@/config/catalog";
 import { site } from "@/config/site";
 import { PhoneLink, WhatsAppLink } from "@/components/site/ContactLinks";
-import { LeadForm } from "@/components/site/LeadForm";
+import { DiagnosticoForm } from "@/components/contact/DiagnosticoForm";
 import { buttonStyles, Container, Eyebrow, FeatureList, Glow, PriceTag } from "@/components/site/ui";
 
 export const metadata: Metadata = {
@@ -44,9 +44,10 @@ export default function DiagnosticoPage() {
           </ul>
         </div>
 
-        <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+        <div id="formulario" className="scroll-mt-24 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <div id="audit" className="scroll-mt-24" />
           <h2 className="sr-only">Formulario de diagnóstico</h2>
-          <LeadForm source="diagnostico" />
+          <DiagnosticoForm />
         </div>
 
         <div>
